@@ -48,6 +48,9 @@
          <FileRef
             location = "group:struts.xml">
          </FileRef>
+         <FileRef
+            location = "group:../../index.jsp">
+         </FileRef>
       </Group>
       <Group
          location = "group:lib"
