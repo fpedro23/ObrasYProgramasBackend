@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:consultaGeneralProgramas.jsp">
+   </FileRef>
+   <FileRef
+      location = "group:Empleado.jsp">
+   </FileRef>
+   <FileRef
+      location = "group:querys.txt">
+   </FileRef>
+   <FileRef
+      location = "group:RespuestaJson.jsp">
+   </FileRef>
+   <FileRef
+      location = "group:startup.sh">
+   </FileRef>
+   <Group
+      location = "group:WEB-INF"
+      name = "WEB-INF">
+      <Group
+         location = "group:classes"
+         name = "classes">
+         <Group
+            location = "group:modelObrasYProgramas"
+            name = "modelObrasYProgramas">
+            <FileRef
+               location = "group:Programa.class">
+            </FileRef>
+            <FileRef
+               location = "group:Programa.java">
+            </FileRef>
+            <FileRef
+               location = "group:ProgramasAD.class">
+            </FileRef>
+            <FileRef
+               location = "group:ProgramasAD.java">
+            </FileRef>
+            <FileRef
+               location = "group:startup.sh">
+            </FileRef>
+         </Group>
+         <Group
+            location = "group:servletObrasYProgramas"
+            name = "servletObrasYProgramas">
+            <FileRef
+               location = "group:ServletEmpleado.class">
+            </FileRef>
+            <FileRef
+               location = "group:ServletProgramas.class">
+            </FileRef>
+            <FileRef
+               location = "group:ServletProgramas.java">
+            </FileRef>
+         </Group>
+         <FileRef
+            location = "group:struts.xml">
+         </FileRef>
+      </Group>
+      <Group
+         location = "group:lib"
+         name = "lib">
+         <FileRef
+            location = "group:commons-logging-1.0.4.jar">
+         </FileRef>
+         <FileRef
+            location = "group:freemarker-2.3.8.jar">
+         </FileRef>
+         <FileRef
+            location = "group:mysql-connector-java-5.1.23-bin.jar">
+         </FileRef>
+         <FileRef
+            location = "group:ognl-2.6.11.jar">
+         </FileRef>
+         <FileRef
+            location = "group:struts2-core-2.0.11.jar">
+         </FileRef>
+         <FileRef
+            location = "group:xwork-2.0.4.jar">
+         </FileRef>
+      </Group>
+      <FileRef
+         location = "group:web.xml">
+      </FileRef>
+   </Group>
+</Workspace>

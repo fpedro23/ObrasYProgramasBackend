@@ -1,0 +1,8 @@
+SELECT Programa.Id_programa,Dependencias.Nombre,Tipo_Apoyo.Nombre,Programa.Monto_Apoyo,
+       Poblacion_Objetivo.Nombre,Programa.Total_Beneficiario,Estados.Nombre,Programa.Total_Municipios_Beneficiados,
+       Programa.Inversion_Total,Programa.Línea_base,Programa.Meta_Beneficiarios,Programa.Absoluto,
+       Programa.Porcentual,Programa.Observaciones
+       FROM Programa JOIN Tipo_Apoyo USING (ID_Tipo_Apoyo) 
+       JOIN Estados USING (Id_Estado)
+       JOIN Dependencias USING(Id_Dependencia) 
+       JOIN Poblacion_Objetivo USING (Id_Pob_Objetivo);
