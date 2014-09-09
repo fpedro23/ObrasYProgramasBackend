@@ -59,6 +59,8 @@ La ruta hacia las clases de struts.
 `export CLASSPATH=/Library/apache-tomcat-7.0.42/webapps/companyStrutsJQuery/WEB-INF/lib/struts2-core-2.0.11.jar:$CLASSPATH`
 
 
+<h3>Iniciar el Servidor</h3>
+
 `cd /Library/apache-tomcat-7.0.42/bin` - Navegar hacia el directorio /bin de apache
 
 `./startup.sh` - Iniciar el Server
