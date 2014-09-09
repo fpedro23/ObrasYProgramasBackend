@@ -5,13 +5,7 @@
       location = "group:consultaGeneralProgramas.jsp">
    </FileRef>
    <FileRef
-      location = "group:Empleado.jsp">
-   </FileRef>
-   <FileRef
       location = "group:querys.txt">
-   </FileRef>
-   <FileRef
-      location = "group:RespuestaJson.jsp">
    </FileRef>
    <FileRef
       location = "group:startup.sh">
@@ -44,9 +38,6 @@
          <Group
             location = "group:servletObrasYProgramas"
             name = "servletObrasYProgramas">
-            <FileRef
-               location = "group:ServletEmpleado.class">
-            </FileRef>
             <FileRef
                location = "group:ServletProgramas.class">
             </FileRef>

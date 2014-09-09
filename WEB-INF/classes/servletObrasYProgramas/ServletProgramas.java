@@ -8,21 +8,14 @@ import java.util.*;
 public class ServletProgramas extends ActionSupport
 {
 
-    
 	public List<Programa> listaProgramas;
     private Programa programa;
     
-
-    
 	public String execute() throws Exception
-	{	
-        
+	{
         
         ProgramasAD programasAD = new ProgramasAD();
-        
-     
-        listaProgramas = programasAD.consultarProgramas();
-        
+        listaProgramas = programasAD.consultarProgramas();        
         return "consultarProgramas";
         
 	}
