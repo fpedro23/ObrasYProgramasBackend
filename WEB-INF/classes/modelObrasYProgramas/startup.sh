@@ -8,6 +8,7 @@ export CLASSPATH=/Library/apache-tomcat-7.0.42/webapps/proyectoSegundoParcial/WE
 export CLASSPATH=/Library/apache-tomcat-7.0.42/webapps/Struts2/WEB-INF/lib/xwork-core-2.3.15.3.jar:$CLASSPATH
 export CLASSPATH=/Library/apache-tomcat-7.0.42/webapps/Struts2/WEB-INF/lib/struts2-core-2.3.15.3.jar:$CLASSPATH
 export CLASSPATH=/Library/apache-tomcat-7.0.42/webapps/obras/WEB-INF/lib/xwork-2.0.4.jar:$CLASSPATH
+export CLASSPATH=/Users/Pedro/Downloads/gson-2.3.jar:$CLASSPATH
 
 
 cd /Library/apache-tomcat-7.0.42/bin

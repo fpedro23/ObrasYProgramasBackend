@@ -6,16 +6,12 @@
 	<constant name="struts.devMode" value="true" />
 	
 	<package name="Obras y Programas" namespace="/" extends="struts-default">
-
-        
-		
          <action name="operacionProgramas" class="servletObrasYProgramas.ServletProgramas" method="execute">
-             
-         
-         <result name="consultarProgramas">/consultaGeneralProgramas.jsp</result>
-
-
+             <result name="consultarProgramas">/consultaGeneralProgramas.jsp</result>
          </action>
-        
+         
+         <action name="operacionProgramasConsultaEspecifica" class="servletObrasYProgramas.ServletProgramas" method="consultaProgramasEspecifica">
+             <result name="consultarProgramas">/consultaGeneralProgramas.jsp</result>
+         </action>
 	</package>
 </struts>

@@ -5,7 +5,7 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>0FB57200-D9B1-45F1-942E-D6513B15F078</string>
+	<string>A44BEFFD-6DD3-447B-B80A-5F46061066ED</string>
 	<key>IDESourceControlProjectName</key>
 	<string>ObrasYProgramas</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
@@ -13,10 +13,12 @@
 		<key>E3B368D1-5221-4288-B087-B3848D654D81</key>
 		<string>ssh://github.com/fpedro23/ObrasYProgramasBackend.git</string>
 	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>ObrasYProgramas.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>E3B368D1-5221-4288-B087-B3848D654D81</key>
-		<string>../../../../../Users/Pedro/Desktop/ObrasYProgramasBackend</string>
+		<string>..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>ssh://github.com/fpedro23/ObrasYProgramasBackend.git</string>

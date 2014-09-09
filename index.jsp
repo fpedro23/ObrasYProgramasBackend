@@ -10,7 +10,11 @@ pageEncoding="ISO-8859-1"%>
     <body>
         <h1>Acciones de Programas</h1>
         <form action="operacionProgramas.action">
-            <input type="submit" value="Say Hello"/>
+            <input type="submit" value="Consulta General"/>
+        </form>
+        <form action="operacionProgramasConsultaEspecifica.action">
+            <input type="text" name="idPrograma"/>
+            <input type="submit" value="Consulta Específica"/>
         </form>
     </body>
 </html>
