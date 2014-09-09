@@ -1,9 +1,8 @@
-ObrasYProgramasBackend
+<h1>ObrasYProgramasBackend</h1>
 
 ======================
 
-
-Proyecto de Obras y Programas
+<h2>Proyecto de Obras y Programas</h2>
 
 
 
@@ -29,21 +28,21 @@ La ruta hacia las clases de struts.
 
 
 
-Rutas hacia los .jar para que puedan compilar bien los .java
+<h3>Rutas hacia los .jar para que puedan compilar bien los .java</h3>
 
 
 
-servlet-api.jar
+* servlet-api.jar
 
-struts-core-1.3.10.jar
+* struts-core-1.3.10.jar
 
-struts-extras-1.3.10.jar:
+* struts-extras-1.3.10.jar:
 
-mysql-connector-java-5.1.23-bin.jar - Driver de la base de datos
+* mysql-connector-java-5.1.23-bin.jar - Driver de la base de datos
 
-xwork-2.0.4.jar
+* xwork-2.0.4.jar
 
-struts2-core-2.0.11.jar
+* struts2-core-2.0.11.jar
 
 
 
