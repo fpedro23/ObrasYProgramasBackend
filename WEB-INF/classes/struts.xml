@@ -5,7 +5,7 @@
 <struts>
 	<constant name="struts.devMode" value="true" />
 	
-	<package name="BiblioStruts2" namespace="/" extends="struts-default">
+	<package name="Obras y Programas" namespace="/" extends="struts-default">
 
         
 		
