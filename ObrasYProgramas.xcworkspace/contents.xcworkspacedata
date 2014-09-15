@@ -5,6 +5,18 @@
       location = "group:consultaGeneralProgramas.jsp">
    </FileRef>
    <FileRef
+      location = "group:crearConsultaFichaTecnica.sql">
+   </FileRef>
+   <FileRef
+      location = "group:crearConsultarDatosObrasInversion.sql">
+   </FileRef>
+   <FileRef
+      location = "group:crearConsultarObrasClasificacion">
+   </FileRef>
+   <FileRef
+      location = "group:generarFichaTecnica.sql">
+   </FileRef>
+   <FileRef
       location = "group:querys.txt">
    </FileRef>
    <FileRef
