@@ -13,5 +13,10 @@
          <action name="operacionProgramasConsultaEspecifica" class="servletObrasYProgramas.ServletProgramas" method="consultaProgramasEspecifica">
              <result name="consultarProgramas">/consultaGeneralProgramas.jsp</result>
          </action>
+         
+         <action name="generarFichaTecnica" class="servletObrasYProgramas.ServletObras" method="generarFichaTecnica">
+             <result name="fichaTecnicaObras">/fichaTecnicaObra.jsp</result>
+         </action>
+         
 	</package>
 </struts>
