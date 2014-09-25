@@ -8,7 +8,7 @@ import java.util.*;
 public class ServletObras extends ActionSupport
 {
     
-	public List<Programa> listaProgramas;
+	public List<Estado> listaEstados;
     public Obra obra ;
     private String idObra;
     
@@ -21,6 +21,12 @@ public class ServletObras extends ActionSupport
         return "fichaTecnicaObras";
         
         
+    }
+    
+    public String consultarEstados()throws Exception{
+        ObrasAD obrasAD = new ObrasAD();
+        listaEstados =  obrasAD.listaDeEstados();
+        return "listaDeEstados";
     }
     
     

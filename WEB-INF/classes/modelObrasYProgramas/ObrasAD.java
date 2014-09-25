@@ -7,16 +7,32 @@ import java.nio.charset.*;
 public class ObrasAD
 {
     private Connection conexion;
-    private CallableStatement statement;
-    private List<String> nombreTipoClasificacion;
-    private List<String> nombreTipoInversion;
+    private CallableStatement callableStatement;
     private Obra obra;
+    
+    private Dependencia dependencia;
+    private List<Dependencia> listaDependencia;
+
+    private Estado estado;
+    private List<Estado> listaEstado;
+
+    private Impacto impacto;
+    private List<Impacto> listaImpacto;
+    
+    private Inaugurador inaugurador;
+    private List<Inaugurador> listaInaugurador;
+    
+    
+    private Statement statement;
+
+    
     public ObrasAD()
     {
         try
         {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             conexion= DriverManager.getConnection("jdbc:mysql://localhost/ObrasYProgramas?user=root");
+            System.out.println("Conexion exitosa a la BD");
         }
         catch(ClassNotFoundException cnfe)
         {
@@ -34,20 +50,141 @@ public class ObrasAD
         {
             System.out.println("Error: "+sqle);
         }
-        System.out.println("Conexion exitosa a la BD");
         
-       nombreTipoClasificacion =  new ArrayList<String>();
 
-        nombreTipoInversion= new ArrayList<String>();
 
     }
 	
-    
+    public List<Estado> listaDeEstados(){
+        ResultSet tr = null;
+        String select = "SELECT * FROM estados";
+        listaEstado = new ArrayList<Estado>();
 
+        
+        try{
+            statement=conexion.createStatement();
+            tr = statement.executeQuery(select);
+            
+            
+            while(tr.next())
+            {
+                estado = new Estado();
+                
+                estado.setIdEstado(tr.getString("idEstado"));
+                estado.setNombreEstado(tr.getString("nombreEstado"));
+                estado.setLatitud(tr.getString("latitud"));
+                estado.setLongitud(tr.getString("longitud"));
+                
+                listaEstado.add(estado);
+                
+            }
+            
+        }
+        catch(SQLException sqle){
+            System.out.println(sqle);
+
+        }
+        
+        return listaEstado;
+    }
+    public List<Dependencia> listaDeDependencias(){
+        ResultSet tr = null;
+        String select = "SELECT * FROM dependencias";
+        listaDependencia = new ArrayList<Dependencia>();
+        
+        
+        try{
+            statement=conexion.createStatement();
+            tr = statement.executeQuery(select);
+            
+            
+            while(tr.next())
+            {
+                dependencia = new Dependencia();
+                
+                dependencia.setIdDependencia(tr.getString("idDependencia"));
+                dependencia.setNombreEstado(tr.getString("nombreDependencia"));
+                
+                listaDependencia.add(dependencia);
+                
+            }
+            
+        }
+        catch(SQLException sqle){
+            System.out.println(sqle);
+            
+        }
+        
+        return listaDependencia;
+    }
+    public List<Impacto> listaDeImpactos(){
+        ResultSet tr = null;
+        String select = "SELECT * FROM impactos";
+        listaImpacto = new ArrayList<Impacto>();
+        
+        
+        try{
+            statement=conexion.createStatement();
+            tr = statement.executeQuery(select);
+            
+            
+            while(tr.next())
+            {
+                impacto = new Impacto();
+                
+                impacto.setIdImpacto(tr.getString("idImpacto"));
+                impacto.setNombreImpacto(tr.getString("nombreImpacto"));
+                
+                listaImpacto.add(impacto);
+                
+            }
+            
+        }
+        catch(SQLException sqle){
+            System.out.println(sqle);
+            
+        }
+        
+        return listaImpacto;
+    }
+    
+    public List<Inaugurador> listaDeInauguradores(){
+        
+        ResultSet tr = null;
+        String select = "SELECT * FROM cargo_inaugura";
+        listaInaugurador = new ArrayList<Inaugurador>();
+        
+        
+        try{
+            statement=conexion.createStatement();
+            tr = statement.executeQuery(select);
+            
+            
+            while(tr.next())
+            {
+                inaugurador = new Inaugurador();
+                
+                inaugurador.setIdCargoInaugura(tr.getString("idCargoInaugura"));
+                inaugurador.setNombreCargoInaugura(tr.getString("nombreCargoInaugura"));
+                
+                listaInaugurador.add(inaugurador);
+                
+            }
+            
+        }
+        catch(SQLException sqle){
+            System.out.println(sqle);
+            
+        }
+        
+        return listaInaugurador;
+        
+    
+    
     
     public Obra generarFichaTecnicaObra(String idObra)
 	{
-        ResultSet tr = null;
+       /* ResultSet tr = null;
 
         System.out.println("Entro");
 
@@ -118,7 +255,8 @@ public class ObrasAD
         {
 			System.out.println(sqle);
         }
-		
+		*/
+        obra = new Obra();
 		return obra;
 	}
     

@@ -18,5 +18,9 @@
              <result name="fichaTecnicaObras">/fichaTecnicaObra.jsp</result>
          </action>
          
+         <action name="consultarEstados" class="servletObrasYProgramas.ServletObras" method="consultarEstados">
+             <result name="listaDeEstados">/Views/Estados.jsp</result>
+         </action>
+         
 	</package>
 </struts>
