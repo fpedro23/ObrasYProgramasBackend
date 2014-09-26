@@ -42,7 +42,7 @@
              <result name="respuestaListaJson">/Views/ListaJSON.jsp</result>
          </action>
          
-         <action name="consultarTiposDeObra" class="servletObrasYProgramas.ServletObras" method="consultarImpactos">
+         <action name="consultarTiposDeObra" class="servletObrasYProgramas.ServletObras" method="consultarTiposDeObra">
              <result name="respuestaListaJson">/Views/ListaJSON.jsp</result>
          </action>
          
