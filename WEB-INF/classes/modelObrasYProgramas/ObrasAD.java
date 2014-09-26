@@ -22,6 +22,17 @@ public class ObrasAD
     private Inaugurador inaugurador;
     private List<Inaugurador> listaInaugurador;
     
+    private PoblacionObjetivo poblacionObjetivo;
+    private List<PoblacionObjetivo> listaPoblacionObjetivo;
+    
+    private TipoClasificacion tipoClasificacion;
+    private List<TipoClasificacion> listaTipoClasificacion;
+    
+    private TipoInversion tipoInversion;
+    private List<TipoInversion> listaTipoInversion;
+    
+    private TipoObra tipoObra;
+    private List<TipoObra> listaTipoObra;
     
     private Statement statement;
 
@@ -87,6 +98,9 @@ public class ObrasAD
         
         return listaEstado;
     }
+    
+    
+    
     public List<Dependencia> listaDeDependencias(){
         ResultSet tr = null;
         String select = "SELECT * FROM dependencias";
@@ -103,7 +117,7 @@ public class ObrasAD
                 dependencia = new Dependencia();
                 
                 dependencia.setIdDependencia(tr.getString("idDependencia"));
-                dependencia.setNombreEstado(tr.getString("nombreDependencia"));
+                dependencia.setNombreDependencia(tr.getString("nombreDependencia"));
                 
                 listaDependencia.add(dependencia);
                 
@@ -117,6 +131,9 @@ public class ObrasAD
         
         return listaDependencia;
     }
+    
+    
+    
     public List<Impacto> listaDeImpactos(){
         ResultSet tr = null;
         String select = "SELECT * FROM impactos";
@@ -147,6 +164,7 @@ public class ObrasAD
         
         return listaImpacto;
     }
+    
     
     public List<Inaugurador> listaDeInauguradores(){
         
@@ -179,7 +197,149 @@ public class ObrasAD
         
         return listaInaugurador;
         
+    }
     
+    public List<PoblacionObjetivo> listaDePoblacionesObjetivo(){
+    
+        
+        ResultSet tr = null;
+        String select = "SELECT * FROM poblacion_objetivo";
+        listaPoblacionObjetivo = new ArrayList<PoblacionObjetivo>();
+        
+        
+        try{
+            statement=conexion.createStatement();
+            tr = statement.executeQuery(select);
+            
+            
+            while(tr.next())
+            {
+                poblacionObjetivo = new PoblacionObjetivo();
+                
+                poblacionObjetivo.setIdPoblacion(tr.getString("idpoblacionObjetivo"));
+                poblacionObjetivo.setNombrePoblacionObjetivo(tr.getString("nombrePobObj"));
+                
+                listaPoblacionObjetivo.add(poblacionObjetivo);
+                
+            }
+            
+        }
+        catch(SQLException sqle){
+            System.out.println(sqle);
+            
+        }
+        
+        return listaPoblacionObjetivo;
+
+    
+    }
+    
+    public List<TipoClasificacion>  listaDeClasificaciones(){
+    
+        
+        ResultSet tr = null;
+        String select = "SELECT * FROM tipo_clasificacion";
+        listaTipoClasificacion = new ArrayList<TipoClasificacion>();
+        
+        
+        try{
+            statement=conexion.createStatement();
+            tr = statement.executeQuery(select);
+            
+            
+            while(tr.next())
+            {
+                tipoClasificacion = new TipoClasificacion();
+                
+                tipoClasificacion.setIdTipoClasificacion(tr.getString("idTipoClasificacion"));
+                tipoClasificacion.setNombreTipoClasificacion(tr.getString("nombreTipoClasificacion"));
+                
+                listaTipoClasificacion.add(tipoClasificacion);
+                
+            }
+            
+        }
+        catch(SQLException sqle){
+            System.out.println(sqle);
+            
+        }
+        
+        return listaTipoClasificacion;
+    
+        
+    }
+    
+    public List<TipoInversion> listaDeInversiones(){
+        
+        
+        
+        ResultSet tr = null;
+        String select = "SELECT * FROM tipo_inversion";
+        listaTipoInversion = new ArrayList<TipoInversion>();
+        
+        
+        try{
+            statement=conexion.createStatement();
+            tr = statement.executeQuery(select);
+            
+            
+            while(tr.next())
+            {
+                tipoInversion = new TipoInversion();
+                
+                tipoInversion.setIdTipoInversion(tr.getString("idTipoInversion"));
+                tipoInversion.setNombreTipoInversion(tr.getString("nombreTipoInv"));
+                
+                listaTipoInversion.add(tipoInversion);
+                
+            }
+            
+        }
+        catch(SQLException sqle){
+            System.out.println(sqle);
+            
+        }
+        
+        return listaTipoInversion;
+    
+    }
+    public List<TipoObra> listaDeObras(){
+    
+        
+        
+        
+        ResultSet tr = null;
+        String select = "SELECT * FROM tipo_obra";
+        listaTipoObra = new ArrayList<TipoObra>();
+        
+        
+        try{
+            statement=conexion.createStatement();
+            tr = statement.executeQuery(select);
+            
+            
+            while(tr.next())
+            {
+                tipoObra = new TipoObra();
+                
+                tipoObra.setIdTipoObra(tr.getString("idTipoObra"));
+                tipoObra.setNombreTipoObra(tr.getString("nombreTipoObra"));
+                
+                listaTipoObra.add(tipoObra);
+                
+            }
+            
+        }
+        catch(SQLException sqle){
+            System.out.println(sqle);
+            
+        }
+        
+        return listaTipoObra;
+        
+
+    }
+
     
     
     public Obra generarFichaTecnicaObra(String idObra)

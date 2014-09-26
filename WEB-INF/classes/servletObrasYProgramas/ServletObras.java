@@ -8,11 +8,59 @@ import java.util.*;
 public class ServletObras extends ActionSupport
 {
     
-	public List<Estado> listaEstados;
+
+    public List<?> lista;
+    
+    
+    
     public Obra obra ;
     private String idObra;
     
 
+    
+    public String consultarEstados()throws Exception{
+        ObrasAD obrasAD = new ObrasAD();
+        lista =  obrasAD.listaDeEstados();
+        return "respuestaListaJson";
+    }
+    
+    public String consultarImpactos()throws Exception{
+        ObrasAD obrasAD = new ObrasAD();
+        lista =  obrasAD.listaDeImpactos();
+        return "respuestaListaJson";
+    }
+    
+    public String consultarInauguradores()throws Exception{
+        ObrasAD obrasAD = new ObrasAD();
+        lista =  obrasAD.listaDeInauguradores();
+        return "respuestaListaJson";
+    }
+    
+    public String consultarPoblacionesObjetivo()throws Exception{
+        ObrasAD obrasAD = new ObrasAD();
+        lista =  obrasAD.listaDePoblacionesObjetivo();
+        return "respuestaListaJson";
+    }
+    
+    public String consultarClasificaciones()throws Exception{
+        ObrasAD obrasAD = new ObrasAD();
+        lista =  obrasAD.listaDeClasificaciones();
+        return "respuestaListaJson";
+    }
+    
+    public String consultarInversiones()throws Exception{
+        ObrasAD obrasAD = new ObrasAD();
+        lista =  obrasAD.listaDeInversiones();
+        return "respuestaListaJson";
+    }
+    
+    public String consultarTiposDeObra()throws Exception{
+        ObrasAD obrasAD = new ObrasAD();
+        lista =  obrasAD.listaDeObras();
+        return "respuestaListaJson";
+    }
+    
+    
     
     public String generarFichaTecnica() throws Exception
     {
@@ -20,15 +68,7 @@ public class ServletObras extends ActionSupport
         obra = obrasAD.generarFichaTecnicaObra(idObra);
         return "fichaTecnicaObras";
         
-        
     }
-    
-    public String consultarEstados()throws Exception{
-        ObrasAD obrasAD = new ObrasAD();
-        listaEstados =  obrasAD.listaDeEstados();
-        return "listaDeEstados";
-    }
-    
     
     
 	/**

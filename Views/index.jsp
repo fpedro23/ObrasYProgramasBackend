@@ -8,13 +8,37 @@ pageEncoding="ISO-8859-1"%>
         <title>Programas</title>
     </head>
     <body>
-        <h1>Acciones de Programas</h1>
-        <form action="operacionProgramas.action">
-            <input type="submit" value="Consulta General"/>
+        <h1>Acciones de Obras</h1>
+
+        <form action="consultarEstados.action">
+            <input type="submit" value="Consulta Estados"/>
         </form>
-        <form action="operacionProgramasConsultaEspecifica.action">
-            <input type="text" name="idPrograma"/>
-            <input type="submit" value="Consulta Específica"/>
+
+        <form action="consultarImpactos.action">
+            <input type="submit" value="Consulta Impactos"/>
         </form>
+
+        <form action="consultarInauguradores.action">
+            <input type="submit" value="Consulta Inauguradores"/>
+        </form>
+
+        <form action="consultarPoblacionesObjetivo.action">
+            <input type="submit" value="Consulta Poblaciones Objetivo"/>
+        </form>
+
+        <form action="consultarClasificaciones.action">
+            <input type="submit" value="Consulta Clasificaciones"/>
+        </form>
+
+        <form action="consultarInversiones.action">
+            <input type="submit" value="Consulta Inversiones"/>
+        </form>
+
+        <form action="consultarTiposDeObra.action">
+            <input type="submit" value="Consulta Tipos de Obra"/>
+        </form>
+
+
+
     </body>
 </html>

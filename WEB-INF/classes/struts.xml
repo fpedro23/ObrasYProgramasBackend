@@ -19,7 +19,31 @@
          </action>
          
          <action name="consultarEstados" class="servletObrasYProgramas.ServletObras" method="consultarEstados">
-             <result name="listaDeEstados">/Views/Estados.jsp</result>
+             <result name="respuestaListaJson">/Views/ListaJSON.jsp</result>
+         </action>
+         
+         <action name="consultarImpactos" class="servletObrasYProgramas.ServletObras" method="consultarImpactos">
+             <result name="respuestaListaJson">/Views/ListaJSON.jsp</result>
+         </action>
+         
+         <action name="consultarInauguradores" class="servletObrasYProgramas.ServletObras" method="consultarInauguradores">
+             <result name="respuestaListaJson">/Views/ListaJSON.jsp</result>
+         </action>
+         
+         <action name="consultarPoblacionesObjetivo" class="servletObrasYProgramas.ServletObras" method="consultarPoblacionesObjetivo">
+             <result name="respuestaListaJson">/Views/ListaJSON.jsp</result>
+         </action>
+         
+         <action name="consultarClasificaciones" class="servletObrasYProgramas.ServletObras" method="consultarClasificaciones">
+             <result name="respuestaListaJson">/Views/ListaJSON.jsp</result>
+         </action>
+         
+         <action name="consultarInversiones" class="servletObrasYProgramas.ServletObras" method="consultarInversiones">
+             <result name="respuestaListaJson">/Views/ListaJSON.jsp</result>
+         </action>
+         
+         <action name="consultarTiposDeObra" class="servletObrasYProgramas.ServletObras" method="consultarImpactos">
+             <result name="respuestaListaJson">/Views/ListaJSON.jsp</result>
          </action>
          
 	</package>
