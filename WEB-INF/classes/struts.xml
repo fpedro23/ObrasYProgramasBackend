@@ -6,48 +6,43 @@
 	<constant name="struts.devMode" value="true" />
 	
 	<package name="Obras y Programas" namespace="/" extends="struts-default">
-         <action name="operacionProgramas" class="servletObrasYProgramas.ServletProgramas" method="execute">
-             <result name="consultarProgramas">/consultaGeneralProgramas.jsp</result>
-         </action>
+
+
          
-         <action name="operacionProgramasConsultaEspecifica" class="servletObrasYProgramas.ServletProgramas" method="consultaProgramasEspecifica">
-             <result name="consultarProgramas">/consultaGeneralProgramas.jsp</result>
-         </action>
-         
-         <action name="generarFichaTecnica" class="servletObrasYProgramas.ServletObras" method="generarFichaTecnica">
-             <result name="fichaTecnicaObras">/fichaTecnicaObra.jsp</result>
-         </action>
-         
-         <action name="consultarEstados" class="servletObrasYProgramas.ServletObras" method="consultarEstados">
+         <action name="consultarEstados" class="servletObrasYProgramas.ServletConsultasGenerales" method="consultarEstados">
              <result name="respuestaListaJson">/Views/ListaJSON.jsp</result>
          </action>
          
-         <action name="consultarDependencias" class="servletObrasYProgramas.ServletObras" method="consultarDependencias">
+         <action name="consultarDependencias" class="servletObrasYProgramas.ServletConsultasGenerales" method="consultarDependencias">
              <result name="respuestaListaJson">/Views/ListaJSON.jsp</result>
          </action>
          
-         <action name="consultarImpactos" class="servletObrasYProgramas.ServletObras" method="consultarImpactos">
+         <action name="consultarImpactos" class="servletObrasYProgramas.ServletConsultasGenerales" method="consultarImpactos">
              <result name="respuestaListaJson">/Views/ListaJSON.jsp</result>
          </action>
          
-         <action name="consultarInauguradores" class="servletObrasYProgramas.ServletObras" method="consultarInauguradores">
+         <action name="consultarInauguradores" class="servletObrasYProgramas.ServletConsultasGenerales" method="consultarInauguradores">
              <result name="respuestaListaJson">/Views/ListaJSON.jsp</result>
          </action>
          
-         <action name="consultarPoblacionesObjetivo" class="servletObrasYProgramas.ServletObras" method="consultarPoblacionesObjetivo">
+         <action name="consultarPoblacionesObjetivo" class="servletObrasYProgramas.ServletConsultasGenerales" method="consultarPoblacionesObjetivo">
              <result name="respuestaListaJson">/Views/ListaJSON.jsp</result>
          </action>
          
-         <action name="consultarClasificaciones" class="servletObrasYProgramas.ServletObras" method="consultarClasificaciones">
+         <action name="consultarClasificaciones" class="servletObrasYProgramas.ServletConsultasGenerales" method="consultarClasificaciones">
              <result name="respuestaListaJson">/Views/ListaJSON.jsp</result>
          </action>
          
-         <action name="consultarInversiones" class="servletObrasYProgramas.ServletObras" method="consultarInversiones">
+         <action name="consultarInversiones" class="servletObrasYProgramas.ServletConsultasGenerales" method="consultarInversiones">
              <result name="respuestaListaJson">/Views/ListaJSON.jsp</result>
          </action>
          
-         <action name="consultarTiposDeObraProgramas" class="servletObrasYProgramas.ServletObras" method="consultarTiposDeObra">
+         <action name="consultarTiposDeObraProgramas" class="servletObrasYProgramas.ServletConsultasGenerales" method="consultarTiposDeObra">
              <result name="respuestaListaJson">/Views/ListaJSON.jsp</result>
+         </action>
+         
+         <action name="buscar" class="servletObrasYProgramas.ServletBusqueda$Busqueda" method="execute">
+             <result name="resultadoConsulta">/Views/RespuestaConsulta.jsp</result>
          </action>
          
 	</package>

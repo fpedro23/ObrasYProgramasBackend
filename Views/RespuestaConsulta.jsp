@@ -6,13 +6,13 @@
 
 <%
 
-Gson gson = new Gson();
+        Gson gson = new Gson();
 
-Obra obra;
-obra = (Obra)request.getAttribute("obra");
+        Consulta consulta;
+        consulta = (Consulta)request.getAttribute("consulta");
 
-String json = gson.toJson(obra);
+        String json = gson.toJson(consulta);
 
-out.println(json);
-out.flush();
+        out.println(json);
+        out.flush();
 %>

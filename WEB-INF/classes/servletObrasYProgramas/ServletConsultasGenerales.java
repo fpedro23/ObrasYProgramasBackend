@@ -5,18 +5,12 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import modelObrasYProgramas.*;
 import java.util.*;
-public class ServletObras extends ActionSupport
+public class ServletConsultasGenerales extends ActionSupport
 {
     
 
     public List<?> lista;
     
-    
-    
-    public Obra obra ;
-    private String idObra;
-    
-
     
     public String consultarEstados()throws Exception{
         ObrasAD obrasAD = new ObrasAD();
@@ -67,27 +61,5 @@ public class ServletObras extends ActionSupport
         return "respuestaListaJson";
     }
     
-    
-    
-    public String generarFichaTecnica() throws Exception
-    {
-        ObrasAD obrasAD = new ObrasAD();
-        obra = obrasAD.generarFichaTecnicaObra(idObra);
-        return "fichaTecnicaObras";
-        
-    }
-    
-    
-	/**
-	 * @return the idObra
-	 */
-	public String getIdObra() {
-		return idObra;
-	}
-	/**
-	 * @param idObra the idObra to set
-	 */
-	public void setIdObra(String idObra) {
-		this.idObra = idObra;
-	}
+
 }
