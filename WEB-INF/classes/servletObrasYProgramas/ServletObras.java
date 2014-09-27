@@ -61,6 +61,13 @@ public class ServletObras extends ActionSupport
     }
     
     
+    public String consultarDependencias()throws Exception{
+        ObrasAD obrasAD = new ObrasAD();
+        lista =  obrasAD.listaDeDependencias();
+        return "respuestaListaJson";
+    }
+    
+    
     
     public String generarFichaTecnica() throws Exception
     {

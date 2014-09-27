@@ -22,6 +22,10 @@
              <result name="respuestaListaJson">/Views/ListaJSON.jsp</result>
          </action>
          
+         <action name="consultarDependencias" class="servletObrasYProgramas.ServletObras" method="consultarDependencias">
+             <result name="respuestaListaJson">/Views/ListaJSON.jsp</result>
+         </action>
+         
          <action name="consultarImpactos" class="servletObrasYProgramas.ServletObras" method="consultarImpactos">
              <result name="respuestaListaJson">/Views/ListaJSON.jsp</result>
          </action>
