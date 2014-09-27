@@ -8,10 +8,10 @@
 
         Gson gson = new Gson();
 
-        Consulta consulta;
-        consulta = (Consulta)request.getAttribute("consulta");
+        String resultado;
+        resultado = (String)request.getAttribute("objeto");
 
-        String json = gson.toJson(consulta);
+        String json = gson.toJson(resultado);
 
         out.println(json);
         out.flush();

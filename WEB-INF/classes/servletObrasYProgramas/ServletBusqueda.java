@@ -10,10 +10,11 @@ public class ServletBusqueda extends ActionSupport
 {
     public static class Busqueda extends Consulta{
         
+        public String objeto;
         public String execute() throws Exception
         {
 
-            System.out.println(this.toString());
+            objeto = this.toString();
 
             return "resultadoConsulta";
         }
