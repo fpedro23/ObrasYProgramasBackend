@@ -38,7 +38,7 @@ pageEncoding="ISO-8859-1"%>
             <input type="submit" value="Consulta Inversiones"/>
         </form>
 
-        <form action="consultarTiposDeObra.action">
+        <form action="consultarTiposDeObraProgramas.action">
             <input type="submit" value="Consulta Tipos de Obra"/>
         </form>
 
