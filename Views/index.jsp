@@ -13,6 +13,10 @@ pageEncoding="ISO-8859-1"%>
         <form action="consultarEstados.action">
             <input type="submit" value="Consulta Estados"/>
         </form>
+        
+        <form action="consultarDependencias.action">
+            <input type="submit" value="Consulta Dependencias"/>
+        </form>
 
         <form action="consultarImpactos.action">
             <input type="submit" value="Consulta Impactos"/>
