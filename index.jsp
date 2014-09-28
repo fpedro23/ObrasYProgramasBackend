@@ -23,7 +23,7 @@ pageEncoding="ISO-8859-1"%>
         </form>
 
         <form action="consultarInauguradores.action">
-            <input type="submit" value="Consulta Inauguradores"/>
+            <input type="submit" value="Consulta Inaugurador"/>
         </form>
 
         <form action="consultarPoblacionesObjetivo.action">
