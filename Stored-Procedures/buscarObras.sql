@@ -22,19 +22,48 @@ BEGIN
 SELECT
 O.idObra,
 O.denominacion,
+O.idTipoObra,
+nombreTipoObra,
+
+
+
 O.idDependencia,
 nombreDependencia,
 
 O.idEstado,
 nombreEstado,
-O.idcargoInaugura,
-nombreCargoInaugura,
+estados.latitud,
+estados.longitud,
+
+municipios.idMunicipio,
+nombreMunicipio,
+municipios.latitud,
+municipios.longitud,
+
+O.idPobObjetivo,
+nombrePobObj,
+
 O.idImpacto,
 nombreImpacto,
+
 GROUP_CONCAT(DISTINCT tipo_inversion.idTipoInversion) AS listaIDInversiones,
 GROUP_CONCAT(DISTINCT nombreTipoInv) AS listaInversiones,
+
+GROUP_CONCAT(DISTINCT tipo_clasificacion.idTipoClasificacion ) AS listaIDclasificaciones,
 GROUP_CONCAT( DISTINCT nombreTipoClasificacion) AS listaClasificaciones,
-GROUP_CONCAT(DISTINCT tipo_clasificacion.idTipoClasificacion ) AS listaIDclasificaciones
+
+O.idcargoInaugura,
+nombreCargoInaugura,
+
+descripcion,
+observaciones,
+fechaInicio,
+fechaTermino,
+inversionTotal,
+totalBeneficiarios,
+senializacion,
+suceptibleInauguracion,
+porcentajeAvance
 
 FROM
 obras O
@@ -68,8 +97,13 @@ WHERE
 (inEstado Is Null OR FIND_IN_SET(O.idEstado, inEstado)>0 ) AND
 (inTipoClasificacion Is Null OR FIND_IN_SET(detalle_clasificacion_obra.idTipoClasificacion, inTipoClasificacion)>0 ) AND
 (inTipoInversion Is Null OR FIND_IN_SET(detalle_inversion.idTipoInversion , inTipoInversion)>0 ) AND
+
+
 (inMunicipio Is Null OR inMunicipio = O.idMunicipio) AND
+
 (inCargoInaugura Is Null OR  FIND_IN_SET(O.idcargoInaugura, inCargoInaugura)>0 ) AND
+
+
 (inImpacto Is Null OR  FIND_IN_SET(O.idImpacto, inImpacto)>0 ) AND
 
 (inRangoInversionMin Is Null OR inRangoInversionMax Is Null OR
@@ -79,7 +113,6 @@ O.inversionTotal BETWEEN inRangoInversionMin AND inRangoInversionMax)) AND
 (inFechaInicio Is Null OR inFechaTermino Is Null OR
 (inFechaInicio Is Not Null AND inFechaTermino Is Not Null AND
 O.fechaInicio BETWEEN inFechaInicio AND inFechaTermino))
-
 GROUP BY O.idObra
 ;
 END
