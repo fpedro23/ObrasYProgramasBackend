@@ -5,16 +5,18 @@ public class Obra
 {
     
 	private String idObra;
-    private TipoObra tipoObra;
-	private Dependencia dependencia;
-    private Estado estado;
-    private Municipio municipio;
-    private PoblacionObjetivo poblacionObjetivo;
-    private Impacto impacto;
-    private TipoInversion[] tipoInversion;
-    private TipoClasificacion[] clasificacion;
-    
     private String denominacion;
+
+    public TipoObra tipoObra;
+	public Dependencia dependencia;
+    public Estado estado;
+    public Municipio municipio;
+    public PoblacionObjetivo poblacionObjetivo;
+    public Impacto impacto;
+    public TipoInversion[] tipoInversion;
+    public TipoClasificacion[] clasificacion;
+    public Inaugurador inaugurador;
+
     private String descripcion;
     private String observaciones;
 
@@ -23,11 +25,23 @@ public class Obra
 	private String inversionTotal;
     private String totalBeneficiarios;
     
-    private Inaugurador inaugurador;
     
     private String senalizacion;
     private String susceptibleInauguracion;
     private String porcentajeAvance;
+    
+    public Obra()
+    {
+        this.tipoObra = new TipoObra();
+        this.dependencia = new Dependencia();
+        this.estado = new Estado();
+        this.municipio = new Municipio();
+        this.poblacionObjetivo = new PoblacionObjetivo();
+        this.impacto = new Impacto();
+        //this.tipoInversion = new TipoInversion[]
+        //this.clasificacion = new TipoClasificacion[]
+        this.inaugurador = new Inaugurador();
+    }
 	/**
 	 * @return the idObra
 	 */
@@ -268,5 +282,17 @@ public class Obra
 	public void setPorcentajeAvance(String porcentajeAvance) {
 		this.porcentajeAvance = porcentajeAvance;
 	}
+    
+    public String toString() {
+        return "TipoObra [idObra=" + idObra + ", denominacion=" + denominacion
+        + ", descripcion=" + descripcion + ", observaciones="
+        + observaciones + ", fechaInicio=" + fechaInicio
+        + ", fechaTermino=" + fechaTermino + ", inversionTotal="
+        + inversionTotal + ", totalBeneficiarios=" + totalBeneficiarios
+        + ", senalizacion=" + senalizacion
+        + ", susceptibleInauguracion=" + susceptibleInauguracion
+        + ", porcentajeAvance=" + porcentajeAvance + "]";
+    }
+    
     
 }

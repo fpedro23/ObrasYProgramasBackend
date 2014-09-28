@@ -8,6 +8,9 @@ public class ObrasAD
 {
     private Connection conexion;
     private CallableStatement callableStatement;
+    private Statement statement;
+    private List<Obra> listaBusqueda;
+
     private Obra obra;
     
     private Dependencia dependencia;
@@ -34,7 +37,7 @@ public class ObrasAD
     private TipoObra tipoObra;
     private List<TipoObra> listaTipoObra;
     
-    private Statement statement;
+    
 
     
     public ObrasAD()
@@ -42,9 +45,9 @@ public class ObrasAD
         try
         {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            //conexion= DriverManager.getConnection("jdbc:mysql://localhost/ObrasYProgramas?user=root");
+            conexion= DriverManager.getConnection("jdbc:mysql://localhost/ObrasYProgramas?user=root");
             
-            conexion= DriverManager.getConnection("jdbc:mysql://localhost:3306/obrasyprogramas","oypdbuser","0ypProj3ct!");
+            //conexion= DriverManager.getConnection("jdbc:mysql://localhost:3306/obrasyprogramas","oypdbuser","0ypProj3ct!");
 
             System.out.println("Conexion exitosa a la BD");
         }
@@ -345,82 +348,105 @@ public class ObrasAD
 
     
     
-    public Obra generarFichaTecnicaObra(String idObra)
+    public List<Obra> buscar(Consulta consulta)
 	{
-       /* ResultSet tr = null;
-
-        System.out.println("Entro");
+        
+        ResultSet tr = null;
+        listaBusqueda = new ArrayList<Obra>();
 
         
-		try
-		{
-            statement = conexion.prepareCall("{CALL generarFichaTecnicaObra(?)}");
-            statement.setString(1, idObra);
-            boolean hasResults = statement.execute();
-            int contador = 0;
+        
+        try{
+            callableStatement = conexion.prepareCall("{CALL buscarObras(?,?,?,?,?,?,?,?,?,?,?,?)}");
             
-            System.out.println("hasResults: "+hasResults);
+            callableStatement.setString("inTipoObra", consulta.getTipoDeObra());
+            callableStatement.setString("inDependencia", consulta.getDependencia());
+            callableStatement.setString("inEstado", consulta.getEstado());
+            callableStatement.setString("inMunicipio", null); //Municipio
+            callableStatement.setString("inRangoInversionMin", consulta.getInversionMinima());
+            callableStatement.setString("inRangoInversionMax", consulta.getInversionMaxima());
+            callableStatement.setString("inFechaInicio", consulta.getFechaInicio());
+            callableStatement.setString("inFechaTermino", consulta.getFechaFin());
+            callableStatement.setString("inImpacto", consulta.getImpacto());
+            callableStatement.setString("inCargoInaugura", consulta.getInaugurador());
+            callableStatement.setString("inTipoInversion", consulta.getTipoDeInversion());
+            callableStatement.setString("inTipoClasificacion", consulta.getClasificacion());
+            
+            
+            
+            boolean hasResults = callableStatement.execute();
+            
+            tr = callableStatement.getResultSet();
+            System.out.println(hasResults);
 
-            while(hasResults)
+            
+            while(tr.next())
             {
-                if(contador == 0){
-                    tr = statement.getResultSet();
-                    if(tr.next()){
-                     obra  = new Obra(
-                                          
-                                          tr.getString("idObra"),
-                                          tr.getString("nombreDependencia"),
-                                          tr.getString("nombreEstado"),
-                                          tr.getString("nombreMunicipio"),
-                                          tr.getString("denominacion"),
-                                          tr.getString("fechaInicio"),
-                                          tr.getString("fechaTermino"),
-                                          tr.getString("inversionTotal"),
-                                          tr.getString("nombrePobObj"),
-                                          tr.getString("totalBeneficiarios"),
-                                          tr.getString("nombreImpacto"),
-                                          tr.getString("descripcion"),
-                                          null,
-                                          null
-                                      );}
-                }
-                else if (contador == 1){
-                    
-                    tr = statement.getResultSet();
-                    
-                    while(tr.next())
-                    {
-                        nombreTipoInversion.add(tr.getString("nombreTipoInv"));
-                    }
-                    
-                }
-                else if(contador==2){
-                    
-                    tr = statement.getResultSet();
-                    
-                    while(tr.next())
-                    {
-                        nombreTipoClasificacion.add(tr.getString("nombreTipoClasificacion"));
-                    }
-                    
-                }
+                obra  = new Obra();
                 
-                hasResults = statement.getMoreResults();
-                contador++;
+                obra.setIdObra(tr.getString(1));
+                obra.setDenominacion(tr.getString(2));
+                
+                obra.tipoObra.setIdTipoObra(tr.getString(3));
+                obra.tipoObra.setNombreTipoObra(tr.getString(4));
+                
+                obra.dependencia.setIdDependencia(tr.getString(5));
+                obra.dependencia.setNombreDependencia(tr.getString(6));
+
+                obra.estado.setIdEstado(tr.getString(7));
+                obra.estado.setNombreEstado(tr.getString(8));
+                obra.estado.setLatitud(tr.getString(9));
+                obra.estado.setLongitud(tr.getString(10));
+                
+                obra.municipio.setIdMunicipio(tr.getString(11));
+                obra.municipio.setEstado(obra.estado);
+                obra.municipio.setNombreMunicipio(tr.getString(12));
+                obra.municipio.setLatitud(tr.getString(13));
+                obra.municipio.setLongitud(tr.getString(14));
+                
+                obra.poblacionObjetivo.setIdPoblacion(tr.getString(15));
+                obra.poblacionObjetivo.setNombrePoblacionObjetivo(tr.getString(16));
+        
+                
+                obra.impacto.setIdImpacto(tr.getString(17));
+                obra.impacto.setNombreImpacto(tr.getString(18));
+                
+                //Hacer codigo para que de un tokenizer se vaya a objeto
+                /*obra.tipoInversion.setIdDependencia(tr.getString(19));
+                obra.tipoInversion.setNombreDependencia(tr.getString(20));
+                
+                obra.clasificacion.setIdDependencia(tr.getString(21));
+                obra.clasificacion.setNombreDependencia(tr.getString(22));*/
+                //Hacer Codigo para que de un tokenizer
+                
+                
+               obra.inaugurador.setIdCargoInaugura(tr.getString(23));
+                obra.inaugurador.setNombreCargoInaugura(tr.getString(24));
+                
+                obra.setDescripcion(tr.getString(25));
+                obra.setObservaciones(tr.getString(26));
+                obra.setFechaInicio(tr.getString(27));
+                obra.setFechaTermino(tr.getString(28));
+                obra.setInversionTotal(tr.getString(29));
+                obra.setTotalBeneficiarios(tr.getString(30));
+                obra.setSenalizacion(tr.getString(31));
+                obra.setSusceptibleInauguracion(tr.getString(32));
+                obra.setPorcentajeAvance(tr.getString(33));
+                System.out.println(obra.toString());
+                System.out.println(obra.toString());
+
+                listaBusqueda.add(obra);
+                
             }
             
-            obra.setNombreTipoInversion(nombreTipoInversion);
-            obra.setNombreTipoClasificacion(nombreTipoClasificacion);
-			//archivoIn.close();
-            statement.close();
-		}
-        catch(SQLException sqle)
-        {
-			System.out.println(sqle);
         }
-		*/
-        obra = new Obra();
-		return obra;
-	}
+        catch(SQLException sqle){
+            System.out.println(sqle);
+            
+        }
+        
+        return listaBusqueda;
+
+    }
     
 }

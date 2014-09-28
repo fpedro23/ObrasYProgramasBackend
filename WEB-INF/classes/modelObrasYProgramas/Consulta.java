@@ -14,7 +14,7 @@ public class Consulta
     private String fechaFin;
     private String impacto;
     private String clasificacion;
-    private String inaugurada;
+    private String inaugurador;
     private String susceptible;
     
     public String getTipoDeObra() {
@@ -77,11 +77,11 @@ public class Consulta
     public void setClasificacion(String clasificacion) {
         this.clasificacion = clasificacion;
     }
-    public String getInaugurada() {
-        return inaugurada;
+    public String getInaugurador() {
+        return inaugurador;
     }
-    public void setInaugurada(String inaugurada) {
-        this.inaugurada = inaugurada;
+    public void setInaugurador(String inaugurador) {
+        this.inaugurador = inaugurador;
     }
     public String getSusceptible() {
         return susceptible;
@@ -97,7 +97,7 @@ public class Consulta
         + ", tipoDeInversion=" + tipoDeInversion + ", fechaInicio="
         + fechaInicio + ", fechaFin=" + fechaFin + ", impacto="
         + impacto + ", clasificacion=" + clasificacion
-        + ", inaugurada=" + inaugurada + ", susceptible=" + susceptible
+        + ", inaugurador=" + inaugurador + ", susceptible=" + susceptible
         + "]";
     }
     
