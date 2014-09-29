@@ -25,8 +25,7 @@ public class ObrasAD
     private Inaugurador inaugurador;
     private List<Inaugurador> listaInaugurador;
     
-    private PoblacionObjetivo poblacionObjetivo;
-    private List<PoblacionObjetivo> listaPoblacionObjetivo;
+
     
     private TipoClasificacion tipoClasificacion;
     private List<TipoClasificacion> listaTipoClasificacion;
@@ -205,40 +204,7 @@ public class ObrasAD
         
     }
     
-    public List<PoblacionObjetivo> listaDePoblacionesObjetivo(){
-    
-        
-        ResultSet tr = null;
-        String select = "SELECT * FROM poblacion_objetivo";
-        listaPoblacionObjetivo = new ArrayList<PoblacionObjetivo>();
-        
-        
-        try{
-            statement=conexion.createStatement();
-            tr = statement.executeQuery(select);
-            
-            
-            while(tr.next())
-            {
-                poblacionObjetivo = new PoblacionObjetivo();
-                
-                poblacionObjetivo.setIdPoblacion(tr.getString("idpoblacionObjetivo"));
-                poblacionObjetivo.setNombrePoblacionObjetivo(tr.getString("nombrePobObj"));
-                
-                listaPoblacionObjetivo.add(poblacionObjetivo);
-                
-            }
-            
-        }
-        catch(SQLException sqle){
-            System.out.println(sqle);
-            
-        }
-        
-        return listaPoblacionObjetivo;
 
-    
-    }
     
     public List<TipoClasificacion>  listaDeClasificaciones(){
     
@@ -362,7 +328,6 @@ public class ObrasAD
             callableStatement.setString("inTipoObra", consulta.getTipoDeObra());
             callableStatement.setString("inDependencia", consulta.getDependencia());
             callableStatement.setString("inEstado", consulta.getEstado());
-            callableStatement.setString("inMunicipio", null); //Municipio
             callableStatement.setString("inRangoInversionMin", consulta.getInversionMinima());
             callableStatement.setString("inRangoInversionMax", consulta.getInversionMaxima());
             callableStatement.setString("inFechaInicio", consulta.getFechaInicio());
@@ -371,7 +336,8 @@ public class ObrasAD
             callableStatement.setString("inCargoInaugura", consulta.getInaugurador());
             callableStatement.setString("inTipoInversion", consulta.getTipoDeInversion());
             callableStatement.setString("inTipoClasificacion", consulta.getClasificacion());
-            
+            callableStatement.setString("inSusceptible", consulta.getSusceptible());
+
             
             
             boolean hasResults = callableStatement.execute();
@@ -382,56 +348,9 @@ public class ObrasAD
             
             while(tr.next())
             {
-                obra  = new Obra();
+                obra  = new Obra(tr);
                 
-                obra.setIdObra(tr.getString(1));
-                obra.setDenominacion(tr.getString(2));
-                
-                obra.tipoObra.setIdTipoObra(tr.getString(3));
-                obra.tipoObra.setNombreTipoObra(tr.getString(4));
-                
-                obra.dependencia.setIdDependencia(tr.getString(5));
-                obra.dependencia.setNombreDependencia(tr.getString(6));
 
-                obra.estado.setIdEstado(tr.getString(7));
-                obra.estado.setNombreEstado(tr.getString(8));
-                obra.estado.setLatitud(tr.getString(9));
-                obra.estado.setLongitud(tr.getString(10));
-                
-                obra.municipio.setIdMunicipio(tr.getString(11));
-                obra.municipio.setEstado(obra.estado);
-                obra.municipio.setNombreMunicipio(tr.getString(12));
-                obra.municipio.setLatitud(tr.getString(13));
-                obra.municipio.setLongitud(tr.getString(14));
-                
-                obra.poblacionObjetivo.setIdPoblacion(tr.getString(15));
-                obra.poblacionObjetivo.setNombrePoblacionObjetivo(tr.getString(16));
-        
-                
-                obra.impacto.setIdImpacto(tr.getString(17));
-                obra.impacto.setNombreImpacto(tr.getString(18));
-                
-                //Hacer codigo para que de un tokenizer se vaya a objeto
-                /*obra.tipoInversion.setIdDependencia(tr.getString(19));
-                obra.tipoInversion.setNombreDependencia(tr.getString(20));
-                
-                obra.clasificacion.setIdDependencia(tr.getString(21));
-                obra.clasificacion.setNombreDependencia(tr.getString(22));*/
-                //Hacer Codigo para que de un tokenizer
-                
-                
-               obra.inaugurador.setIdCargoInaugura(tr.getString(23));
-                obra.inaugurador.setNombreCargoInaugura(tr.getString(24));
-                
-                obra.setDescripcion(tr.getString(25));
-                obra.setObservaciones(tr.getString(26));
-                obra.setFechaInicio(tr.getString(27));
-                obra.setFechaTermino(tr.getString(28));
-                obra.setInversionTotal(tr.getString(29));
-                obra.setTotalBeneficiarios(tr.getString(30));
-                obra.setSenalizacion(tr.getString(31));
-                obra.setSusceptibleInauguracion(tr.getString(32));
-                obra.setPorcentajeAvance(tr.getString(33));
                 System.out.println(obra.toString());
                 System.out.println(obra.toString());
 

@@ -25,9 +25,7 @@
              <result name="respuestaListaJson">/Views/ListaJSON.jsp</result>
          </action>
          
-         <action name="consultarPoblacionesObjetivo" class="servletObrasYProgramas.ServletConsultasGenerales" method="consultarPoblacionesObjetivo">
-             <result name="respuestaListaJson">/Views/ListaJSON.jsp</result>
-         </action>
+
          
          <action name="consultarClasificaciones" class="servletObrasYProgramas.ServletConsultasGenerales" method="consultarClasificaciones">
              <result name="respuestaListaJson">/Views/ListaJSON.jsp</result>

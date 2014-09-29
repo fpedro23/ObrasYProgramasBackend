@@ -1,5 +1,6 @@
 package modelObrasYProgramas;
 import java.util.*;
+import java.sql.*;
 
 public class Obra
 {
@@ -10,8 +11,6 @@ public class Obra
     public TipoObra tipoObra;
 	public Dependencia dependencia;
     public Estado estado;
-    public Municipio municipio;
-    public PoblacionObjetivo poblacionObjetivo;
     public Impacto impacto;
     public TipoInversion[] tipoInversion;
     public TipoClasificacion[] clasificacion;
@@ -30,18 +29,91 @@ public class Obra
     private String susceptibleInauguracion;
     private String porcentajeAvance;
     
+    private String fotoAntes;
+    private String fotoDurante;
+    private String fotoDespues;
+    
     public Obra()
     {
         this.tipoObra = new TipoObra();
         this.dependencia = new Dependencia();
         this.estado = new Estado();
-        this.municipio = new Municipio();
-        this.poblacionObjetivo = new PoblacionObjetivo();
         this.impacto = new Impacto();
         //this.tipoInversion = new TipoInversion[]
         //this.clasificacion = new TipoClasificacion[]
         this.inaugurador = new Inaugurador();
     }
+    
+    public Obra(ResultSet tr){
+        try{
+
+            
+        this.tipoObra = new TipoObra();
+        this.dependencia = new Dependencia();
+        this.estado = new Estado();
+        this.impacto = new Impacto();
+        //this.tipoInversion = new TipoInversion[]
+        //this.clasificacion = new TipoClasificacion[]
+        this.inaugurador = new Inaugurador();
+        
+            int i=1;
+        
+            this.setIdObra(tr.getString(i)); i++;
+        this.setDenominacion(tr.getString(i));i++;
+        
+        this.tipoObra.setIdTipoObra(tr.getString(i));i++;
+        this.tipoObra.setNombreTipoObra(tr.getString(i));i++;
+        
+        this.dependencia.setIdDependencia(tr.getString(i));i++;
+        this.dependencia.setNombreDependencia(tr.getString(i));i++;
+        
+        this.estado.setIdEstado(tr.getString(i));i++;
+        this.estado.setNombreEstado(tr.getString(i));i++;
+        this.estado.setLatitud(tr.getString(i));i++;
+        this.estado.setLongitud(tr.getString(i));i++;
+        
+
+        
+        
+        this.impacto.setIdImpacto(tr.getString(i));i++;
+        this.impacto.setNombreImpacto(tr.getString(i));i++;
+        
+        //Hacer codigo para que de un tokenizer se vaya a objeto
+        /*obra.tipoInversion.setIdDependencia(tr.getString(13));i++;
+         obra.tipoInversion.setNombreDependencia(tr.getString(14));i++;
+         
+         obra.clasificacion.setIdDependencia(tr.getString(15));i++;
+         obra.clasificacion.setNombreDependencia(tr.getString(16));i++;*/
+        //Hacer Codigo para que de un tokenizer
+        
+            i++;i++;i++;i++;
+        this.inaugurador.setIdCargoInaugura(tr.getString(i));i++;
+        this.inaugurador.setNombreCargoInaugura(tr.getString(i));i++;
+        
+        this.setDescripcion(tr.getString(i));i++;
+        this.setObservaciones(tr.getString(i));i++;
+        this.setFechaInicio(tr.getString(i));i++;
+        this.setFechaTermino(tr.getString(i));i++;
+        this.setInversionTotal(tr.getString(i));i++;
+        this.setTotalBeneficiarios(tr.getString(i));i++;
+        this.setSenalizacion(tr.getString(i));i++;
+        this.setSusceptibleInauguracion(tr.getString(i));i++;
+        this.setPorcentajeAvance(tr.getString(i));i++;
+        this.setFotoAntes(tr.getString(i));i++;
+        this.setFotoDurante(tr.getString(i));i++;
+        this.setFotoDespues(tr.getString(i));i++;
+
+    
+        }
+        
+        
+        catch(SQLException sqle){
+            System.out.println(sqle);
+            
+        }
+    
+    }
+    
 	/**
 	 * @return the idObra
 	 */
@@ -90,30 +162,7 @@ public class Obra
 	public void setEstado(Estado estado) {
 		this.estado = estado;
 	}
-	/**
-	 * @return the municipio
-	 */
-	public Municipio getMunicipio() {
-		return municipio;
-	}
-	/**
-	 * @param municipio the municipio to set
-	 */
-	public void setMunicipio(Municipio municipio) {
-		this.municipio = municipio;
-	}
-	/**
-	 * @return the poblacionObjetivo
-	 */
-	public PoblacionObjetivo getPoblacionObjetivo() {
-		return poblacionObjetivo;
-	}
-	/**
-	 * @param poblacionObjetivo the poblacionObjetivo to set
-	 */
-	public void setPoblacionObjetivo(PoblacionObjetivo poblacionObjetivo) {
-		this.poblacionObjetivo = poblacionObjetivo;
-	}
+
 	/**
 	 * @return the impacto
 	 */
@@ -282,6 +331,45 @@ public class Obra
 	public void setPorcentajeAvance(String porcentajeAvance) {
 		this.porcentajeAvance = porcentajeAvance;
 	}
+    
+    
+    /**
+     * @return the fotoAntes
+     */
+    public String getFotoAntes() {
+        return fotoAntes;
+    }
+    /**
+     * @param fotoAntes the fotoAntes to set
+     */
+    public void setFotoAntes(String fotoAntes) {
+        this.fotoAntes = fotoAntes;
+    }
+    /**
+     * @return the fotoDurante
+     */
+    public String getFotoDurante() {
+        return fotoDurante;
+    }
+    /**
+     * @param fotoDurante the fotoDurante to set
+     */
+    public void setFotoDurante(String fotoDurante) {
+        this.fotoDurante = fotoDurante;
+    }
+    /**
+     * @return the fotoDespues
+     */
+    public String getFotoDespues() {
+        return fotoDespues;
+    }
+    /**
+     * @param fotoDespues the fotoDespues to set
+     */
+    public void setFotoDespues(String fotoDespues) {
+        this.fotoDespues = fotoDespues;
+    }
+    
     
     public String toString() {
         return "TipoObra [idObra=" + idObra + ", denominacion=" + denominacion
