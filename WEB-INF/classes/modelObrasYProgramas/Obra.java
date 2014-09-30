@@ -33,6 +33,12 @@ public class Obra
     private String fotoDurante;
     private String fotoDespues;
     
+    private String fechaModificacion;
+    private String tipoMoneda;
+    private String inaugurada;
+    private String poblacionObjetivo;
+    private String municipio;
+    
     public Obra()
     {
         this.tipoObra = new TipoObra();
@@ -114,6 +120,12 @@ public class Obra
         this.setFotoAntes(tr.getString(i));i++;
         this.setFotoDurante(tr.getString(i));i++;
         this.setFotoDespues(tr.getString(i));i++;
+        
+        this.setFechaModificacion(tr.getString(i));i++;
+        this.setTipoMoneda(tr.getString(i));i++;
+        this.setInaugurada(tr.getString(i));i++;
+        this.setPoblacionObjetivo(tr.getString(i));i++;
+        this.setMunicipio(tr.getString(i));i++;
 
     
         }
@@ -380,6 +392,37 @@ public class Obra
      */
     public void setFotoDespues(String fotoDespues) {
         this.fotoDespues = fotoDespues;
+    }
+    
+    public String getFechaModificacion() {
+        return fechaModificacion;
+    }
+    public void setFechaModificacion(String fechaModificacion) {
+        this.fechaModificacion = fechaModificacion;
+    }
+    public String getTipoMoneda() {
+        return tipoMoneda;
+    }
+    public void setTipoMoneda(String tipoMoneda) {
+        this.tipoMoneda = tipoMoneda;
+    }
+    public String getInaugurada() {
+        return inaugurada;
+    }
+    public void setInaugurada(String inaugurada) {
+        this.inaugurada = inaugurada;
+    }
+    public String getPoblacionObjetivo() {
+        return poblacionObjetivo;
+    }
+    public void setPoblacionObjetivo(String poblacionObjetivo) {
+        this.poblacionObjetivo = poblacionObjetivo;
+    }
+    public String getMunicipio() {
+        return municipio;
+    }
+    public void setMunicipio(String municipio) {
+        this.municipio = municipio;
     }
     
     

@@ -44,9 +44,9 @@ public class ObrasAD
         try
         {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            conexion= DriverManager.getConnection("jdbc:mysql://localhost/ObrasYProgramas?user=root");
+            //conexion= DriverManager.getConnection("jdbc:mysql://localhost/ObrasYProgramas?user=root");
             
-            //conexion= DriverManager.getConnection("jdbc:mysql://localhost:3306/obrasyprogramas","oypdbuser","0ypProj3ct!");
+            conexion= DriverManager.getConnection("jdbc:mysql://localhost:3306/obrasyprogramas","oypdbuser","0ypProj3ct!");
 
             System.out.println("Conexion exitosa a la BD");
         }
@@ -351,7 +351,6 @@ public class ObrasAD
                 obra  = new Obra(tr);
                 
 
-                System.out.println(obra.toString());
                 System.out.println(obra.toString());
 
                 listaBusqueda.add(obra);
