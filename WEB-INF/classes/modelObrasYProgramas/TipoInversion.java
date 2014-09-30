@@ -5,6 +5,22 @@ public class TipoInversion
 {
     private String idTipoInversion;
     private String nombreTipoInversion;
+    
+    public TipoInversion(){
+        this.idTipoInversion=null;
+        this.nombreTipoInversion=null;
+    }
+    
+    public TipoInversion(String idTipoInversion, String nombreTipoInversion){
+        
+        this.idTipoInversion = idTipoInversion;
+        this.nombreTipoInversion = nombreTipoInversion;
+        
+        
+    }
+    
+    
+    
 	/**
 	 * @return the idTipoInversion
 	 */

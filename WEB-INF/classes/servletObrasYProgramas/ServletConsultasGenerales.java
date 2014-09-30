@@ -30,11 +30,7 @@ public class ServletConsultasGenerales extends ActionSupport
         return "respuestaListaJson";
     }
     
-    public String consultarPoblacionesObjetivo()throws Exception{
-        ObrasAD obrasAD = new ObrasAD();
-        lista =  obrasAD.listaDePoblacionesObjetivo();
-        return "respuestaListaJson";
-    }
+
     
     public String consultarClasificaciones()throws Exception{
         ObrasAD obrasAD = new ObrasAD();

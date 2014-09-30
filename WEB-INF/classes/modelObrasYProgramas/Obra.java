@@ -12,8 +12,8 @@ public class Obra
 	public Dependencia dependencia;
     public Estado estado;
     public Impacto impacto;
-    public TipoInversion[] tipoInversion;
-    public TipoClasificacion[] clasificacion;
+    public List<TipoInversion> tipoInversion;
+    public List<TipoClasificacion> clasificacion;
     public Inaugurador inaugurador;
 
     private String descripcion;
@@ -52,13 +52,14 @@ public class Obra
         this.dependencia = new Dependencia();
         this.estado = new Estado();
         this.impacto = new Impacto();
-        //this.tipoInversion = new TipoInversion[]
-        //this.clasificacion = new TipoClasificacion[]
+
+        this.tipoInversion =  new ArrayList<TipoInversion>();
+        this.clasificacion = new ArrayList<TipoClasificacion>();
         this.inaugurador = new Inaugurador();
         
             int i=1;
         
-            this.setIdObra(tr.getString(i)); i++;
+        this.setIdObra(tr.getString(i)); i++;
         this.setDenominacion(tr.getString(i));i++;
         
         this.tipoObra.setIdTipoObra(tr.getString(i));i++;
@@ -78,15 +79,26 @@ public class Obra
         this.impacto.setIdImpacto(tr.getString(i));i++;
         this.impacto.setNombreImpacto(tr.getString(i));i++;
         
-        //Hacer codigo para que de un tokenizer se vaya a objeto
-        /*obra.tipoInversion.setIdDependencia(tr.getString(13));i++;
-         obra.tipoInversion.setNombreDependencia(tr.getString(14));i++;
-         
-         obra.clasificacion.setIdDependencia(tr.getString(15));i++;
-         obra.clasificacion.setNombreDependencia(tr.getString(16));i++;*/
-        //Hacer Codigo para que de un tokenizer
+            //Inicializar objetos para las listas
+        StringTokenizer idTipoInversion = new StringTokenizer(tr.getString(i),","); i++;
+        StringTokenizer nombreTipoInversion = new StringTokenizer(tr.getString(i),","); i++;
+
         
-            i++;i++;i++;i++;
+        while (idTipoInversion.hasMoreElements() && nombreTipoInversion.hasMoreElements()) {
+            TipoInversion tipoInversion = new TipoInversion(idTipoInversion.nextToken(),nombreTipoInversion.nextToken());
+            this.tipoInversion.add(tipoInversion);
+        }
+        
+    
+        StringTokenizer idClasificacion = new StringTokenizer(tr.getString(i),","); i++;
+        StringTokenizer nombreClasificacion = new StringTokenizer(tr.getString(i),","); i++;
+        
+        while (idClasificacion.hasMoreElements() && nombreClasificacion.hasMoreElements()) {
+            TipoClasificacion tipoClasificacion = new TipoClasificacion(idClasificacion.nextToken(),nombreClasificacion.nextToken());
+            this.clasificacion.add(tipoClasificacion);
+        }
+    
+
         this.inaugurador.setIdCargoInaugura(tr.getString(i));i++;
         this.inaugurador.setNombreCargoInaugura(tr.getString(i));i++;
         
@@ -178,25 +190,25 @@ public class Obra
 	/**
 	 * @return the TipoInversion
 	 */
-	public TipoInversion[] getTipoInversion() {
+	public  List<TipoInversion> getTipoInversion() {
 		return tipoInversion;
 	}
 	/**
 	 * @param TipoInversion the TipoInversion to set
 	 */
-	public void setTipoInversion(TipoInversion[] tipoInversion) {
+	public void setTipoInversion(List<TipoInversion> tipoInversion) {
 		this.tipoInversion = tipoInversion;
 	}
 	/**
 	 * @return the TipoClasificacion
 	 */
-	public TipoClasificacion[] getTipoClasificacion() {
+	public List<TipoClasificacion> getTipoClasificacion() {
 		return clasificacion;
 	}
 	/**
 	 * @param TipoClasificacion the TipoClasificacion to set
 	 */
-	public void setTipoClasificacion(TipoClasificacion[] clasificacion) {
+	public void setTipoClasificacion(List<TipoClasificacion> clasificacion) {
 		this.clasificacion = clasificacion;
 	}
 	/**

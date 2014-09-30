@@ -5,6 +5,21 @@ public class TipoClasificacion
 {
     private String idTipoClasificacion;
     private String nombreTipoClasificacion;
+    
+    
+    
+    public TipoClasificacion(){
+        this.idTipoClasificacion=null;
+        this.nombreTipoClasificacion=null;
+    }
+    
+    
+    public TipoClasificacion(String idTipoClasificacion, String nombreTipoClasificacion){
+        this.idTipoClasificacion = idTipoClasificacion;
+        this.nombreTipoClasificacion = nombreTipoClasificacion;
+    }
+    
+    
 	/**
 	 * @return the idTipoClasificacion
 	 */
