@@ -395,6 +395,7 @@ public class ObrasAD
 
             }
             
+            conexion.close();
 
                 
         }
@@ -409,6 +410,7 @@ public class ObrasAD
         resultado.setListaReporteDependencia(listaReporteDependencia);
         resultado.setListaReporteEstado(listaReporteEstado);
         resultado.setListaReporteGeneral(listaReporteGeneral);
+        
 
         
         return resultado;
