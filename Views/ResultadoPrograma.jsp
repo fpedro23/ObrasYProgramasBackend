@@ -8,10 +8,10 @@
 
         Gson gson = new Gson();
 
-        List lista;
-        lista = (List)request.getAttribute("lista");
+        ResultadoPrograma resultadoPrograma;
+        resultadoPrograma = (ResultadoPrograma)request.getAttribute("resultadoPrograma");
 
-        String json = gson.toJson(lista);
+        String json = gson.toJson(resultadoPrograma);
 
         out.println(json);
         out.flush();

@@ -40,7 +40,9 @@
          </action>
          
          <action name="buscar" class="servletObrasYProgramas.ServletBusqueda$Busqueda" method="execute">
-             <result name="resultadoConsulta">/Views/ListaJSON.jsp</result>
+             <result name="resultadoConsultaObra">/Views/ResultadoObra.jsp</result>
+             <result name="resultadoConsultaPrograma">/Views/ResultadoPrograma.jsp</result>
+
          </action>
          
 	</package>

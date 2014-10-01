@@ -12,6 +12,7 @@ public class ProgramasAD
 
     private List<Programa> listaBusqueda;
     private Programa programa;
+    private ResultadoPrograma resultadoPrograma;
 
 
     
@@ -45,7 +46,7 @@ public class ProgramasAD
     }
 	
     
-    public List<Programa> buscar(Consulta consulta)
+    public ResultadoPrograma buscar(Consulta consulta)
     {
         
         ResultSet tr = null;
@@ -85,7 +86,10 @@ public class ProgramasAD
             
         }
         
-        return listaBusqueda;
+        resultadoPrograma = new ResultadoPrograma();
+        resultadoPrograma.setListaProgramas(listaBusqueda);
+        
+        return resultadoPrograma;
         
     }
 
