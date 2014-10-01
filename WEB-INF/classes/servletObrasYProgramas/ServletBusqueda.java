@@ -10,19 +10,23 @@ public class ServletBusqueda extends ActionSupport
 {
     public static class Busqueda extends Consulta{
         
-        public List<Obra> lista;
+        public List<?> lista;
+        //public List<Programa> listaProgramas;
+
         public String execute() throws Exception
         {
-            ObrasAD obras = new ObrasAD();
-
-            lista = obras.buscar(this);
             
-            System.out.println(this.getClass().getName());
-            System.out.println(this.getClass());
+            if(this.getConsultaProgramas()!=null){
+                ProgramasAD programas = new ProgramasAD();
+                lista = programas.buscar(this);
+            }
+            else{
+                ObrasAD obras = new ObrasAD();
+                lista = obras.buscar(this);
+                
+            }
 
-             //will return the name (as String) (== "SomeClass")
-          //will return the SomeClass' Class object
-           // objeto = obras.buscar(this);
+
 
             return "resultadoConsulta";
         }

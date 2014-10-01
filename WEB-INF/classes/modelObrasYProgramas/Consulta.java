@@ -16,6 +16,7 @@ public class Consulta
     private String clasificacion;
     private String inaugurador;
     private String susceptible;
+    private String consultaProgramas;
     
     public String getTipoDeObra() {
         return tipoDeObra;
@@ -88,6 +89,15 @@ public class Consulta
     }
     public void setSusceptible(String susceptible) {
         this.susceptible = susceptible;
+    }
+    
+    
+    public String getConsultaProgramas() {
+        return consultaProgramas;
+    }
+    
+    public void setConsultaProgramas(String consultaProgramas) {
+        this.consultaProgramas = consultaProgramas;
     }
     
     public String toString() {

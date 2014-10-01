@@ -4,11 +4,10 @@
 -- --------------------------------------------------------------------------------
 DELIMITER $$
 
-CREATE DEFINER=``@`` PROCEDURE `buscarObras`(
+CREATE DEFINER=`oypdbuser`@`localhost` PROCEDURE `buscarObras`(
 inTipoObra TEXT,
 inDependencia TEXT,
 inEstado TEXT,
-inMunicipio int,
 inRangoInversionMin DOUBLE,
 inRangoInversionMax DOUBLE,
 inFechaInicio date,
@@ -16,7 +15,8 @@ inFechaTermino date,
 inImpacto TEXT,
 inCargoInaugura TEXT,
 inTipoInversion TEXT,
-inTipoClasificacion TEXT
+inTipoClasificacion TEXT,
+inSusceptible TEXT
 )
 BEGIN
 SELECT
@@ -35,13 +35,6 @@ nombreEstado,
 estados.latitud,
 estados.longitud,
 
-municipios.idMunicipio,
-nombreMunicipio,
-municipios.latitud,
-municipios.longitud,
-
-O.idPobObjetivo,
-nombrePobObj,
 
 O.idImpacto,
 nombreImpacto,
@@ -63,7 +56,15 @@ inversionTotal,
 totalBeneficiarios,
 senializacion,
 suceptibleInauguracion,
-porcentajeAvance
+porcentajeAvance,
+fotoAntes,
+fotoDurante,
+fotoDespues,
+O.fecMod,
+tipoMoneda,
+inauguradoObra,
+pobObjetivo,
+municipio
 
 FROM
 obras O
@@ -78,10 +79,6 @@ JOIN
 dependencias ON O.idDependencia = dependencias.idDependencia
 JOIN
 estados ON O.idEstado = estados.idEstado
-JOIN
-municipios ON O.idMunicipio = municipios.idMunicipio
-JOIN
-poblacion_objetivo ON O.idPobObjetivo = poblacion_objetivo.idpoblacionObjetivo
 JOIN
 impactos ON O.idImpacto = impactos.idImpacto
 JOIN
@@ -99,12 +96,12 @@ WHERE
 (inTipoInversion Is Null OR FIND_IN_SET(detalle_inversion.idTipoInversion , inTipoInversion)>0 ) AND
 
 
-(inMunicipio Is Null OR inMunicipio = O.idMunicipio) AND
-
 (inCargoInaugura Is Null OR  FIND_IN_SET(O.idcargoInaugura, inCargoInaugura)>0 ) AND
 
 
 (inImpacto Is Null OR  FIND_IN_SET(O.idImpacto, inImpacto)>0 ) AND
+(inSusceptible Is Null OR FIND_IN_SET(suceptibleInauguracion, inSusceptible)>0 ) AND
+
 
 (inRangoInversionMin Is Null OR inRangoInversionMax Is Null OR
 (inRangoInversionMin Is Not Null AND inRangoInversionMax Is Not Null AND
