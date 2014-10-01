@@ -19,6 +19,7 @@ inTipoClasificacion TEXT,
 inSusceptible TEXT
 )
 BEGIN
+CREATE TEMPORARY TABLE IF NOT EXISTS  resultados AS
 SELECT
 O.idObra,
 O.denominacion,
@@ -66,6 +67,8 @@ inauguradoObra,
 pobObjetivo,
 municipio
 
+
+
 FROM
 obras O
 
@@ -111,5 +114,31 @@ O.inversionTotal BETWEEN inRangoInversionMin AND inRangoInversionMax)) AND
 (inFechaInicio Is Not Null AND inFechaTermino Is Not Null AND
 O.fechaInicio BETWEEN inFechaInicio AND inFechaTermino))
 GROUP BY O.idObra
+
 ;
+
+select * from resultados;
+
+
+select nombreDependencia,
+count(*) AS numeroObras,
+SUM(inversionTotal) AS totalInvertido
+from resultados
+GROUP BY nombreDependencia;
+
+select nombreEstado,
+count(*) AS numeroObras,
+SUM(inversionTotal) AS totalInvertido
+from resultados
+GROUP BY nombreEstado;
+
+select
+count(*) AS numeroObras,
+SUM(inversionTotal) AS totalInvertido
+from resultados;
+
+
+DROP TABLE resultados;
+
+
 END

@@ -37,7 +37,10 @@ public class ObrasAD
     private List<TipoObra> listaTipoObra;
     
     private ResultadoObra resultado;
-    
+    private List<ReporteDependencia> listaReporteDependencia;
+    private List<ReporteEstado> listaReporteEstado;
+    private List<ReporteGeneral> listaReporteGeneral;
+
 
     
     public ObrasAD()
@@ -320,6 +323,9 @@ public class ObrasAD
         
         ResultSet tr = null;
         listaBusqueda = new ArrayList<Obra>();
+        listaReporteDependencia = new ArrayList<ReporteDependencia>();
+        listaReporteEstado = new ArrayList<ReporteEstado>();
+        listaReporteGeneral = new ArrayList<ReporteGeneral>();
 
         
         
@@ -343,21 +349,61 @@ public class ObrasAD
             
             boolean hasResults = callableStatement.execute();
             
-            tr = callableStatement.getResultSet();
-            System.out.println(hasResults);
+            int i=0;
+            while(hasResults){
+                tr = callableStatement.getResultSet();
+                if(i==0){
+                    while(tr.next())
+                    {
+                        obra  = new Obra(tr);
+                        
+                        //System.out.println(obra.toString());
+                        
+                        listaBusqueda.add(obra);
+                        
+                    }
 
-            
-            while(tr.next())
-            {
-                obra  = new Obra(tr);
+                }
+                if(i==1){
+                    while(tr.next()){
+                        ReporteDependencia reporteDependencia = new ReporteDependencia();
+                        reporteDependencia.setNombreDependencia(tr.getString("nombreDependencia"));
+                        reporteDependencia.setNumeroObras(tr.getString(2));
+                        reporteDependencia.setTotalInvertido(tr.getString("totalInvertido"));
+
+                        listaReporteDependencia.add(reporteDependencia);
+                    }
+                }
+                if(i==2){
+                    while(tr.next()){
+                        ReporteEstado reporteEstado = new ReporteEstado();
+                        reporteEstado.setNombreEstado(tr.getString("nombreEstado"));
+                        reporteEstado.setNumeroObras(tr.getString(2));
+                        reporteEstado.setTotalInvertido(tr.getString("totalInvertido"));
+                        listaReporteEstado.add(reporteEstado);
+
+                    }
+                }
+                if(i==3){
+                    while(tr.next()){
+                        ReporteGeneral reporteGeneral = new ReporteGeneral();
+                        reporteGeneral.setNumeroObras(tr.getString(1));
+                        reporteGeneral.setTotalInvertido(tr.getString("totalInvertido"));
+                        listaReporteGeneral.add(reporteGeneral);
+                    }
+
+                }
                 
-
-                System.out.println(obra.toString());
-
-                listaBusqueda.add(obra);
                 
+                System.out.println("Resultado número: "+i);
+
+                hasResults = callableStatement.getMoreResults();
+                i++;
+
             }
             
+
+                
         }
         catch(SQLException sqle){
             System.out.println(sqle);
@@ -367,6 +413,10 @@ public class ObrasAD
         resultado = new ResultadoObra();
         
         resultado.setListaObras(listaBusqueda);
+        resultado.setListaReporteDependencia(listaReporteDependencia);
+        resultado.setListaReporteEstado(listaReporteEstado);
+        resultado.setListaReporteGeneral(listaReporteGeneral);
+
         
         return resultado;
 

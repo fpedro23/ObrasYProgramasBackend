@@ -4,8 +4,9 @@ import java.util.*;
 public class ResultadoObra
 {
     private List<Obra> listaObras;
-   // private List<Reportes> listaReportes;
-    
+    private List<ReporteDependencia> listaReporteDependencia;
+    private List<ReporteEstado> listaReporteEstado;
+    private List<ReporteGeneral> listaReporteGeneral;
     
     
     /**
@@ -20,18 +21,26 @@ public class ResultadoObra
     public void setListaObras(List<Obra> listaObras) {
         this.listaObras = listaObras;
     }
-    /**
-     * @return the listaReportes
-     */
-  /*  public List<Reportes> getListaReportes() {
-        return listaReportes;
+    
+    public List<ReporteDependencia> getListaReporteDependencia() {
+        return listaReporteDependencia;
     }
-    /**
-     * @param listaReportes the listaReportes to set
-     */
-    /*public void setListaReportes(List<Reportes> listaReportes) {
-        this.listaReportes = listaReportes;
-    }*/
+    public void setListaReporteDependencia(
+                                           List<ReporteDependencia> listaReporteDependencia) {
+        this.listaReporteDependencia = listaReporteDependencia;
+    }
+    public List<ReporteEstado> getListaReporteEstado() {
+        return listaReporteEstado;
+    }
+    public void setListaReporteEstado(List<ReporteEstado> listaReporteEstado) {
+        this.listaReporteEstado = listaReporteEstado;
+    }
+    public List<ReporteGeneral> getListaReporteGeneral() {
+        return listaReporteGeneral;
+    }
+    public void setListaReporteGeneral(List<ReporteGeneral> listaReporteGeneral) {
+        this.listaReporteGeneral = listaReporteGeneral;
+    }
     
     
 }
