@@ -9,6 +9,19 @@ public class ReporteDependencia
     private String numeroObras;
     private String totalInvertido;
     
+    
+    public ReporteDependencia(ResultSet tr){
+        try{
+            this.setNombreDependencia(tr.getString("nombreDependencia"));
+            this.setNumeroObras(tr.getString(2));
+            this.setTotalInvertido(tr.getString("totalInvertido"));
+        }
+        catch(SQLException sqle){
+            System.out.println(sqle);
+            
+        }
+    }
+    
     public String getNombreDependencia() {
         return nombreDependencia;
     }

@@ -9,6 +9,19 @@ public class ReporteEstado
     private String numeroObras;
     private String totalInvertido;
     
+    
+    public ReporteEstado(ResultSet tr){
+        try{
+            this.setNombreEstado(tr.getString("nombreEstado"));
+            this.setNumeroObras(tr.getString(2));
+            this.setTotalInvertido(tr.getString("totalInvertido"));
+        }
+        catch(SQLException sqle){
+            System.out.println(sqle);
+            
+        }
+    }
+    
     /**
      * @return the nombreEstado
      */

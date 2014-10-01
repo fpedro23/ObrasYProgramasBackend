@@ -317,6 +317,7 @@ public class ObrasAD
     }
 
     
+
     
     public ResultadoObra buscar(Consulta consulta)
 	{
@@ -330,8 +331,8 @@ public class ObrasAD
         
         
         try{
+
             callableStatement = conexion.prepareCall("{CALL buscarObras(?,?,?,?,?,?,?,?,?,?,?,?)}");
-            
             callableStatement.setString("inTipoObra", consulta.getTipoDeObra());
             callableStatement.setString("inDependencia", consulta.getDependencia());
             callableStatement.setString("inEstado", consulta.getEstado());
@@ -345,7 +346,6 @@ public class ObrasAD
             callableStatement.setString("inTipoClasificacion", consulta.getClasificacion());
             callableStatement.setString("inSusceptible", consulta.getSusceptible());
 
-            
             
             boolean hasResults = callableStatement.execute();
             
@@ -366,29 +366,22 @@ public class ObrasAD
                 }
                 if(i==1){
                     while(tr.next()){
-                        ReporteDependencia reporteDependencia = new ReporteDependencia();
-                        reporteDependencia.setNombreDependencia(tr.getString("nombreDependencia"));
-                        reporteDependencia.setNumeroObras(tr.getString(2));
-                        reporteDependencia.setTotalInvertido(tr.getString("totalInvertido"));
+                        ReporteDependencia reporteDependencia = new ReporteDependencia(tr);
+
 
                         listaReporteDependencia.add(reporteDependencia);
                     }
                 }
                 if(i==2){
                     while(tr.next()){
-                        ReporteEstado reporteEstado = new ReporteEstado();
-                        reporteEstado.setNombreEstado(tr.getString("nombreEstado"));
-                        reporteEstado.setNumeroObras(tr.getString(2));
-                        reporteEstado.setTotalInvertido(tr.getString("totalInvertido"));
+                        ReporteEstado reporteEstado = new ReporteEstado(tr);
                         listaReporteEstado.add(reporteEstado);
 
                     }
                 }
                 if(i==3){
                     while(tr.next()){
-                        ReporteGeneral reporteGeneral = new ReporteGeneral();
-                        reporteGeneral.setNumeroObras(tr.getString(1));
-                        reporteGeneral.setTotalInvertido(tr.getString("totalInvertido"));
+                        ReporteGeneral reporteGeneral = new ReporteGeneral(tr);
                         listaReporteGeneral.add(reporteGeneral);
                     }
 

@@ -8,6 +8,17 @@ public class ReporteGeneral
     private String numeroObras;
     private String totalInvertido;
 
+    public ReporteGeneral(ResultSet tr){
+        try{
+            this.setNumeroObras(tr.getString(1));
+            this.setTotalInvertido(tr.getString("totalInvertido"));
+        }
+        catch(SQLException sqle){
+            System.out.println(sqle);
+            
+        }
+    }
+    
     
     public String getNumeroObras() {
         return numeroObras;
