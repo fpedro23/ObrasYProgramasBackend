@@ -11,7 +11,9 @@
         List lista;
         lista = (List)request.getAttribute("lista");
 
-        String json = gson.toJson(lista);
+ResultadoObra resultado;
+resultado = (ResultadoObra)request.getAttribute("resultado");
+        String json = gson.toJson(resultado);
 
         out.println(json);
         out.flush();

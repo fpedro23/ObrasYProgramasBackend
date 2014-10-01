@@ -36,6 +36,7 @@ public class ObrasAD
     private TipoObra tipoObra;
     private List<TipoObra> listaTipoObra;
     
+    private ResultadoObra resultado;
     
 
     
@@ -314,7 +315,7 @@ public class ObrasAD
 
     
     
-    public List<Obra> buscar(Consulta consulta)
+    public ResultadoObra buscar(Consulta consulta)
 	{
         
         ResultSet tr = null;
@@ -363,7 +364,11 @@ public class ObrasAD
             
         }
         
-        return listaBusqueda;
+        resultado = new ResultadoObra();
+        
+        resultado.setListaObras(listaBusqueda);
+        
+        return resultado;
 
     }
     

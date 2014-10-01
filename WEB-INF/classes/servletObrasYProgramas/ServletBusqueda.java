@@ -11,6 +11,7 @@ public class ServletBusqueda extends ActionSupport
     public static class Busqueda extends Consulta{
         
         public List<?> lista;
+        public ResultadoObra resultado;
         //public List<Programa> listaProgramas;
 
         public String execute() throws Exception
@@ -22,7 +23,7 @@ public class ServletBusqueda extends ActionSupport
             }
             else{
                 ObrasAD obras = new ObrasAD();
-                lista = obras.buscar(this);
+                resultado = obras.buscar(this);
                 
             }
 
