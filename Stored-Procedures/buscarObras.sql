@@ -16,7 +16,8 @@ inImpacto TEXT,
 inCargoInaugura TEXT,
 inTipoInversion TEXT,
 inTipoClasificacion TEXT,
-inSusceptible TEXT
+inSusceptible TEXT,
+inInaugurada TEXT
 )
 BEGIN
 CREATE TEMPORARY TABLE IF NOT EXISTS  resultados AS
@@ -100,6 +101,8 @@ WHERE
 
 
 (inCargoInaugura Is Null OR  FIND_IN_SET(O.idcargoInaugura, inCargoInaugura)>0 ) AND
+
+(inInaugurada Is Null OR  FIND_IN_SET(inauguradoObra, inInaugurada)>0 ) AND
 
 
 (inImpacto Is Null OR  FIND_IN_SET(O.idImpacto, inImpacto)>0 ) AND

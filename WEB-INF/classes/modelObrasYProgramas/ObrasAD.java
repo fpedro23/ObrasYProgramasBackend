@@ -332,7 +332,7 @@ public class ObrasAD
         
         try{
 
-            callableStatement = conexion.prepareCall("{CALL buscarObras(?,?,?,?,?,?,?,?,?,?,?,?)}");
+            callableStatement = conexion.prepareCall("{CALL buscarObras(?,?,?,?,?,?,?,?,?,?,?,?,?)}");
             callableStatement.setString("inTipoObra", consulta.getTipoDeObra());
             callableStatement.setString("inDependencia", consulta.getDependencia());
             callableStatement.setString("inEstado", consulta.getEstado());
@@ -345,6 +345,8 @@ public class ObrasAD
             callableStatement.setString("inTipoInversion", consulta.getTipoDeInversion());
             callableStatement.setString("inTipoClasificacion", consulta.getClasificacion());
             callableStatement.setString("inSusceptible", consulta.getSusceptible());
+            callableStatement.setString("inInaugurada", consulta.getInaugurada());
+
 
             
             boolean hasResults = callableStatement.execute();

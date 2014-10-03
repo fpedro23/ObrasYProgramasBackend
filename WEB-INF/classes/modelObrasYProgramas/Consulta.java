@@ -25,8 +25,8 @@ public class Consulta
     }
     
     
-    public String setInaugurada(String inaugurada){
-        this.inaugurada = inaugurada;
+    public void setInaugurada(String inaugurada){
+         this.inaugurada = inaugurada;
     }
     
     public String getTipoDeObra() {
