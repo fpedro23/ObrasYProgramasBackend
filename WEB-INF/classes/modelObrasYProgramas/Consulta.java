@@ -16,7 +16,18 @@ public class Consulta
     private String clasificacion;
     private String inaugurador;
     private String susceptible;
+    private String inaugurada;
     private String consultaProgramas;
+    
+    
+    public String getInaugurada(){
+        return inaugurada;
+    }
+    
+    
+    public String setInaugurada(String inaugurada){
+        this.inaugurada = inaugurada;
+    }
     
     public String getTipoDeObra() {
         return tipoDeObra;

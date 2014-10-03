@@ -26,10 +26,6 @@ pageEncoding="ISO-8859-1"%>
             <input type="submit" value="Consulta Inaugurador"/>
         </form>
 
-        <form action="consultarPoblacionesObjetivo.action">
-            <input type="submit" value="Consulta Poblaciones Objetivo"/>
-        </form>
-
         <form action="consultarClasificaciones.action">
             <input type="submit" value="Consulta Clasificaciones"/>
         </form>
@@ -42,7 +38,10 @@ pageEncoding="ISO-8859-1"%>
             <input type="submit" value="Consulta Tipos de Obra"/>
         </form>
 
-
+        <form action="buscar"  method="POST">
+            <input type="text"   name="consultaProgramas"/">
+            <input type="submit" value="Consulta Programas"/>
+        </form>
 
     </body>
 </html>
