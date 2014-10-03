@@ -13,7 +13,9 @@ public class ProgramasAD
     private List<Programa> listaBusqueda;
     private Programa programa;
     private ResultadoPrograma resultadoPrograma;
-
+    private List<ReporteDependencia> listaReporteDependencia;
+    private List<ReporteEstado> listaReporteEstado;
+    private List<ReporteGeneral> listaReporteGeneral;
 
     
     public ProgramasAD()
@@ -51,6 +53,9 @@ public class ProgramasAD
         
         ResultSet tr = null;
         listaBusqueda = new ArrayList<Programa>();
+        listaReporteDependencia = new ArrayList<ReporteDependencia>();
+        listaReporteEstado = new ArrayList<ReporteEstado>();
+        listaReporteGeneral = new ArrayList<ReporteGeneral>();
         
         
         
@@ -67,17 +72,46 @@ public class ProgramasAD
             
             boolean hasResults = callableStatement.execute();
             
-            tr = callableStatement.getResultSet();
-            System.out.println(hasResults);
+            int i = 0;
             
-            
-            while(tr.next())
-            {
-                programa  = new Programa(tr);
+            while(hasResults){
+                tr = callableStatement.getResultSet();
                 
+                if(i==0){
+                    while(tr.next())
+                    {
+                        programa  = new Programa(tr);
+                        listaBusqueda.add(programa);
+                        
+                    }
+                }
+                if(i==1){
+                    while(tr.next()){
+                        ReporteDependencia reporteDependencia = new ReporteDependencia(tr);
+                        
+                        
+                        listaReporteDependencia.add(reporteDependencia);
+                    }
+                }
+                if(i==2){
+                    while(tr.next()){
+                        ReporteEstado reporteEstado = new ReporteEstado(tr);
+                        listaReporteEstado.add(reporteEstado);
+                        
+                    }
+                }
+                if(i==3){
+                    while(tr.next()){
+                        ReporteGeneral reporteGeneral = new ReporteGeneral(tr);
+                        listaReporteGeneral.add(reporteGeneral);
+                    }
+                    
+                }
+
+                System.out.println("Resultado número: "+i);
                 
-                listaBusqueda.add(programa);
-                
+                hasResults = callableStatement.getMoreResults();
+                i++;
             }
             
         }
@@ -87,7 +121,11 @@ public class ProgramasAD
         }
         
         resultadoPrograma = new ResultadoPrograma();
+        
         resultadoPrograma.setListaProgramas(listaBusqueda);
+        resultadoPrograma.setListaReporteDependencia(listaReporteDependencia);
+        resultadoPrograma.setListaReporteEstado(listaReporteEstado);
+        resultadoPrograma.setListaReporteGeneral(listaReporteGeneral);
         
         return resultadoPrograma;
         
