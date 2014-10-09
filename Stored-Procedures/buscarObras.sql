@@ -73,23 +73,29 @@ municipio
 FROM
 obras O
 
-JOIN
+LEFT JOIN
 detalle_inversion ON O.idObra = detalle_inversion.idObra
-JOIN
+LEFT JOIN
 tipo_inversion ON detalle_inversion.idTipoInversion = tipo_inversion.idTipoInversion
-JOIN
+LEFT JOIN
+
 tipo_obra ON O.idTipoObra = tipo_obra.idTipoObra
-JOIN
+LEFT JOIN
+
 dependencias ON O.idDependencia = dependencias.idDependencia
-JOIN
+LEFT JOIN
+
 estados ON O.idEstado = estados.idEstado
-JOIN
+LEFT JOIN
+
 impactos ON O.idImpacto = impactos.idImpacto
-JOIN
+LEFT JOIN
+
 cargo_inaugura ON O.idcargoInaugura = cargo_inaugura.idCargoInaugura
-JOIN
+LEFT JOIN
+
 detalle_clasificacion_obra ON O.idObra = detalle_clasificacion_obra.idObra
-JOIN
+LEFT JOIN
 tipo_clasificacion ON detalle_clasificacion_obra.idTipoClasificacion = tipo_clasificacion.idTipoClasificacion
 WHERE
 (inTipoObra Is Null OR FIND_IN_SET(O.idTipoObra, inTipoObra)>0)AND

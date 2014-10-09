@@ -54,78 +54,79 @@ public class Obra
         try{
 
             
-        this.tipoObra = new TipoObra();
-        this.dependencia = new Dependencia();
-        this.estado = new Estado();
-        this.impacto = new Impacto();
+            this.tipoObra = new TipoObra();
+            this.dependencia = new Dependencia();
+            this.estado = new Estado();
+            this.impacto = new Impacto();
 
-        this.tipoInversion =  new ArrayList<TipoInversion>();
-        this.clasificacion = new ArrayList<TipoClasificacion>();
-        this.inaugurador = new Inaugurador();
+            this.tipoInversion =  new ArrayList<TipoInversion>();
+            this.clasificacion = new ArrayList<TipoClasificacion>();
+            this.inaugurador = new Inaugurador();
+            
+                int i=1;
+            
+            this.setIdObra(tr.getString(i)); i++;
+            this.setDenominacion(tr.getString(i));i++;
+            
+            this.tipoObra.setIdTipoObra(tr.getString(i));i++;
+            this.tipoObra.setNombreTipoObra(tr.getString(i));i++;
+            
+            this.dependencia.setIdDependencia(tr.getString(i));i++;
+            this.dependencia.setNombreDependencia(tr.getString(i));i++;
+            
+            this.estado.setIdEstado(tr.getString(i));i++;
+            this.estado.setNombreEstado(tr.getString(i));i++;
+            this.estado.setLatitud(tr.getString(i));i++;
+            this.estado.setLongitud(tr.getString(i));i++;
+            
+
+            
+            
+            this.impacto.setIdImpacto(tr.getString(i));i++;
+            this.impacto.setNombreImpacto(tr.getString(i));i++;
+            
+                //Inicializar objetos para las listas
+
+            StringTokenizer idTipoInversion = new StringTokenizer(tr.getString(i),","); i++;
+            StringTokenizer nombreTipoInversion = new StringTokenizer(tr.getString(i),","); i++;
+
+            
+            while (idTipoInversion.hasMoreElements() && nombreTipoInversion.hasMoreElements()) {
+                TipoInversion tipoInversion = new TipoInversion(idTipoInversion.nextToken(),nombreTipoInversion.nextToken());
+                this.tipoInversion.add(tipoInversion);
+            }
+            
         
-            int i=1;
-        
-        this.setIdObra(tr.getString(i)); i++;
-        this.setDenominacion(tr.getString(i));i++;
-        
-        this.tipoObra.setIdTipoObra(tr.getString(i));i++;
-        this.tipoObra.setNombreTipoObra(tr.getString(i));i++;
-        
-        this.dependencia.setIdDependencia(tr.getString(i));i++;
-        this.dependencia.setNombreDependencia(tr.getString(i));i++;
-        
-        this.estado.setIdEstado(tr.getString(i));i++;
-        this.estado.setNombreEstado(tr.getString(i));i++;
-        this.estado.setLatitud(tr.getString(i));i++;
-        this.estado.setLongitud(tr.getString(i));i++;
+            StringTokenizer idClasificacion = new StringTokenizer(tr.getString(i),","); i++;
+            StringTokenizer nombreClasificacion = new StringTokenizer(tr.getString(i),","); i++;
+            
+            while (idClasificacion.hasMoreElements() && nombreClasificacion.hasMoreElements()) {
+                TipoClasificacion tipoClasificacion = new TipoClasificacion(idClasificacion.nextToken(),nombreClasificacion.nextToken());
+                this.clasificacion.add(tipoClasificacion);
+            }
         
 
-        
-        
-        this.impacto.setIdImpacto(tr.getString(i));i++;
-        this.impacto.setNombreImpacto(tr.getString(i));i++;
-        
-            //Inicializar objetos para las listas
-        StringTokenizer idTipoInversion = new StringTokenizer(tr.getString(i),","); i++;
-        StringTokenizer nombreTipoInversion = new StringTokenizer(tr.getString(i),","); i++;
-
-        
-        while (idTipoInversion.hasMoreElements() && nombreTipoInversion.hasMoreElements()) {
-            TipoInversion tipoInversion = new TipoInversion(idTipoInversion.nextToken(),nombreTipoInversion.nextToken());
-            this.tipoInversion.add(tipoInversion);
-        }
-        
-    
-        StringTokenizer idClasificacion = new StringTokenizer(tr.getString(i),","); i++;
-        StringTokenizer nombreClasificacion = new StringTokenizer(tr.getString(i),","); i++;
-        
-        while (idClasificacion.hasMoreElements() && nombreClasificacion.hasMoreElements()) {
-            TipoClasificacion tipoClasificacion = new TipoClasificacion(idClasificacion.nextToken(),nombreClasificacion.nextToken());
-            this.clasificacion.add(tipoClasificacion);
-        }
-    
-
-        this.inaugurador.setIdCargoInaugura(tr.getString(i));i++;
-        this.inaugurador.setNombreCargoInaugura(tr.getString(i));i++;
-        
-        this.setDescripcion(tr.getString(i));i++;
-        this.setObservaciones(tr.getString(i));i++;
-        this.setFechaInicio(tr.getString(i));i++;
-        this.setFechaTermino(tr.getString(i));i++;
-        this.setInversionTotal(tr.getString(i));i++;
-        this.setTotalBeneficiarios(tr.getString(i));i++;
-        this.setSenalizacion(tr.getString(i));i++;
-        this.setSusceptibleInauguracion(tr.getString(i));i++;
-        this.setPorcentajeAvance(tr.getString(i));i++;
-        this.setFotoAntes(tr.getString(i));i++;
-        this.setFotoDurante(tr.getString(i));i++;
-        this.setFotoDespues(tr.getString(i));i++;
-        
-        this.setFechaModificacion(tr.getString(i));i++;
-        this.setTipoMoneda(tr.getString(i));i++;
-        this.setInaugurada(tr.getString(i));i++;
-        this.setPoblacionObjetivo(tr.getString(i));i++;
-        this.setMunicipio(tr.getString(i));i++;
+            this.inaugurador.setIdCargoInaugura(tr.getString(i));i++;
+            this.inaugurador.setNombreCargoInaugura(tr.getString(i));i++;
+            
+            this.setDescripcion(tr.getString(i));i++;
+            this.setObservaciones(tr.getString(i));i++;
+            this.setFechaInicio(tr.getString(i));i++;
+            this.setFechaTermino(tr.getString(i));i++;
+            this.setInversionTotal(tr.getString(i));i++;
+            this.setTotalBeneficiarios(tr.getString(i));i++;
+            this.setSenalizacion(tr.getString(i));i++;
+            this.setSusceptibleInauguracion(tr.getString(i));i++;
+            this.setPorcentajeAvance(tr.getString(i));i++;
+            this.setFotoAntes(tr.getString(i));i++;
+            this.setFotoDurante(tr.getString(i));i++;
+            this.setFotoDespues(tr.getString(i));i++;
+            
+            this.setFechaModificacion(tr.getString(i));i++;
+            this.setTipoMoneda(tr.getString(i));i++;
+            this.setInaugurada(tr.getString(i));i++;
+            this.setPoblacionObjetivo(tr.getString(i));i++;
+            this.setMunicipio(tr.getString(i));i++;
 
     
         }
@@ -134,6 +135,9 @@ public class Obra
         catch(SQLException sqle){
             System.out.println(sqle);
             
+        }catch (Exception e)
+        {
+            System.out.println("Exception "+e+" in id: "+this.getIdObra());
         }
     
     }
