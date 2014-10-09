@@ -1,10 +1,10 @@
 package servletObrasYProgramas;
 
-import javax.servlet.http.*; 		// HttpServletRequest, HttpServletResponse
 import com.opensymphony.xwork2.ActionSupport;
+import modelObrasYProgramas.ObrasAD;
 
-import modelObrasYProgramas.*;
-import java.util.*;
+import java.util.List;
+
 public class ServletConsultasGenerales extends ActionSupport
 {
     

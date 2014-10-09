@@ -1,5 +1,4 @@
 package modelObrasYProgramas;
-import java.util.*;
 
 public class Consulta
 {
@@ -18,10 +17,10 @@ public class Consulta
     private String susceptible;
     private String inaugurada;
     private String consultaProgramas;
-    private String limiteMin;
-    private String limiteMax;
-    
-    
+    private int limiteMin;
+    private int limiteMax;
+
+
     public String getInaugurada(){
         return inaugurada;
     }
@@ -112,7 +111,24 @@ public class Consulta
     public void setConsultaProgramas(String consultaProgramas) {
         this.consultaProgramas = consultaProgramas;
     }
-    
+
+
+    public int getLimiteMin() {
+        return limiteMin;
+    }
+
+    public void setLimiteMin(int limiteMin) {
+        this.limiteMin = limiteMin;
+    }
+
+    public int getLimiteMax() {
+        return limiteMax;
+    }
+
+    public void setLimiteMax(int limiteMax) {
+        this.limiteMax = limiteMax;
+    }
+
     public String toString() {
         return "Consulta [tipoDeObra=" + tipoDeObra + ", dependencia="
         + dependencia + ", estado=" + estado + ", inversionMinima="
