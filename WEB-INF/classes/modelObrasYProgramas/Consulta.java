@@ -18,6 +18,8 @@ public class Consulta
     private String susceptible;
     private String inaugurada;
     private String consultaProgramas;
+    private String limiteMin;
+    private String limiteMax;
     
     
     public String getInaugurada(){
