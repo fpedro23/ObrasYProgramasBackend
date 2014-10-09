@@ -10,7 +10,10 @@ public class Consulta
     private String inversionMaxima;
     private String tipoDeInversion;
     private String fechaInicio;
+    private String fechaInicioSegunda;
     private String fechaFin;
+    private String fechaFinSegunda;
+
     private String impacto;
     private String clasificacion;
     private String inaugurador;
@@ -127,6 +130,22 @@ public class Consulta
 
     public void setLimiteMax(int limiteMax) {
         this.limiteMax = limiteMax;
+    }
+
+    public String getFechaInicioSegunda() {
+        return fechaInicioSegunda;
+    }
+
+    public void setFechaInicioSegunda(String fechaInicioSegunda) {
+        this.fechaInicioSegunda = fechaInicioSegunda;
+    }
+
+    public String getFechaFinSegunda() {
+        return fechaFinSegunda;
+    }
+
+    public void setFechaFinSegunda(String fechaFinSegunda) {
+        this.fechaFinSegunda = fechaFinSegunda;
     }
 
     public String toString() {

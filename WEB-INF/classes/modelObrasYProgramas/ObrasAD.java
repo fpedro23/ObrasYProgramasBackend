@@ -1,8 +1,8 @@
 package modelObrasYProgramas;
-import java.io.*;
-import java.util.*;
+
 import java.sql.*;
-import java.nio.charset.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ObrasAD
 {
@@ -332,14 +332,16 @@ public class ObrasAD
         
         try{
 
-            callableStatement = conexion.prepareCall("{CALL buscarObras(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
+            callableStatement = conexion.prepareCall("{CALL buscarObras(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
             callableStatement.setString("inTipoObra", consulta.getTipoDeObra());
             callableStatement.setString("inDependencia", consulta.getDependencia());
             callableStatement.setString("inEstado", consulta.getEstado());
             callableStatement.setString("inRangoInversionMin", consulta.getInversionMinima());
             callableStatement.setString("inRangoInversionMax", consulta.getInversionMaxima());
             callableStatement.setString("inFechaInicio", consulta.getFechaInicio());
+            callableStatement.setString("inFechaInicioSegunda", consulta.getFechaInicioSegunda());
             callableStatement.setString("inFechaTermino", consulta.getFechaFin());
+            callableStatement.setString("inFechaTerminoSegunda", consulta.getFechaFinSegunda());
             callableStatement.setString("inImpacto", consulta.getImpacto());
             callableStatement.setString("inCargoInaugura", consulta.getInaugurador());
             callableStatement.setString("inTipoInversion", consulta.getTipoDeInversion());
