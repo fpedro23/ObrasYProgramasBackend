@@ -86,24 +86,38 @@ public class Obra
             this.impacto.setNombreImpacto(tr.getString(i));i++;
             
                 //Inicializar objetos para las listas
-
-            StringTokenizer idTipoInversion = new StringTokenizer(tr.getString(i),","); i++;
-            StringTokenizer nombreTipoInversion = new StringTokenizer(tr.getString(i),","); i++;
-
             
-            while (idTipoInversion.hasMoreElements() && nombreTipoInversion.hasMoreElements()) {
-                TipoInversion tipoInversion = new TipoInversion(idTipoInversion.nextToken(),nombreTipoInversion.nextToken());
-                this.tipoInversion.add(tipoInversion);
+            try{
+                StringTokenizer idTipoInversion = new StringTokenizer(tr.getString("listaIDInversiones"),",");
+                StringTokenizer nombreTipoInversion = new StringTokenizer(tr.getString("listaInversiones"),",");
+                while (idTipoInversion.hasMoreElements() && nombreTipoInversion.hasMoreElements()) {
+                    TipoInversion tipoInversion = new TipoInversion(idTipoInversion.nextToken(),nombreTipoInversion.nextToken());
+                    this.tipoInversion.add(tipoInversion);
+                }
+            }catch (Exception e)
+            {
+                System.out.println("Exception tipo inversion "+e+" in id: "+this.getIdObra());
+                
             }
-            
+
+            i++;i++;
         
-            StringTokenizer idClasificacion = new StringTokenizer(tr.getString(i),","); i++;
-            StringTokenizer nombreClasificacion = new StringTokenizer(tr.getString(i),","); i++;
             
-            while (idClasificacion.hasMoreElements() && nombreClasificacion.hasMoreElements()) {
-                TipoClasificacion tipoClasificacion = new TipoClasificacion(idClasificacion.nextToken(),nombreClasificacion.nextToken());
-                this.clasificacion.add(tipoClasificacion);
+            try{
+                StringTokenizer idClasificacion = new StringTokenizer(tr.getString("listaIDclasificaciones"),",");
+                StringTokenizer nombreClasificacion = new StringTokenizer(tr.getString("listaClasificaciones"),",");
+                
+                while (idClasificacion.hasMoreElements() && nombreClasificacion.hasMoreElements()) {
+                    TipoClasificacion tipoClasificacion = new TipoClasificacion(idClasificacion.nextToken(),nombreClasificacion.nextToken());
+                    this.clasificacion.add(tipoClasificacion);
+                }
+            }catch (Exception e)
+            {
+                System.out.println("Exception clasificacion "+e+" in id: "+this.getIdObra());
+                
             }
+            i++;i++;
+
         
 
             this.inaugurador.setIdCargoInaugura(tr.getString(i));i++;
@@ -135,9 +149,6 @@ public class Obra
         catch(SQLException sqle){
             System.out.println(sqle);
             
-        }catch (Exception e)
-        {
-            System.out.println("Exception "+e+" in id: "+this.getIdObra());
         }
     
     }
