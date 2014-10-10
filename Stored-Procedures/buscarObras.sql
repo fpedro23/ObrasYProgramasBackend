@@ -11,13 +11,17 @@ inEstado TEXT,
 inRangoInversionMin DOUBLE,
 inRangoInversionMax DOUBLE,
 inFechaInicio date,
+inFechaInicioSegunda date,
 inFechaTermino date,
+inFechaTerminoSegunda date,
 inImpacto TEXT,
 inCargoInaugura TEXT,
 inTipoInversion TEXT,
 inTipoClasificacion TEXT,
 inSusceptible TEXT,
-inInaugurada TEXT
+inInaugurada TEXT,
+inLimiteMin integer,
+inLimiteMax integer
 )
 BEGIN
 CREATE TEMPORARY TABLE IF NOT EXISTS  resultados AS
@@ -98,6 +102,9 @@ detalle_clasificacion_obra ON O.idObra = detalle_clasificacion_obra.idObra
 LEFT JOIN
 tipo_clasificacion ON detalle_clasificacion_obra.idTipoClasificacion = tipo_clasificacion.idTipoClasificacion
 WHERE
+
+
+
 (inTipoObra Is Null OR FIND_IN_SET(O.idTipoObra, inTipoObra)>0)AND
 (inDependencia Is Null OR FIND_IN_SET(O.idDependencia, inDependencia)>0)AND
 
@@ -119,14 +126,22 @@ WHERE
 (inRangoInversionMin Is Not Null AND inRangoInversionMax Is Not Null AND
 O.inversionTotal BETWEEN inRangoInversionMin AND inRangoInversionMax)) AND
 
-(inFechaInicio Is Null OR inFechaTermino Is Null OR
-(inFechaInicio Is Not Null AND inFechaTermino Is Not Null AND
-O.fechaInicio BETWEEN inFechaInicio AND inFechaTermino))
+
+
+(inFechaInicio Is Null OR inFechaInicioSegunda Is Null OR
+(inFechaInicio Is Not Null AND inFechaInicioSegunda Is Not Null AND
+O.fechaInicio BETWEEN inFechaInicio AND inFechaInicioSegunda)) AND
+
+
+(inFechaTermino Is Null OR inFechaTerminoSegunda Is Null OR
+(inFechaTermino Is Not Null AND inFechaTerminoSegunda Is Not Null AND
+O.fechaTermino BETWEEN inFechaTermino AND inFechaTerminoSegunda))
+
 GROUP BY O.idObra
 
 ;
 
-select * from resultados;
+select * from resultados limit inLimiteMin,inLimiteMax;
 
 
 select nombreDependencia,
