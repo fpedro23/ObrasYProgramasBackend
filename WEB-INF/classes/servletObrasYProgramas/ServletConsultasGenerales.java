@@ -10,8 +10,16 @@ public class ServletConsultasGenerales extends ActionSupport
     
 
     public List<?> lista;
-    
-    
+    private String clasificacion;
+
+    public String getClasificacion() {
+        return clasificacion;
+    }
+
+    public void setClasificacion(String clasificacion) {
+        this.clasificacion = clasificacion;
+    }
+
     public String consultarEstados()throws Exception{
         ObrasAD obrasAD = new ObrasAD();
         lista =  obrasAD.listaDeEstados();
@@ -35,6 +43,12 @@ public class ServletConsultasGenerales extends ActionSupport
     public String consultarClasificaciones()throws Exception{
         ObrasAD obrasAD = new ObrasAD();
         lista =  obrasAD.listaDeClasificaciones();
+        return "respuestaListaJson";
+    }
+
+    public String consultarSubclasificacion() throws Exception {
+        ObrasAD obrasAD = new ObrasAD();
+        lista = obrasAD.listaDeSubClasificaciones(this.clasificacion);
         return "respuestaListaJson";
     }
     

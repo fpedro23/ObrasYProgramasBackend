@@ -32,7 +32,10 @@ public class ObrasAD
     
     private TipoInversion tipoInversion;
     private List<TipoInversion> listaTipoInversion;
-    
+
+    private Subclasificacion subclasificacion;
+    private List<Subclasificacion> listaSubclasificacion;
+
     private TipoObra tipoObra;
     private List<TipoObra> listaTipoObra;
     
@@ -246,39 +249,72 @@ public class ObrasAD
     }
     
     public List<TipoInversion> listaDeInversiones(){
-        
-        
-        
+
+
         ResultSet tr = null;
         String select = "SELECT * FROM tipo_inversion";
         listaTipoInversion = new ArrayList<TipoInversion>();
-        
-        
+
+
+        try {
+            statement = conexion.createStatement();
+            tr = statement.executeQuery(select);
+
+
+            while (tr.next()) {
+                tipoInversion = new TipoInversion();
+
+                tipoInversion.setIdTipoInversion(tr.getString("idTipoInversion"));
+                tipoInversion.setNombreTipoInversion(tr.getString("nombreTipoInv"));
+
+                listaTipoInversion.add(tipoInversion);
+
+            }
+
+        } catch (SQLException sqle) {
+            System.out.println(sqle);
+
+        }
+
+        return listaTipoInversion;
+
+    }
+
+    public List<Subclasificacion> listaDeSubClasificaciones(String clasificacion) {
+
+
+        ResultSet tr = null;
+        String select = String.format("SELECT * FROM subclasificacion WHERE idTipoClasificacion ='%s'", clasificacion);
+
+        listaSubclasificacion = new ArrayList<Subclasificacion>();
+
+
         try{
             statement=conexion.createStatement();
             tr = statement.executeQuery(select);
-            
-            
+
+
             while(tr.next())
             {
-                tipoInversion = new TipoInversion();
-                
-                tipoInversion.setIdTipoInversion(tr.getString("idTipoInversion"));
-                tipoInversion.setNombreTipoInversion(tr.getString("nombreTipoInv"));
-                
-                listaTipoInversion.add(tipoInversion);
-                
+                subclasificacion = new Subclasificacion(tr.getString("idSubClasificacion"),
+                        tr.getString("idTipoClasificacion"),
+                        tr.getString("nombresubClasificacion")
+                );
+                listaSubclasificacion.add(subclasificacion);
+
             }
-            
+
         }
         catch(SQLException sqle){
             System.out.println(sqle);
-            
+
         }
-        
-        return listaTipoInversion;
-    
+
+        return listaSubclasificacion;
+
     }
+
+
     public List<TipoObra> listaDeObras(){
     
         

@@ -38,9 +38,15 @@
          <action name="consultarTiposDeObraProgramas" class="servletObrasYProgramas.ServletConsultasGenerales" method="consultarTiposDeObra">
              <result name="respuestaListaJson">/Views/ListaJSON.jsp</result>
          </action>
-         
-         <action name="buscar" class="servletObrasYProgramas.ServletBusqueda$Busqueda" method="execute">
-             <result name="resultadoConsultaObra">/Views/ResultadoObra.jsp</result>
+
+        <action name="consultarSubclasificacion" class="servletObrasYProgramas.ServletConsultasGenerales"
+                method="consultarSubclasificacion">
+            <result name="respuestaListaJson">/Views/ListaJSON.jsp</result>
+        </action>
+
+
+        <action name="buscar" class="servletObrasYProgramas.ServletBusqueda$Busqueda" method="execute">
+        <result name="resultadoConsultaObra">/Views/ResultadoObra.jsp</result>
              <result name="resultadoConsultaPrograma">/Views/ResultadoPrograma.jsp</result>
 
          </action>
