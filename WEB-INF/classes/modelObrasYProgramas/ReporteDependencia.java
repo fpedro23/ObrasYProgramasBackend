@@ -4,16 +4,20 @@ import java.sql.*;
 
 public class ReporteDependencia
 {
-    
-    private String nombreDependencia;
+
+    private Dependencia dependencia;
     private String numeroObras;
     private String totalInvertido;
     
     
     public ReporteDependencia(ResultSet tr){
         try{
-            this.setNombreDependencia(tr.getString("nombreDependencia"));
-            this.setNumeroObras(tr.getString(2));
+            dependencia = new Dependencia();
+
+            dependencia.setIdDependencia(tr.getString("idDependencia"));
+            dependencia.setNombreDependencia(tr.getString("nombreDependencia"));
+
+            this.setNumeroObras(tr.getString("numeroObras"));
             this.setTotalInvertido(tr.getString("totalInvertido"));
         }
         catch(SQLException sqle){
@@ -21,17 +25,16 @@ public class ReporteDependencia
             
         }
     }
-    
-    public String getNombreDependencia() {
-        return nombreDependencia;
+
+
+    public Dependencia getDependencia() {
+        return dependencia;
     }
-    /**
-     * @param nombreDependencia the nombreDependencia to set
-     */
-    public void setNombreDependencia(String nombreDependencia) {
-        this.nombreDependencia = nombreDependencia;
+
+    public void setDependencia(Dependencia dependencia) {
+        this.dependencia = dependencia;
     }
-    
+
     public String getNumeroObras() {
         return numeroObras;
     }

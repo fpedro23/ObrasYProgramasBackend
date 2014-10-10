@@ -144,17 +144,23 @@ GROUP BY O.idObra
 select * from resultados limit inLimiteMin,inLimiteMax;
 
 
-select nombreDependencia,
-count(*) AS numeroObras,
-SUM(inversionTotal) AS totalInvertido
-from resultados
-GROUP BY nombreDependencia;
+  SELECT
+    idDependencia,
+    nombreDependencia,
+    count(*)            AS numeroObras,
+    SUM(inversionTotal) AS totalInvertido
+  FROM resultados
+  GROUP BY nombreDependencia;
 
-select nombreEstado,
-count(*) AS numeroObras,
-SUM(inversionTotal) AS totalInvertido
-from resultados
-GROUP BY nombreEstado;
+  SELECT
+    idEstado,
+    nombreEstado,
+    latitud,
+    longitud,
+    count(*)            AS numeroObras,
+    SUM(inversionTotal) AS totalInvertido
+  FROM resultados
+  GROUP BY nombreEstado;
 
 select
 count(*) AS numeroObras,

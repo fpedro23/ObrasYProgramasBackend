@@ -4,16 +4,23 @@ import java.sql.*;
 
 public class ReporteEstado
 {
-    
-    private String nombreEstado;
+
+    private Estado estado;
     private String numeroObras;
     private String totalInvertido;
     
     
     public ReporteEstado(ResultSet tr){
         try{
-            this.setNombreEstado(tr.getString("nombreEstado"));
-            this.setNumeroObras(tr.getString(2));
+
+            estado = new Estado();
+
+            estado.setIdEstado(tr.getString("idEstado"));
+            estado.setNombreEstado(tr.getString("nombreEstado"));
+            estado.setLatitud(tr.getString("latitud"));
+            estado.setLongitud(tr.getString("longitud"));
+
+            this.setNumeroObras(tr.getString("numeroObras"));
             this.setTotalInvertido(tr.getString("totalInvertido"));
         }
         catch(SQLException sqle){
@@ -21,20 +28,8 @@ public class ReporteEstado
             
         }
     }
-    
-    /**
-     * @return the nombreEstado
-     */
-    public String getNombreEstado() {
-        return nombreEstado;
-    }
-    /**
-     * @param nombreEstado the nombreEstado to set
-     */
-    public void setNombreEstado(String nombreEstado) {
-        this.nombreEstado = nombreEstado;
-    }
-    
+
+
     public String getNumeroObras() {
         return numeroObras;
     }
