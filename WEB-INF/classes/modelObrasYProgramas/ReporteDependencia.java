@@ -1,28 +1,26 @@
 package modelObrasYProgramas;
-import java.util.*;
+
 import java.sql.*;
 
-public class ReporteDependencia
-{
+public class ReporteDependencia {
 
     private Dependencia dependencia;
-    private String numeroObras;
+    private String numeroRegistros;
     private String totalInvertido;
-    
-    
-    public ReporteDependencia(ResultSet tr){
-        try{
+
+
+    public ReporteDependencia(ResultSet tr) {
+        try {
             dependencia = new Dependencia();
 
             dependencia.setIdDependencia(tr.getString("idDependencia"));
             dependencia.setNombreDependencia(tr.getString("nombreDependencia"));
 
-            this.setNumeroObras(tr.getString("numeroObras"));
+            this.setNumeroRegistros(tr.getString("numeroObras"));
             this.setTotalInvertido(tr.getString("totalInvertido"));
-        }
-        catch(SQLException sqle){
+        } catch (SQLException sqle) {
             System.out.println(sqle);
-            
+
         }
     }
 
@@ -35,26 +33,29 @@ public class ReporteDependencia
         this.dependencia = dependencia;
     }
 
-    public String getNumeroObras() {
-        return numeroObras;
+    public String getNumeroRegistros() {
+        return numeroRegistros;
     }
+
     /**
-     * @param numeroObras the numeroObras to set
+     * @param numeroRegistros the numeroRegistros to set
      */
-    public void setNumeroObras(String numeroObras) {
-        this.numeroObras = numeroObras;
+    public void setNumeroRegistros(String numeroRegistros) {
+        this.numeroRegistros = numeroRegistros;
     }
+
     /**
      * @return the totalInvertido
      */
     public String getTotalInvertido() {
         return totalInvertido;
     }
+
     /**
      * @param totalInvertido the totalInvertido to set
      */
     public void setTotalInvertido(String totalInvertido) {
         this.totalInvertido = totalInvertido;
     }
-    
+
 }

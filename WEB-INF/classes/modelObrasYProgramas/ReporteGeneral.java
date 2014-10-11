@@ -1,45 +1,46 @@
 package modelObrasYProgramas;
-import java.util.*;
+
 import java.sql.*;
 
-public class ReporteGeneral
-{
-    
-    private String numeroObras;
+public class ReporteGeneral {
+
+    private String numeroRegistros;
     private String totalInvertido;
 
-    public ReporteGeneral(ResultSet tr){
-        try{
-            this.setNumeroObras(tr.getString(1));
+    public ReporteGeneral(ResultSet tr) {
+        try {
+            this.setNumeroRegistros(tr.getString(1));
             this.setTotalInvertido(tr.getString("totalInvertido"));
-        }
-        catch(SQLException sqle){
+        } catch (SQLException sqle) {
             System.out.println(sqle);
-            
+
         }
     }
-    
-    
-    public String getNumeroObras() {
-        return numeroObras;
+
+
+    public String getNumeroRegistros() {
+        return numeroRegistros;
     }
+
     /**
-     * @param numeroObras the numeroObras to set
+     * @param numeroRegistros the numeroRegistros to set
      */
-    public void setNumeroObras(String numeroObras) {
-        this.numeroObras = numeroObras;
+    public void setNumeroRegistros(String numeroRegistros) {
+        this.numeroRegistros = numeroRegistros;
     }
+
     /**
      * @return the totalInvertido
      */
     public String getTotalInvertido() {
         return totalInvertido;
     }
+
     /**
      * @param totalInvertido the totalInvertido to set
      */
     public void setTotalInvertido(String totalInvertido) {
         this.totalInvertido = totalInvertido;
     }
-    
+
 }

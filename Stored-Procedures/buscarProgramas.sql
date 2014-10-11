@@ -4,81 +4,116 @@
 -- --------------------------------------------------------------------------------
 DELIMITER $$
 
-CREATE DEFINER=`oypdbuser`@`localhost` PROCEDURE `buscarProgramas`(
-inDependencia TEXT,
-inEstado TEXT,
-inRangoInversionMin DOUBLE,
-inRangoInversionMax DOUBLE,
-inTipoClasificacion TEXT
+CREATE DEFINER =`oypdbuser`@`localhost` PROCEDURE `buscarProgramas`(
+  inDependencia       TEXT,
+  inEstado            TEXT,
+  inRangoInversionMin DOUBLE,
+  inRangoInversionMax DOUBLE,
+  inTipoClasificacion TEXT,
+  inLimiteMin         INTEGER,
+  inLimiteMax         INTEGER
 )
-BEGIN
-SELECT
-P.idPrograma,
-P.nombrePrograma,
+  BEGIN
+    CREATE TEMPORARY TABLE IF NOT EXISTS resultados
+      AS
+        SELECT
+          P.idPrograma,
+          P.nombrePrograma,
 
-P.idDependencia,
-nombreDependencia,
+          P.idDependencia,
+          nombreDependencia,
 
-P.idEstado,
-nombreEstado,
-estados.latitud,
-estados.longitud,
+          P.idEstado,
+          nombreEstado,
+          estados.latitud,
+          estados.longitud,
 
-P.idTipoApoyo,
-nombreTipoApoyo,
-
-
-GROUP_CONCAT(DISTINCT tipo_clasificacion.idTipoClasificacion ) AS listaIDclasificaciones,
-GROUP_CONCAT( DISTINCT nombreTipoClasificacion) AS listaClasificaciones,
+          P.idTipoApoyo,
+          nombreTipoApoyo,
 
 
-pobObjetivo,
+          GROUP_CONCAT(DISTINCT tipo_clasificacion.idTipoClasificacion) AS listaIDclasificaciones,
+          GROUP_CONCAT(DISTINCT nombreTipoClasificacion)                AS listaClasificaciones,
 
 
-montoApoyo,
-totalBeneficiario,
-totalMunicipiosBeneficiados,
-observaciones,
-anioPrograma,
+          P.idPobObjetivo,
+          nombrePobObj,
 
-inversionTotal,
-tipoMoneda,
-lineaBase,
-metaBeneficiarios,
-absoluto,
-porcentual,
-P.fechaMod
+          montoApoyo,
+          totalBeneficiario,
+          totalMunicipiosBeneficiados,
+          observaciones,
+          anioPrograma,
 
-FROM
-programas P
+          inversionTotal,
+          tipoMoneda,
+          lineaBase,
+          metaBeneficiarios,
+          absoluto,
+          porcentual,
+          P.fechaMod
 
-JOIN
-tipo_apoyo ON P.idTipoApoyo = tipo_apoyo.idTipoApoyo
+        FROM
+          programas P
 
-JOIN
-dependencias ON P.idDependencia = dependencias.idDependencia
-JOIN
-estados ON P.idEstado = estados.idEstado
+          LEFT JOIN
+          tipo_apoyo ON P.idTipoApoyo = tipo_apoyo.idTipoApoyo
 
-
-JOIN
-detalle_clasificacion_programas ON P.idPrograma= detalle_clasificacion_programas.idPrograma
-JOIN
-tipo_clasificacion ON detalle_clasificacion_programas.idTipoClasificacion = tipo_clasificacion.idTipoClasificacion
-
-WHERE
-(inDependencia Is Null OR FIND_IN_SET(P.idDependencia, inDependencia)>0)AND
-
-(inEstado Is Null OR FIND_IN_SET(P.idEstado, inEstado)>0 ) AND
-(inTipoClasificacion Is Null OR FIND_IN_SET(detalle_clasificacion_programas.idTipoClasificacion, inTipoClasificacion)>0 ) AND
+          LEFT JOIN
+          dependencias ON P.idDependencia = dependencias.idDependencia
+          LEFT JOIN
+          estados ON P.idEstado = estados.idEstado
+          LEFT JOIN
+          poblacion_objetivo ON P.idPobObjetivo = poblacion_objetivo.idpoblacionObjetivo
 
 
+          LEFT JOIN
+          detalle_clasificacion_programas ON P.idPrograma = detalle_clasificacion_programas.idPrograma
+          LEFT JOIN
+          tipo_clasificacion
+            ON detalle_clasificacion_programas.idTipoClasificacion = tipo_clasificacion.idTipoClasificacion
 
-(inRangoInversionMin Is Null OR inRangoInversionMax Is Null OR
-(inRangoInversionMin Is Not Null AND inRangoInversionMax Is Not Null AND
-P.inversionTotal BETWEEN inRangoInversionMin AND inRangoInversionMax))
+        WHERE
+          (inDependencia IS NULL OR FIND_IN_SET(P.idDependencia, inDependencia) > 0) AND
+
+          (inEstado IS NULL OR FIND_IN_SET(P.idEstado, inEstado) > 0) AND
+          (inTipoClasificacion IS NULL OR
+           FIND_IN_SET(detalle_clasificacion_programas.idTipoClasificacion, inTipoClasificacion) > 0) AND
 
 
-GROUP BY P.idPrograma
-;
-END
+          (inRangoInversionMin IS NULL OR inRangoInversionMax IS NULL OR
+           (inRangoInversionMin IS NOT NULL AND inRangoInversionMax IS NOT NULL AND
+            P.inversionTotal BETWEEN inRangoInversionMin AND inRangoInversionMax))
+
+
+        GROUP BY P.idPrograma;
+
+    SELECT
+      *
+    FROM resultados
+    LIMIT inLimiteMin, inLimiteMax;
+
+    SELECT
+      idDependencia,
+      nombreDependencia,
+      count(*)            AS numeroObras,
+      SUM(inversionTotal) AS totalInvertido
+    FROM resultados
+    GROUP BY nombreDependencia;
+
+    SELECT
+      idEstado,
+      nombreEstado,
+      latitud,
+      longitud,
+      count(*)            AS numeroObras,
+      SUM(inversionTotal) AS totalInvertido
+    FROM resultados
+    GROUP BY nombreEstado;
+
+    SELECT
+      count(*)            AS numeroRegistros,
+      SUM(inversionTotal) AS totalInvertido
+    FROM resultados;
+
+  END

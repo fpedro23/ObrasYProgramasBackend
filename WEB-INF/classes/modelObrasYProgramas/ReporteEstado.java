@@ -1,17 +1,16 @@
 package modelObrasYProgramas;
-import java.util.*;
+
 import java.sql.*;
 
-public class ReporteEstado
-{
+public class ReporteEstado {
 
     private Estado estado;
-    private String numeroObras;
+    private String numeroRegistros;
     private String totalInvertido;
-    
-    
-    public ReporteEstado(ResultSet tr){
-        try{
+
+
+    public ReporteEstado(ResultSet tr) {
+        try {
 
             estado = new Estado();
 
@@ -20,36 +19,38 @@ public class ReporteEstado
             estado.setLatitud(tr.getString("latitud"));
             estado.setLongitud(tr.getString("longitud"));
 
-            this.setNumeroObras(tr.getString("numeroObras"));
+            this.setNumeroRegistros(tr.getString("numeroObras"));
             this.setTotalInvertido(tr.getString("totalInvertido"));
-        }
-        catch(SQLException sqle){
+        } catch (SQLException sqle) {
             System.out.println(sqle);
-            
+
         }
     }
 
 
-    public String getNumeroObras() {
-        return numeroObras;
+    public String getNumeroRegistros() {
+        return numeroRegistros;
     }
+
     /**
-     * @param numeroObras the numeroObras to set
+     * @param numeroRegistros the numeroRegistros to set
      */
-    public void setNumeroObras(String numeroObras) {
-        this.numeroObras = numeroObras;
+    public void setNumeroRegistros(String numeroRegistros) {
+        this.numeroRegistros = numeroRegistros;
     }
+
     /**
      * @return the totalInvertido
      */
     public String getTotalInvertido() {
         return totalInvertido;
     }
+
     /**
      * @param totalInvertido the totalInvertido to set
      */
     public void setTotalInvertido(String totalInvertido) {
         this.totalInvertido = totalInvertido;
     }
-    
+
 }
