@@ -21,9 +21,9 @@ public class ProgramasAD {
     public ProgramasAD() {
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            //conexion= DriverManager.getConnection("jdbc:mysql://localhost/ObrasYProgramas?user=root");
+            conexion = DriverManager.getConnection("jdbc:mysql://localhost/ObrasYProgramas?user=root");
             System.out.println("Conexion exitosa a la BD");
-            conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/obrasyprogramas", "oypdbuser", "0ypProj3ct!");
+            //conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/obrasyprogramas", "oypdbuser", "0ypProj3ct!");
         } catch (ClassNotFoundException cnfe) {
             System.out.println("Error: " + cnfe);
         } catch (InstantiationException ie) {
@@ -74,7 +74,7 @@ public class ProgramasAD {
                 }
                 if (i == 1) {
                     while (tr.next()) {
-                        ReporteDependencia reporteDependencia = new ReporteDependencia(tr);
+                        ReporteDependencia reporteDependencia = new ReporteDependenciaPrograma(tr);
 
 
                         listaReporteDependencia.add(reporteDependencia);
@@ -82,14 +82,14 @@ public class ProgramasAD {
                 }
                 if (i == 2) {
                     while (tr.next()) {
-                        ReporteEstado reporteEstado = new ReporteEstado(tr);
+                        ReporteEstado reporteEstado = new ReporteEstadoPrograma(tr);
                         listaReporteEstado.add(reporteEstado);
 
                     }
                 }
                 if (i == 3) {
                     while (tr.next()) {
-                        ReporteGeneral reporteGeneral = new ReporteGeneral(tr);
+                        ReporteGeneral reporteGeneral = new ReporteGeneralPrograma(tr);
                         listaReporteGeneral.add(reporteGeneral);
                     }
 

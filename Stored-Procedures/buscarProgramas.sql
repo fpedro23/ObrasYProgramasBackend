@@ -17,7 +17,7 @@ CREATE DEFINER =`oypdbuser`@`localhost` PROCEDURE `buscarProgramas`(
     DROP TABLE IF EXISTS resultados;
 
     CREATE TEMPORARY TABLE IF NOT EXISTS resultados
-      AS
+      as
         SELECT
           P.idPrograma,
           P.nombrePrograma,
@@ -107,17 +107,21 @@ CREATE DEFINER =`oypdbuser`@`localhost` PROCEDURE `buscarProgramas`(
 
     SELECT
       idEstado,
+      anioPrograma,
       nombreEstado,
       latitud,
       longitud,
       count(*)            AS numeroObras,
       SUM(inversionTotal) AS totalInvertido
     FROM resultados
-    GROUP BY nombreEstado;
+    GROUP BY nombreEstado, anioPrograma;
 
     SELECT
       count(*)            AS numeroRegistros,
-      SUM(inversionTotal) AS totalInvertido
-    FROM resultados;
+      SUM(inversionTotal) AS totalInvertido,
+      anioPrograma
+    FROM resultados
+    GROUP BY anioPrograma;
+
 
   END
