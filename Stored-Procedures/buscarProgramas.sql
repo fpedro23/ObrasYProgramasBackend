@@ -14,6 +14,8 @@ CREATE DEFINER =`oypdbuser`@`localhost` PROCEDURE `buscarProgramas`(
   inLimiteMax         INTEGER
 )
   BEGIN
+    DROP TABLE IF EXISTS resultados;
+
     CREATE TEMPORARY TABLE IF NOT EXISTS resultados
       AS
         SELECT
@@ -93,13 +95,15 @@ CREATE DEFINER =`oypdbuser`@`localhost` PROCEDURE `buscarProgramas`(
     FROM resultados
     LIMIT inLimiteMin, inLimiteMax;
 
+
     SELECT
       idDependencia,
       nombreDependencia,
+      anioPrograma,
       count(*)            AS numeroObras,
       SUM(inversionTotal) AS totalInvertido
     FROM resultados
-    GROUP BY nombreDependencia;
+    GROUP BY nombreDependencia, anioPrograma;
 
     SELECT
       idEstado,
