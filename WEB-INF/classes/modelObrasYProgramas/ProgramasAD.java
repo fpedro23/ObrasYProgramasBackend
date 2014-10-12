@@ -1,21 +1,13 @@
 package modelObrasYProgramas;
 
-import java.io.*;
-import java.util.*;
 import java.sql.*;
-import java.nio.charset.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class ProgramasAD {
     private Connection conexion;
-    private Statement statement;
-    private CallableStatement callableStatement;
-
-    private List<Programa> listaBusqueda;
     private Programa programa;
-    private ResultadoPrograma resultadoPrograma;
-    private List<ReporteDependencia> listaReporteDependencia;
-    private List<ReporteEstado> listaReporteEstado;
-    private List<ReporteGeneral> listaReporteGeneral;
 
 
     public ProgramasAD() {
@@ -39,14 +31,22 @@ public class ProgramasAD {
 
     public ResultadoPrograma buscar(Consulta consulta) {
 
-        ResultSet tr = null;
+        ResultSet tr;
+        List<Programa> listaBusqueda;
         listaBusqueda = new ArrayList<Programa>();
-        listaReporteDependencia = new ArrayList<ReporteDependencia>();
-        listaReporteEstado = new ArrayList<ReporteEstado>();
-        listaReporteGeneral = new ArrayList<ReporteGeneral>();
+
+        HashMap<String, List<ReporteEstado>> hashMapEstado;
+        hashMapEstado = new HashMap<String, List<ReporteEstado>>();
+
+        HashMap<String, List<ReporteDependencia>> hashMapDependencia;
+        hashMapDependencia = new HashMap<String, List<ReporteDependencia>>();
+
+        HashMap<String, List<ReporteGeneral>> hashMapGeneral;
+        hashMapGeneral = new HashMap<String, List<ReporteGeneral>>();
 
 
         try {
+            CallableStatement callableStatement;
             callableStatement = conexion.prepareCall("{CALL buscarProgramas(?,?,?,?,?,?,?)}");
 
             callableStatement.setString("inDependencia", consulta.getDependencia());
@@ -62,7 +62,7 @@ public class ProgramasAD {
 
             int i = 0;
 
-            while (hasResults) {
+            while (hasResults) { //Programas
                 tr = callableStatement.getResultSet();
 
                 if (i == 0) {
@@ -73,24 +73,54 @@ public class ProgramasAD {
                     }
                 }
                 if (i == 1) {
-                    while (tr.next()) {
-                        ReporteDependencia reporteDependencia = new ReporteDependenciaPrograma(tr);
+                    while (tr.next()) { //Reporte dependencias
+                        ReporteDependencia reporteDependencia = new ReporteDependencia(tr);
 
+                        String ano = tr.getString("anioPrograma");
 
-                        listaReporteDependencia.add(reporteDependencia);
+                        if (hashMapDependencia.containsKey(ano)) {
+                            List<ReporteDependencia> reporte = hashMapDependencia.get(ano);
+                            reporte.add(reporteDependencia);
+                            hashMapDependencia.put(ano, reporte);
+                        } else {
+                            List<ReporteDependencia> reporte = new ArrayList<ReporteDependencia>();
+                            reporte.add(reporteDependencia);
+                            hashMapDependencia.put(ano, reporte);
+                        }
                     }
                 }
                 if (i == 2) {
-                    while (tr.next()) {
-                        ReporteEstado reporteEstado = new ReporteEstadoPrograma(tr);
-                        listaReporteEstado.add(reporteEstado);
+                    while (tr.next()) { //Reporte de estados
+                        ReporteEstado reporteEstado = new ReporteEstado(tr);
 
+                        String ano = tr.getString("anioPrograma");
+
+                        if (hashMapEstado.containsKey(ano)) {
+                            List<ReporteEstado> reporte = hashMapEstado.get(ano);
+                            reporte.add(reporteEstado);
+                            hashMapEstado.put(ano, reporte);
+                        } else {
+                            List<ReporteEstado> reporte = new ArrayList<ReporteEstado>();
+                            reporte.add(reporteEstado);
+                            hashMapEstado.put(ano, reporte);
+                        }
                     }
                 }
                 if (i == 3) {
                     while (tr.next()) {
-                        ReporteGeneral reporteGeneral = new ReporteGeneralPrograma(tr);
-                        listaReporteGeneral.add(reporteGeneral);
+                        ReporteGeneral reporteGeneral = new ReporteGeneral(tr);
+
+                        String ano = tr.getString("anioPrograma");
+
+                        if (hashMapGeneral.containsKey(ano)) {
+                            List<ReporteGeneral> reporte = hashMapGeneral.get(ano);
+                            reporte.add(reporteGeneral);
+                            hashMapGeneral.put(ano, reporte);
+                        } else {
+                            List<ReporteGeneral> reporte = new ArrayList<ReporteGeneral>();
+                            reporte.add(reporteGeneral);
+                            hashMapGeneral.put(ano, reporte);
+                        }
                     }
 
                 }
@@ -106,12 +136,13 @@ public class ProgramasAD {
 
         }
 
+        ResultadoPrograma resultadoPrograma;
         resultadoPrograma = new ResultadoPrograma();
 
         resultadoPrograma.setListaProgramas(listaBusqueda);
-        resultadoPrograma.setListaReporteDependencia(listaReporteDependencia);
-        resultadoPrograma.setListaReporteEstado(listaReporteEstado);
-        resultadoPrograma.setListaReporteGeneral(listaReporteGeneral);
+        resultadoPrograma.setHashMapReporteDependencia(hashMapDependencia);
+        resultadoPrograma.setHashMapReporteEstado(hashMapEstado);
+        resultadoPrograma.setHashMapReporteGeneral(hashMapGeneral);
 
         return resultadoPrograma;
 
