@@ -1,9 +1,8 @@
 package modelObrasYProgramas;
 
-import java.io.*;
-import java.util.*;
 import java.sql.*;
-import java.nio.charset.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProgramasAD {
     private Connection conexion;
@@ -21,9 +20,9 @@ public class ProgramasAD {
     public ProgramasAD() {
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            conexion = DriverManager.getConnection("jdbc:mysql://localhost/ObrasYProgramas?user=root");
+            //conexion = DriverManager.getConnection("jdbc:mysql://localhost/ObrasYProgramas?user=root");
             System.out.println("Conexion exitosa a la BD");
-            //conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/obrasyprogramas", "oypdbuser", "0ypProj3ct!");
+            conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/obrasyprogramas", "oypdbuser", "0ypProj3ct!");
         } catch (ClassNotFoundException cnfe) {
             System.out.println("Error: " + cnfe);
         } catch (InstantiationException ie) {
