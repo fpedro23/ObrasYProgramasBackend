@@ -339,22 +339,22 @@ public class ObrasAD {
 
                 callableStatement = conexion.prepareCall("{CALL buscarObras(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
                 callableStatement.setString("inTipoObra", consulta.getTipoDeObra());
-            callableStatement.setString("inDependencia", consulta.getDependencia());
-            callableStatement.setString("inEstado", consulta.getEstado());
-            callableStatement.setString("inRangoInversionMin", consulta.getInversionMinima());
-            callableStatement.setString("inRangoInversionMax", consulta.getInversionMaxima());
-            callableStatement.setString("inFechaInicio", consulta.getFechaInicio());
-            callableStatement.setString("inFechaInicioSegunda", consulta.getFechaInicioSegunda());
-            callableStatement.setString("inFechaTermino", consulta.getFechaFin());
-            callableStatement.setString("inFechaTerminoSegunda", consulta.getFechaFinSegunda());
-            callableStatement.setString("inImpacto", consulta.getImpacto());
-            callableStatement.setString("inCargoInaugura", consulta.getInaugurador());
-            callableStatement.setString("inTipoInversion", consulta.getTipoDeInversion());
-            callableStatement.setString("inTipoClasificacion", consulta.getClasificacion());
-            callableStatement.setString("inSusceptible", consulta.getSusceptible());
-            callableStatement.setString("inInaugurada", consulta.getInaugurada());
-            callableStatement.setInt("inLimiteMin", consulta.getLimiteMin());
-            callableStatement.setInt("inLimiteMax", consulta.getLimiteMax());
+                callableStatement.setString("inDependencia", consulta.getDependencia());
+                callableStatement.setString("inEstado", consulta.getEstado());
+                callableStatement.setString("inRangoInversionMin", consulta.getInversionMinima());
+                callableStatement.setString("inRangoInversionMax", consulta.getInversionMaxima());
+                callableStatement.setString("inFechaInicio", consulta.getFechaInicio());
+                callableStatement.setString("inFechaInicioSegunda", consulta.getFechaInicioSegunda());
+                callableStatement.setString("inFechaTermino", consulta.getFechaFin());
+                callableStatement.setString("inFechaTerminoSegunda", consulta.getFechaFinSegunda());
+                callableStatement.setString("inImpacto", consulta.getImpacto());
+                callableStatement.setString("inCargoInaugura", consulta.getInaugurador());
+                callableStatement.setString("inTipoInversion", consulta.getTipoDeInversion());
+                callableStatement.setString("inTipoClasificacion", consulta.getClasificacion());
+                callableStatement.setString("inSusceptible", consulta.getSusceptible());
+                callableStatement.setString("inInaugurada", consulta.getInaugurada());
+                callableStatement.setInt("inLimiteMin", consulta.getLimiteMin());
+                callableStatement.setInt("inLimiteMax", consulta.getLimiteMax());
                 callableStatement.setString("inDenominacion", consulta.getDenominacion());
             }
 
