@@ -2,7 +2,8 @@ package modelObrasYProgramas;
 
 public class Consulta
 {
-    
+    private String idObra;
+    private String denominacion;
     private String tipoDeObra;
     private String dependencia;
     private String estado;
@@ -146,6 +147,22 @@ public class Consulta
 
     public void setFechaFinSegunda(String fechaFinSegunda) {
         this.fechaFinSegunda = fechaFinSegunda;
+    }
+
+    public String getIdObra() {
+        return idObra;
+    }
+
+    public void setIdObra(String idObra) {
+        this.idObra = idObra;
+    }
+
+    public String getDenominacion() {
+        return denominacion;
+    }
+
+    public void setDenominacion(String denominacion) {
+        this.denominacion = denominacion;
     }
 
     public String toString() {

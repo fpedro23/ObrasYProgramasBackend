@@ -331,8 +331,14 @@ public class ObrasAD {
 
         try {
 
-            callableStatement = conexion.prepareCall("{CALL buscarObras(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
-            callableStatement.setString("inTipoObra", consulta.getTipoDeObra());
+            if (consulta.getIdObra() != null) {
+                callableStatement = conexion.prepareCall("{CALL buscarObrasID(?)}");
+                callableStatement.setString("inIDObra", consulta.getIdObra());
+
+            } else {
+
+                callableStatement = conexion.prepareCall("{CALL buscarObras(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
+                callableStatement.setString("inTipoObra", consulta.getTipoDeObra());
             callableStatement.setString("inDependencia", consulta.getDependencia());
             callableStatement.setString("inEstado", consulta.getEstado());
             callableStatement.setString("inRangoInversionMin", consulta.getInversionMinima());
@@ -349,7 +355,8 @@ public class ObrasAD {
             callableStatement.setString("inInaugurada", consulta.getInaugurada());
             callableStatement.setInt("inLimiteMin", consulta.getLimiteMin());
             callableStatement.setInt("inLimiteMax", consulta.getLimiteMax());
-
+                callableStatement.setString("inDenominacion", consulta.getDenominacion());
+            }
 
             boolean hasResults = callableStatement.execute();
 
@@ -359,9 +366,6 @@ public class ObrasAD {
                 if (i == 0) {
                     while (tr.next()) {
                         obra = new Obra(tr);
-
-                        //System.out.println(obra.toString());
-
                         listaBusqueda.add(obra);
 
                     }
