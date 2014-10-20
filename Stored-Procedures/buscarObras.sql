@@ -1,9 +1,3 @@
--- --------------------------------------------------------------------------------
--- Routine DDL
--- Note: comments before and after the routine body will not be stored by the server
--- --------------------------------------------------------------------------------
-DELIMITER $$
-
 CREATE DEFINER=`oypdbuser`@`localhost` PROCEDURE `buscarObras`(
 inTipoObra TEXT,
 inDependencia TEXT,
@@ -21,7 +15,8 @@ inTipoClasificacion TEXT,
 inSusceptible TEXT,
 inInaugurada TEXT,
 inLimiteMin integer,
-inLimiteMax integer
+inLimiteMax integer,
+inDenominacion TEXT 
 )
 BEGIN
 CREATE TEMPORARY TABLE IF NOT EXISTS  resultados AS
@@ -120,6 +115,9 @@ WHERE
 
 (inImpacto Is Null OR  FIND_IN_SET(O.idImpacto, inImpacto)>0 ) AND
 (inSusceptible Is Null OR FIND_IN_SET(suceptibleInauguracion, inSusceptible)>0 ) AND
+
+(O.denominacion like CASE WHEN inDenominacion is null THEN O.denominacion else CONCAT ('%', inDenominacion ,'%') end ) AND 
+
 
 
 (inRangoInversionMin Is Null OR inRangoInversionMax Is Null OR
