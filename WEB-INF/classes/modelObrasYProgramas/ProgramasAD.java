@@ -46,7 +46,7 @@ public class ProgramasAD {
 
 
         try {
-            callableStatement = conexion.prepareCall("{CALL buscarProgramas(?,?,?,?,?,?,?)}");
+            callableStatement = conexion.prepareCall("{CALL buscarProgramas(?,?,?,?,?,?,?,?)}");
 
             callableStatement.setString("inDependencia", consulta.getDependencia());
             callableStatement.setString("inEstado", consulta.getEstado());
@@ -55,6 +55,7 @@ public class ProgramasAD {
             callableStatement.setString("inTipoClasificacion", consulta.getClasificacion());
             callableStatement.setInt("inLimiteMin", consulta.getLimiteMin());
             callableStatement.setInt("inLimiteMax", consulta.getLimiteMax());
+            callableStatement.setString("inNombrePrograma", consulta.getNombrePrograma());
 
 
             boolean hasResults = callableStatement.execute();

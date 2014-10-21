@@ -11,7 +11,8 @@ CREATE DEFINER =`oypdbuser`@`localhost` PROCEDURE `buscarProgramas`(
   inRangoInversionMax DOUBLE,
   inTipoClasificacion TEXT,
   inLimiteMin         INTEGER,
-  inLimiteMax         INTEGER
+  inLimiteMax      INTEGER,
+  inNombrePrograma TEXT
 )
   BEGIN
     DROP TABLE IF EXISTS resultados;
@@ -24,6 +25,7 @@ CREATE DEFINER =`oypdbuser`@`localhost` PROCEDURE `buscarProgramas`(
 
           P.idDependencia,
           nombreDependencia,
+          imagenDependencia,
 
           P.idEstado,
           nombreEstado,
@@ -76,6 +78,11 @@ CREATE DEFINER =`oypdbuser`@`localhost` PROCEDURE `buscarProgramas`(
             ON detalle_clasificacion_programas.idTipoClasificacion = tipo_clasificacion.idTipoClasificacion
 
         WHERE
+
+          (P.nombrePrograma LIKE CASE WHEN inNombrePrograma IS NULL THEN P.nombrePrograma
+                                 ELSE CONCAT('%', inNombrePrograma, '%') END) AND
+
+
           (inDependencia IS NULL OR FIND_IN_SET(P.idDependencia, inDependencia) > 0) AND
 
           (inEstado IS NULL OR FIND_IN_SET(P.idEstado, inEstado) > 0) AND

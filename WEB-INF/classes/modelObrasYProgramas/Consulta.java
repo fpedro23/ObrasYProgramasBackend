@@ -21,6 +21,10 @@ public class Consulta
     private String susceptible;
     private String inaugurada;
     private String consultaProgramas;
+    private String busquedaRapida;
+    private String nombrePrograma;
+
+
     private int limiteMin;
     private int limiteMax;
 
@@ -163,6 +167,22 @@ public class Consulta
 
     public void setDenominacion(String denominacion) {
         this.denominacion = denominacion;
+    }
+
+    public String getBusquedaRapida() {
+        return busquedaRapida;
+    }
+
+    public void setBusquedaRapida(String busquedaRapida) {
+        this.busquedaRapida = busquedaRapida;
+    }
+
+    public String getNombrePrograma() {
+        return nombrePrograma;
+    }
+
+    public void setNombrePrograma(String nombrePrograma) {
+        this.nombrePrograma = nombrePrograma;
     }
 
     public String toString() {

@@ -112,6 +112,7 @@ public class ObrasAD {
 
                 dependencia.setIdDependencia(tr.getString("idDependencia"));
                 dependencia.setNombreDependencia(tr.getString("nombreDependencia"));
+                dependencia.setImagenDependencia(tr.getString("imagenDependencia"));
 
                 listaDependencia.add(dependencia);
 
@@ -335,6 +336,11 @@ public class ObrasAD {
                 callableStatement = conexion.prepareCall("{CALL buscarObrasID(?)}");
                 callableStatement.setString("inIDObra", consulta.getIdObra());
 
+            } else if (consulta.getBusquedaRapida() != null) {
+                callableStatement = conexion.prepareCall("{CALL busquedaRapidaObras(?,?,?)}");
+                callableStatement.setString("inBusquedaRapida", consulta.getBusquedaRapida());
+                callableStatement.setInt("inLimiteMin", consulta.getLimiteMin());
+                callableStatement.setInt("inLimiteMax", consulta.getLimiteMax());
             } else {
 
                 callableStatement = conexion.prepareCall("{CALL buscarObras(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");

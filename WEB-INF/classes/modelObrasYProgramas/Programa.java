@@ -1,7 +1,10 @@
 package modelObrasYProgramas;
 
-import java.util.*;
-import java.sql.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.StringTokenizer;
 
 
 public class Programa {
@@ -48,6 +51,8 @@ public class Programa {
             this.dependencia.setIdDependencia(tr.getString(i));
             i++;
             this.dependencia.setNombreDependencia(tr.getString(i));
+            i++;
+            this.dependencia.setImagenDependencia(tr.getString(i));
             i++;
 
             this.estado.setIdEstado(tr.getString(i));

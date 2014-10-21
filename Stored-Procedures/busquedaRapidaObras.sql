@@ -4,8 +4,8 @@
 -- --------------------------------------------------------------------------------
 DELIMITER $$
 
-CREATE DEFINER =`oypdbuser`@`localhost` PROCEDURE `buscarObrasID`(
-  inIDObra TEXT
+CREATE DEFINER =`oypdbuser`@`localhost` PROCEDURE `busquedaRapidaObras`(
+  inBusquedaRapida TEXT
 )
   BEGIN
     CREATE TEMPORARY TABLE IF NOT EXISTS resultados
@@ -87,7 +87,13 @@ CREATE DEFINER =`oypdbuser`@`localhost` PROCEDURE `buscarObrasID`(
           tipo_clasificacion ON detalle_clasificacion_obra.idTipoClasificacion = tipo_clasificacion.idTipoClasificacion
         WHERE
 
-          O.idObra = inIDObra
+          (O.denominacion LIKE CASE WHEN inBusquedaRapida IS NULL THEN O.denominacion
+                               ELSE CONCAT('%', inBusquedaRapida, '%') END) OR
+          (O.descripcion LIKE CASE WHEN inBusquedaRapida IS NULL THEN O.descripcion
+                              ELSE CONCAT('%', inBusquedaRapida, '%') END) OR
+          (O.observaciones LIKE CASE WHEN inBusquedaRapida IS NULL THEN O.observaciones
+                                ELSE CONCAT('%', inBusquedaRapida, '%') END)
+
 
         GROUP BY O.idObra;
 
