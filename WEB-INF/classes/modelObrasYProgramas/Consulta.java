@@ -3,6 +3,7 @@ package modelObrasYProgramas;
 public class Consulta
 {
     private String idObra;
+    private String idPrograma;
     private String denominacion;
     private String tipoDeObra;
     private String dependencia;
@@ -183,6 +184,14 @@ public class Consulta
 
     public void setNombrePrograma(String nombrePrograma) {
         this.nombrePrograma = nombrePrograma;
+    }
+
+    public String getIdPrograma() {
+        return idPrograma;
+    }
+
+    public void setIdPrograma(String idPrograma) {
+        this.idPrograma = idPrograma;
     }
 
     public String toString() {

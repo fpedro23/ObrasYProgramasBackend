@@ -38,13 +38,13 @@ pageEncoding="ISO-8859-1"%>
             <input type="submit" value="Consulta Tipos de Obra"/>
         </form>
 
-        <form action="consultarSubclasificacion" method="POST">
-            <input type="text" name="clasificacion"/>
+        <form action="consultarSubclasificacion" method="GET">
+        <input type="text" name="clasificacion"/>
             <input type="submit" value="Consulta subclasificacion"/>
         </form>
 
-        <form action="buscar"  method="POST">
-            <input type="text"   name="consultaProgramas"/">
+        <form action="buscar" method="GET">
+        <input type="text"   name="consultaProgramas"/">
             <input type="submit" value="Consulta Programas"/>
         </form>
 

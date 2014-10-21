@@ -4,6 +4,7 @@
     <file url="file://$PROJECT_DIR$/Stored-Procedures/buscarObras.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/Stored-Procedures/buscarObrasID" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/Stored-Procedures/buscarProgramas.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/Stored-Procedures/buscarProgramasID.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/Stored-Procedures/busquedaRapidaObras.sql" dialect="MySQL" />
   </component>
 </project>

@@ -46,16 +46,29 @@ public class ProgramasAD {
 
 
         try {
-            callableStatement = conexion.prepareCall("{CALL buscarProgramas(?,?,?,?,?,?,?,?)}");
 
-            callableStatement.setString("inDependencia", consulta.getDependencia());
-            callableStatement.setString("inEstado", consulta.getEstado());
-            callableStatement.setString("inRangoInversionMin", consulta.getInversionMinima());
-            callableStatement.setString("inRangoInversionMax", consulta.getInversionMaxima());
-            callableStatement.setString("inTipoClasificacion", consulta.getClasificacion());
-            callableStatement.setInt("inLimiteMin", consulta.getLimiteMin());
-            callableStatement.setInt("inLimiteMax", consulta.getLimiteMax());
-            callableStatement.setString("inNombrePrograma", consulta.getNombrePrograma());
+            if (consulta.getIdPrograma() != null) {
+                callableStatement = conexion.prepareCall("{CALL buscarProgramasID(?)}");
+                callableStatement.setString("inIDPrograma", consulta.getIdPrograma());
+            } else if (consulta.getBusquedaRapida() != null) {
+                callableStatement = conexion.prepareCall("{CALL busquedaRapidaProgramas(?)}");
+                callableStatement.setString("inBusquedaRapida", consulta.getBusquedaRapida());
+                callableStatement.setInt("inLimiteMin", consulta.getLimiteMin());
+                callableStatement.setInt("inLimiteMax", consulta.getLimiteMax());
+
+            } else {
+                callableStatement = conexion.prepareCall("{CALL buscarProgramas(?,?,?,?,?,?,?,?)}");
+
+                callableStatement.setString("inDependencia", consulta.getDependencia());
+                callableStatement.setString("inEstado", consulta.getEstado());
+                callableStatement.setString("inRangoInversionMin", consulta.getInversionMinima());
+                callableStatement.setString("inRangoInversionMax", consulta.getInversionMaxima());
+                callableStatement.setString("inTipoClasificacion", consulta.getClasificacion());
+                callableStatement.setInt("inLimiteMin", consulta.getLimiteMin());
+                callableStatement.setInt("inLimiteMax", consulta.getLimiteMax());
+                callableStatement.setString("inNombrePrograma", consulta.getNombrePrograma());
+
+            }
 
 
             boolean hasResults = callableStatement.execute();
