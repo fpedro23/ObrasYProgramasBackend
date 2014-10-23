@@ -15,7 +15,7 @@ public class Programa {
     private Dependencia dependencia;
     private Estado estado;
     private TipoApoyo tipoApoyo;
-    private PoblacionObjetivo poblacionObjetivo;
+    private PoblacionObjetivoProgramas poblacionObjetivoProgramas;
     private String montoDeApoyo;
     private String totalBeneficiarios;
     private String totalMunicipios;
@@ -37,7 +37,7 @@ public class Programa {
             this.tipoApoyo = new TipoApoyo();
             this.dependencia = new Dependencia();
             this.estado = new Estado();
-            this.poblacionObjetivo = new PoblacionObjetivo();
+            this.poblacionObjetivoProgramas = new PoblacionObjetivoProgramas();
             this.clasificacion = new ArrayList<TipoClasificacion>();
 
 
@@ -82,9 +82,9 @@ public class Programa {
             }
 
 
-            this.poblacionObjetivo.setIdPoblacion(tr.getString(i));
+            this.poblacionObjetivoProgramas.setIdPoblacion(tr.getString(i));
             i++;
-            this.poblacionObjetivo.setNombrePoblacionObjetivo(tr.getString(i));
+            this.poblacionObjetivoProgramas.setNombrePoblacionObjetivo(tr.getString(i));
             i++;
 
             this.setMontoDeApoyo(tr.getString(i));
@@ -376,11 +376,11 @@ public class Programa {
         this.fechaModificacion = fechaModificacion;
     }
 
-    public PoblacionObjetivo getPoblacionObjetivo() {
-        return poblacionObjetivo;
+    public PoblacionObjetivoProgramas getPoblacionObjetivo() {
+        return poblacionObjetivoProgramas;
     }
 
-    public void setPoblacionObjetivo(PoblacionObjetivo poblacionObjetivo) {
-        this.poblacionObjetivo = poblacionObjetivo;
+    public void setPoblacionObjetivo(PoblacionObjetivoProgramas poblacionObjetivoProgramas) {
+        this.poblacionObjetivoProgramas = poblacionObjetivoProgramas;
     }
 }

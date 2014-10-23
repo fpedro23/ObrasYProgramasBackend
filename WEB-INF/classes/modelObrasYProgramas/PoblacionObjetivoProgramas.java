@@ -2,7 +2,7 @@ package modelObrasYProgramas;
 
 import java.util.*;
 
-public class PoblacionObjetivo {
+public class PoblacionObjetivoProgramas {
     private String idPoblacion;
     private String nombrePoblacionObjetivo;
 
