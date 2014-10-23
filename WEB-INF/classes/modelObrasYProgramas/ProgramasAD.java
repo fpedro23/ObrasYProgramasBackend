@@ -51,7 +51,7 @@ public class ProgramasAD {
                 callableStatement = conexion.prepareCall("{CALL buscarProgramasID(?)}");
                 callableStatement.setString("inIDPrograma", consulta.getIdPrograma());
             } else if (consulta.getBusquedaRapida() != null) {
-                callableStatement = conexion.prepareCall("{CALL busquedaRapidaProgramas(?)}");
+                callableStatement = conexion.prepareCall("{CALL busquedaRapidaProgramas(?,?,?)}");
                 callableStatement.setString("inBusquedaRapida", consulta.getBusquedaRapida());
                 callableStatement.setInt("inLimiteMin", consulta.getLimiteMin());
                 callableStatement.setInt("inLimiteMax", consulta.getLimiteMax());

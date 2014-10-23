@@ -80,9 +80,10 @@ BEGIN
 
         GROUP BY P.idPrograma;
 
-    SELECT
+   SELECT
       *
-    FROM resultados;
+    FROM resultados
+    LIMIT inLimiteMin, inLimiteMax;
 
 
     SELECT
