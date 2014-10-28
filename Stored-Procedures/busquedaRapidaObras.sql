@@ -4,7 +4,7 @@
 -- --------------------------------------------------------------------------------
 DELIMITER $$
 
-CREATE DEFINER =`oypdbuser`@`localhost` PROCEDURE `busquedaRapidaObras`(
+CREATE DEFINER=`oypdbuser`@`localhost` PROCEDURE `busquedaRapidaObras`(
   inBusquedaRapida TEXT
 )
   BEGIN
@@ -55,7 +55,9 @@ CREATE DEFINER =`oypdbuser`@`localhost` PROCEDURE `busquedaRapidaObras`(
           tipoMoneda,
           inauguradoObra,
           pobObjetivo,
-          municipio
+          municipio,
+          subclasificacion.idsubClasificacion,
+          nombresubClasificacion
 
 
         FROM
@@ -85,6 +87,8 @@ CREATE DEFINER =`oypdbuser`@`localhost` PROCEDURE `busquedaRapidaObras`(
           detalle_clasificacion_obra ON O.idObra = detalle_clasificacion_obra.idObra
           LEFT JOIN
           tipo_clasificacion ON detalle_clasificacion_obra.idTipoClasificacion = tipo_clasificacion.idTipoClasificacion
+          LEFT JOIN
+          subclasificacion ON detalle_clasificacion_obra.idSubClasificacion = subclasificacion.idsubClasificacion
         WHERE
 
           (O.denominacion LIKE CASE WHEN inBusquedaRapida IS NULL THEN O.denominacion

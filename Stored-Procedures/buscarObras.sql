@@ -4,7 +4,7 @@
 -- --------------------------------------------------------------------------------
 DELIMITER $$
 
-CREATE DEFINER =`oypdbuser`@`localhost` PROCEDURE `buscarObras`(
+CREATE DEFINER=`oypdbuser`@`localhost` PROCEDURE `buscarObras`(
   inTipoObra            TEXT,
   inDependencia         TEXT,
   inEstado              TEXT,
@@ -72,7 +72,9 @@ CREATE DEFINER =`oypdbuser`@`localhost` PROCEDURE `buscarObras`(
           tipoMoneda,
           inauguradoObra,
           pobObjetivo,
-          municipio
+          municipio,
+          subclasificacion.idsubClasificacion,
+          nombresubClasificacion
 
 
         FROM
@@ -102,6 +104,8 @@ CREATE DEFINER =`oypdbuser`@`localhost` PROCEDURE `buscarObras`(
           detalle_clasificacion_obra ON O.idObra = detalle_clasificacion_obra.idObra
           LEFT JOIN
           tipo_clasificacion ON detalle_clasificacion_obra.idTipoClasificacion = tipo_clasificacion.idTipoClasificacion
+          LEFT JOIN
+          subclasificacion ON detalle_clasificacion_obra.idSubClasificacion = subclasificacion.idsubClasificacion
         WHERE
 
 

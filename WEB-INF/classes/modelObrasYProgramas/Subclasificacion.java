@@ -9,6 +9,9 @@ public class Subclasificacion {
     private String idTipoClasificacion;
     private String nombreSubclasificacion;
 
+    public Subclasificacion() {
+    }
+
     public Subclasificacion(String idSubClasificacion, String idTipoClasificacion, String nombreSubclasificacion) {
         this.idSubClasificacion = idSubClasificacion;
         this.idTipoClasificacion = idTipoClasificacion;

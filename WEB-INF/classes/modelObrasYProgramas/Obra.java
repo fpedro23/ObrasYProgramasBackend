@@ -17,6 +17,7 @@ public class Obra {
     public Impacto impacto;
     public List<TipoInversion> tipoInversion;
     public List<TipoClasificacion> clasificacion;
+    public Subclasificacion subclasificacion;
     public Inaugurador inaugurador;
 
     private String descripcion;
@@ -42,6 +43,8 @@ public class Obra {
     private String poblacionObjetivo;
     private String municipio;
 
+
+
     public Obra() {
         this.tipoObra = new TipoObra();
         this.dependencia = new Dependencia();
@@ -50,6 +53,8 @@ public class Obra {
         //this.tipoInversion = new TipoInversion[]
         //this.clasificacion = new TipoClasificacion[]
         this.inaugurador = new Inaugurador();
+        this.subclasificacion = new Subclasificacion();
+
     }
 
     public Obra(ResultSet tr) {
@@ -64,6 +69,8 @@ public class Obra {
             this.tipoInversion = new ArrayList<TipoInversion>();
             this.clasificacion = new ArrayList<TipoClasificacion>();
             this.inaugurador = new Inaugurador();
+            this.subclasificacion = new Subclasificacion();
+
 
             int i = 1;
 
@@ -174,6 +181,10 @@ public class Obra {
             i++;
             this.setMunicipio(tr.getString(i));
             i++;
+
+            this.subclasificacion.setIdSubClasificacion(tr.getString(i));i++;
+            this.subclasificacion.setNombreSubclasificacion(tr.getString(i));i++;
+
 
 
         } catch (SQLException sqle) {
