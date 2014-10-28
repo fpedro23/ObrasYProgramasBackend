@@ -12,7 +12,8 @@ CREATE DEFINER =`oypdbuser`@`localhost` PROCEDURE `buscarProgramas`(
   inTipoClasificacion TEXT,
   inLimiteMin         INTEGER,
   inLimiteMax      INTEGER,
-  inNombrePrograma TEXT
+  inNombrePrograma TEXT,
+  inAnoPrograma TEXT
 )
   BEGIN
     DROP TABLE IF EXISTS resultados;
@@ -84,6 +85,8 @@ CREATE DEFINER =`oypdbuser`@`localhost` PROCEDURE `buscarProgramas`(
 
 
           (inDependencia IS NULL OR FIND_IN_SET(P.idDependencia, inDependencia) > 0) AND
+          (inAnoPrograma IS NULL OR FIND_IN_SET(P.anioPrograma, inAnoPrograma) > 0) AND
+
 
           (inEstado IS NULL OR FIND_IN_SET(P.idEstado, inEstado) > 0) AND
           (inTipoClasificacion IS NULL OR

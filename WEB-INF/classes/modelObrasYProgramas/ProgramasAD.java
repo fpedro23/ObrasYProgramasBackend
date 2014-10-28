@@ -57,7 +57,7 @@ public class ProgramasAD {
                 callableStatement.setInt("inLimiteMax", consulta.getLimiteMax());
 
             } else {
-                callableStatement = conexion.prepareCall("{CALL buscarProgramas(?,?,?,?,?,?,?,?)}");
+                callableStatement = conexion.prepareCall("{CALL buscarProgramas(?,?,?,?,?,?,?,?,?)}");
 
                 callableStatement.setString("inDependencia", consulta.getDependencia());
                 callableStatement.setString("inEstado", consulta.getEstado());
@@ -67,6 +67,7 @@ public class ProgramasAD {
                 callableStatement.setInt("inLimiteMin", consulta.getLimiteMin());
                 callableStatement.setInt("inLimiteMax", consulta.getLimiteMax());
                 callableStatement.setString("inNombrePrograma", consulta.getNombrePrograma());
+                callableStatement.setString("inAnoPrograma",consulta.getAnoPrograma());
 
             }
 

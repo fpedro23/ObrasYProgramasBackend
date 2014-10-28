@@ -24,6 +24,7 @@ public class Consulta
     private String consultaProgramas;
     private String busquedaRapida;
     private String nombrePrograma;
+    private String anoPrograma;
 
 
     private int limiteMin;
@@ -192,6 +193,14 @@ public class Consulta
 
     public void setIdPrograma(String idPrograma) {
         this.idPrograma = idPrograma;
+    }
+
+    public String getAnoPrograma() {
+        return anoPrograma;
+    }
+
+    public void setAnoPrograma(String anoPrograma) {
+        this.anoPrograma = anoPrograma;
     }
 
     public String toString() {
