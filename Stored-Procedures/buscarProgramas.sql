@@ -29,6 +29,7 @@ CREATE DEFINER =`oypdbuser`@`localhost` PROCEDURE `buscarProgramas`(
           imagenDependencia,
 
           P.idEstado,
+
           nombreEstado,
           estados.latitud,
           estados.longitud,
