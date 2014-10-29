@@ -25,6 +25,7 @@ public class Consulta
     private String busquedaRapida;
     private String nombrePrograma;
     private String anoPrograma;
+    private String subclasificacion;
 
 
     private int limiteMin;
@@ -112,8 +113,15 @@ public class Consulta
     public void setSusceptible(String susceptible) {
         this.susceptible = susceptible;
     }
-    
-    
+
+    public String getSubclasificacion() {
+        return subclasificacion;
+    }
+
+    public void setSubclasificacion(String subclasificacion) {
+        this.subclasificacion = subclasificacion;
+    }
+
     public String getConsultaProgramas() {
         return consultaProgramas;
     }

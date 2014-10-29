@@ -343,7 +343,7 @@ public class ObrasAD {
                 callableStatement.setInt("inLimiteMax", consulta.getLimiteMax());
             } else {
 
-                callableStatement = conexion.prepareCall("{CALL buscarObras(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
+                callableStatement = conexion.prepareCall("{CALL buscarObras(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
                 callableStatement.setString("inTipoObra", consulta.getTipoDeObra());
                 callableStatement.setString("inDependencia", consulta.getDependencia());
                 callableStatement.setString("inEstado", consulta.getEstado());
@@ -362,6 +362,7 @@ public class ObrasAD {
                 callableStatement.setInt("inLimiteMin", consulta.getLimiteMin());
                 callableStatement.setInt("inLimiteMax", consulta.getLimiteMax());
                 callableStatement.setString("inDenominacion", consulta.getDenominacion());
+                callableStatement.setString("inSubclasificacion",consulta.getSubclasificacion());
             }
 
             boolean hasResults = callableStatement.execute();

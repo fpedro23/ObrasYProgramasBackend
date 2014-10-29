@@ -22,7 +22,8 @@ CREATE DEFINER=`oypdbuser`@`localhost` PROCEDURE `buscarObras`(
   inInaugurada          TEXT,
   inLimiteMin           INTEGER,
   inLimiteMax           INTEGER,
-  inDenominacion        TEXT
+  inDenominacion        TEXT,
+  inSubclasificacion    TEXT
 )
   BEGIN
     CREATE TEMPORARY TABLE IF NOT EXISTS resultados
@@ -115,6 +116,10 @@ CREATE DEFINER=`oypdbuser`@`localhost` PROCEDURE `buscarObras`(
           (inEstado IS NULL OR FIND_IN_SET(O.idEstado, inEstado) > 0) AND
           (inTipoClasificacion IS NULL OR
            FIND_IN_SET(detalle_clasificacion_obra.idTipoClasificacion, inTipoClasificacion) > 0) AND
+
+          (inSubclasificacion IS NULL OR
+           FIND_IN_SET(detalle_clasificacion_obra.idSubClasificacion, inSubclasificacion) > 0) AND
+
           (inTipoInversion IS NULL OR FIND_IN_SET(detalle_inversion.idTipoInversion, inTipoInversion) > 0) AND
 
 
