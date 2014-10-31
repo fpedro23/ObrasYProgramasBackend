@@ -43,6 +43,7 @@ public class ObrasAD {
     private List<ReporteGeneral> listaReporteGeneral;
 
 
+
     public ObrasAD() {
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -320,6 +321,12 @@ public class ObrasAD {
 
     }
 
+    private Double getValorDolar(){
+        //https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.xchange%20where%20pair%20in%20(%22USDMXN%22)&format=json&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=
+
+        return 13.50;
+    }
+
 
     public ResultadoObra buscar(Consulta consulta) {
 
@@ -333,17 +340,20 @@ public class ObrasAD {
         try {
 
             if (consulta.getIdObra() != null) {
-                callableStatement = conexion.prepareCall("{CALL buscarObrasID(?)}");
+                callableStatement = conexion.prepareCall("{CALL buscarObrasID(?,?)}");
                 callableStatement.setString("inIDObra", consulta.getIdObra());
+                callableStatement.setDouble("inValorDolar",this.getValorDolar());
 
             } else if (consulta.getBusquedaRapida() != null) {
-                callableStatement = conexion.prepareCall("{CALL busquedaRapidaObras(?,?,?)}");
+                callableStatement = conexion.prepareCall("{CALL busquedaRapidaObras(?,?,?,?)}");
                 callableStatement.setString("inBusquedaRapida", consulta.getBusquedaRapida());
                 callableStatement.setInt("inLimiteMin", consulta.getLimiteMin());
                 callableStatement.setInt("inLimiteMax", consulta.getLimiteMax());
+                callableStatement.setDouble("inValorDolar",this.getValorDolar());
+
             } else {
 
-                callableStatement = conexion.prepareCall("{CALL buscarObras(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
+                callableStatement = conexion.prepareCall("{CALL buscarObras(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
                 callableStatement.setString("inTipoObra", consulta.getTipoDeObra());
                 callableStatement.setString("inDependencia", consulta.getDependencia());
                 callableStatement.setString("inEstado", consulta.getEstado());
@@ -363,6 +373,7 @@ public class ObrasAD {
                 callableStatement.setInt("inLimiteMax", consulta.getLimiteMax());
                 callableStatement.setString("inDenominacion", consulta.getDenominacion());
                 callableStatement.setString("inSubclasificacion",consulta.getSubclasificacion());
+                callableStatement.setDouble("inValorDolar",this.getValorDolar());
             }
 
             boolean hasResults = callableStatement.execute();

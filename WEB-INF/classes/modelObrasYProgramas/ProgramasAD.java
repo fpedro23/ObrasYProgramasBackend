@@ -34,7 +34,10 @@ public class ProgramasAD {
         }
 
     }
-
+    private Double getValorDolar(){
+        //https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.xchange%20where%20pair%20in%20(%22USDMXN%22)&format=json&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=
+        return 13.50;
+    }
 
     public ResultadoPrograma buscar(Consulta consulta) {
 
@@ -48,16 +51,20 @@ public class ProgramasAD {
         try {
 
             if (consulta.getIdPrograma() != null) {
-                callableStatement = conexion.prepareCall("{CALL buscarProgramasID(?)}");
+                callableStatement = conexion.prepareCall("{CALL buscarProgramasID(?,?)}");
                 callableStatement.setString("inIDPrograma", consulta.getIdPrograma());
+                callableStatement.setDouble("inValorDolar",this.getValorDolar());
+
             } else if (consulta.getBusquedaRapida() != null) {
-                callableStatement = conexion.prepareCall("{CALL busquedaRapidaProgramas(?,?,?)}");
+                callableStatement = conexion.prepareCall("{CALL busquedaRapidaProgramas(?,?,?,?)}");
                 callableStatement.setString("inBusquedaRapida", consulta.getBusquedaRapida());
                 callableStatement.setInt("inLimiteMin", consulta.getLimiteMin());
                 callableStatement.setInt("inLimiteMax", consulta.getLimiteMax());
+                callableStatement.setDouble("inValorDolar",this.getValorDolar());
+
 
             } else {
-                callableStatement = conexion.prepareCall("{CALL buscarProgramas(?,?,?,?,?,?,?,?,?)}");
+                callableStatement = conexion.prepareCall("{CALL buscarProgramas(?,?,?,?,?,?,?,?,?,?)}");
 
                 callableStatement.setString("inDependencia", consulta.getDependencia());
                 callableStatement.setString("inEstado", consulta.getEstado());
@@ -68,6 +75,8 @@ public class ProgramasAD {
                 callableStatement.setInt("inLimiteMax", consulta.getLimiteMax());
                 callableStatement.setString("inNombrePrograma", consulta.getNombrePrograma());
                 callableStatement.setString("inAnoPrograma",consulta.getAnoPrograma());
+                callableStatement.setDouble("inValorDolar",this.getValorDolar());
+
 
             }
 
