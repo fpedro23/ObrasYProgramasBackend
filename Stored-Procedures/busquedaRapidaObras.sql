@@ -5,7 +5,8 @@
 DELIMITER $$
 
 CREATE DEFINER=`oypdbuser`@`localhost` PROCEDURE `busquedaRapidaObras`(
-  inBusquedaRapida TEXT
+  inBusquedaRapida TEXT,
+  inValorDolar DOUBLE
 )
   BEGIN
     CREATE TEMPORARY TABLE IF NOT EXISTS resultados
@@ -110,7 +111,7 @@ CREATE DEFINER=`oypdbuser`@`localhost` PROCEDURE `busquedaRapidaObras`(
       idDependencia,
       nombreDependencia,
       count(*)            AS numeroObras,
-      SUM(inversionTotal) AS totalInvertido
+      SUM(inversionTotal * CASE tipoMoneda WHEN 'MDP' THEN 1 WHEN 'MDD' THEN inValorDolar END) AS totalInvertido
     FROM resultados
     GROUP BY nombreDependencia;
 
@@ -120,13 +121,13 @@ CREATE DEFINER=`oypdbuser`@`localhost` PROCEDURE `busquedaRapidaObras`(
       latitud,
       longitud,
       count(*)            AS numeroObras,
-      SUM(inversionTotal) AS totalInvertido
+      SUM(inversionTotal * CASE tipoMoneda WHEN 'MDP' THEN 1 WHEN 'MDD' THEN inValorDolar END) AS totalInvertido
     FROM resultados
     GROUP BY nombreEstado;
 
     SELECT
       count(*)            AS numeroObras,
-      SUM(inversionTotal) AS totalInvertido
+      SUM(inversionTotal * CASE tipoMoneda WHEN 'MDP' THEN 1 WHEN 'MDD' THEN inValorDolar END) AS totalInvertido
     FROM resultados;
 
 

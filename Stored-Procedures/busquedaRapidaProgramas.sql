@@ -7,9 +7,10 @@ DELIMITER $$
 CREATE DEFINER=`oypdbuser`@`localhost` PROCEDURE `busquedaRapidaProgramas`(
   inBusquedaRapida TEXT,
   inLimiteMin integer,
-  inLimiteMax integer
+  inLimiteMax integer,
+  inValorDolar DOUBLE
 )
-BEGIN
+  BEGIN
     DROP TABLE IF EXISTS resultados;
 
     CREATE TEMPORARY TABLE IF NOT EXISTS resultados
@@ -74,13 +75,13 @@ BEGIN
 
         WHERE
 
-		(P.nombrePrograma  like CASE WHEN inBusquedaRapida is null THEN P.nombrePrograma   else CONCAT ('%', inBusquedaRapida ,'%') end ) OR
-        (P.observaciones    like CASE WHEN inBusquedaRapida is null THEN P.observaciones    else CONCAT ('%', inBusquedaRapida ,'%') end )
+          (P.nombrePrograma  like CASE WHEN inBusquedaRapida is null THEN P.nombrePrograma   else CONCAT ('%', inBusquedaRapida ,'%') end ) OR
+          (P.observaciones    like CASE WHEN inBusquedaRapida is null THEN P.observaciones    else CONCAT ('%', inBusquedaRapida ,'%') end )
 
 
         GROUP BY P.idPrograma;
 
-   SELECT
+    SELECT
       *
     FROM resultados
     LIMIT inLimiteMin, inLimiteMax;
@@ -91,7 +92,7 @@ BEGIN
       nombreDependencia,
       anioPrograma,
       count(*)            AS numeroObras,
-      SUM(inversionTotal) AS totalInvertido
+      SUM(inversionTotal * CASE tipoMoneda WHEN 'MDP' THEN 1 WHEN 'MDD' THEN inValorDolar END) AS totalInvertido
     FROM resultados
     GROUP BY nombreDependencia, anioPrograma;
 
@@ -102,13 +103,13 @@ BEGIN
       latitud,
       longitud,
       count(*)            AS numeroObras,
-      SUM(inversionTotal) AS totalInvertido
+      SUM(inversionTotal * CASE tipoMoneda WHEN 'MDP' THEN 1 WHEN 'MDD' THEN inValorDolar END) AS totalInvertido
     FROM resultados
     GROUP BY nombreEstado, anioPrograma;
 
     SELECT
       count(*)            AS numeroRegistros,
-      SUM(inversionTotal) AS totalInvertido,
+      SUM(inversionTotal * CASE tipoMoneda WHEN 'MDP' THEN 1 WHEN 'MDD' THEN inValorDolar END) AS totalInvertido,
       anioPrograma
     FROM resultados
     GROUP BY anioPrograma;

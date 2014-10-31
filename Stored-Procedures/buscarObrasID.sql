@@ -5,7 +5,8 @@
 DELIMITER $$
 
 CREATE DEFINER=`oypdbuser`@`localhost` PROCEDURE `buscarObrasID`(
-  inIDObra TEXT
+  inIDObra TEXT,
+  inValorDolar DOUBLE
 )
 BEGIN
     CREATE TEMPORARY TABLE IF NOT EXISTS resultados
@@ -104,9 +105,11 @@ BEGIN
       idDependencia,
       nombreDependencia,
       count(*)            AS numeroObras,
-      SUM(inversionTotal) AS totalInvertido
+	  SUM(inversionTotal * CASE tipoMoneda WHEN 'MDP' THEN 1 WHEN 'MDD' THEN inValorDolar END) AS totalInvertido
+
     FROM resultados
     GROUP BY nombreDependencia;
+
 
     SELECT
       idEstado,
@@ -114,13 +117,13 @@ BEGIN
       latitud,
       longitud,
       count(*)            AS numeroObras,
-      SUM(inversionTotal) AS totalInvertido
+	  SUM(inversionTotal * CASE tipoMoneda WHEN 'MDP' THEN 1 WHEN 'MDD' THEN inValorDolar END) AS totalInvertido
     FROM resultados
     GROUP BY nombreEstado;
 
     SELECT
       count(*)            AS numeroObras,
-      SUM(inversionTotal) AS totalInvertido
+	  SUM(inversionTotal * CASE tipoMoneda WHEN 'MDP' THEN 1 WHEN 'MDD' THEN inValorDolar END) AS totalInvertido
     FROM resultados;
 
 

@@ -23,7 +23,8 @@ CREATE DEFINER=`oypdbuser`@`localhost` PROCEDURE `buscarObras`(
   inLimiteMin           INTEGER,
   inLimiteMax           INTEGER,
   inDenominacion        TEXT,
-  inSubclasificacion    TEXT
+  inSubclasificacion    TEXT,
+  inValorDolar          DOUBLE
 )
   BEGIN
     CREATE TEMPORARY TABLE IF NOT EXISTS resultados
@@ -114,11 +115,9 @@ CREATE DEFINER=`oypdbuser`@`localhost` PROCEDURE `buscarObras`(
           (inDependencia IS NULL OR FIND_IN_SET(O.idDependencia, inDependencia) > 0) AND
 
           (inEstado IS NULL OR FIND_IN_SET(O.idEstado, inEstado) > 0) AND
+
           (inTipoClasificacion IS NULL OR
            FIND_IN_SET(detalle_clasificacion_obra.idTipoClasificacion, inTipoClasificacion) > 0) AND
-
-          (inSubclasificacion IS NULL OR
-           FIND_IN_SET(detalle_clasificacion_obra.idSubClasificacion, inSubclasificacion) > 0) AND
 
           (inTipoInversion IS NULL OR FIND_IN_SET(detalle_inversion.idTipoInversion, inTipoInversion) > 0) AND
 
@@ -133,6 +132,10 @@ CREATE DEFINER=`oypdbuser`@`localhost` PROCEDURE `buscarObras`(
 
           (O.denominacion LIKE CASE WHEN inDenominacion IS NULL THEN O.denominacion
                                ELSE CONCAT('%', inDenominacion, '%') END) AND
+
+
+          (inSubclasificacion IS NULL OR
+           FIND_IN_SET(detalle_clasificacion_obra.idSubClasificacion, inSubclasificacion) > 0) AND
 
 
           (inRangoInversionMin IS NULL OR inRangoInversionMax IS NULL OR
@@ -161,7 +164,7 @@ CREATE DEFINER=`oypdbuser`@`localhost` PROCEDURE `buscarObras`(
       idDependencia,
       nombreDependencia,
       count(*)            AS numeroObras,
-      SUM(inversionTotal) AS totalInvertido
+      SUM(inversionTotal * CASE tipoMoneda WHEN 'MDP' THEN 1 WHEN 'MDD' THEN inValorDolar END) AS totalInvertido
     FROM resultados
     GROUP BY nombreDependencia;
 
@@ -171,13 +174,13 @@ CREATE DEFINER=`oypdbuser`@`localhost` PROCEDURE `buscarObras`(
       latitud,
       longitud,
       count(*)            AS numeroObras,
-      SUM(inversionTotal) AS totalInvertido
+      SUM(inversionTotal * CASE tipoMoneda WHEN 'MDP' THEN 1 WHEN 'MDD' THEN inValorDolar END) AS totalInvertido
     FROM resultados
     GROUP BY nombreEstado;
 
     SELECT
       count(*)            AS numeroObras,
-      SUM(inversionTotal) AS totalInvertido
+      SUM(inversionTotal * CASE tipoMoneda WHEN 'MDP' THEN 1 WHEN 'MDD' THEN inValorDolar END) AS totalInvertido
     FROM resultados;
 
 

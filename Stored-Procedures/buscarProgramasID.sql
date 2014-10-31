@@ -4,8 +4,9 @@
 -- --------------------------------------------------------------------------------
 DELIMITER $$
 
-CREATE DEFINER =`oypdbuser`@`localhost` PROCEDURE `buscarProgramasID`(
-  inIDPrograma TEXT
+CREATE DEFINER=`oypdbuser`@`localhost` PROCEDURE `buscarProgramasID`(
+  inIDPrograma TEXT,
+  inValorDolar DOUBLE
 )
   BEGIN
     DROP TABLE IF EXISTS resultados;
@@ -87,7 +88,7 @@ CREATE DEFINER =`oypdbuser`@`localhost` PROCEDURE `buscarProgramasID`(
       nombreDependencia,
       anioPrograma,
       count(*)            AS numeroObras,
-      SUM(inversionTotal) AS totalInvertido
+      SUM(inversionTotal * CASE tipoMoneda WHEN 'MDP' THEN 1 WHEN 'MDD' THEN inValorDolar END) AS totalInvertido
     FROM resultados
     GROUP BY nombreDependencia, anioPrograma;
 
@@ -98,13 +99,13 @@ CREATE DEFINER =`oypdbuser`@`localhost` PROCEDURE `buscarProgramasID`(
       latitud,
       longitud,
       count(*)            AS numeroObras,
-      SUM(inversionTotal) AS totalInvertido
+      SUM(inversionTotal * CASE tipoMoneda WHEN 'MDP' THEN 1 WHEN 'MDD' THEN inValorDolar END) AS totalInvertido
     FROM resultados
     GROUP BY nombreEstado, anioPrograma;
 
     SELECT
       count(*)            AS numeroRegistros,
-      SUM(inversionTotal) AS totalInvertido,
+      SUM(inversionTotal * CASE tipoMoneda WHEN 'MDP' THEN 1 WHEN 'MDD' THEN inValorDolar END) AS totalInvertido,
       anioPrograma
     FROM resultados
     GROUP BY anioPrograma;
