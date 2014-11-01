@@ -1,8 +1,19 @@
 package modelObrasYProgramas;
 
+import com.oracle.javafx.jmx.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
+import java.io.*;
+import java.nio.charset.Charset;
+
 
 public class ObrasAD {
     private Connection conexion;
@@ -321,10 +332,47 @@ public class ObrasAD {
 
     }
 
-    private Double getValorDolar(){
-        //https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.xchange%20where%20pair%20in%20(%22USDMXN%22)&format=json&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=
+    private static String readAll(Reader rd) throws IOException {
+        StringBuilder sb = new StringBuilder();
+        int cp;
+        while ((cp = rd.read()) != -1) {
+            sb.append((char) cp);
+        }
+        return sb.toString();
+    }
 
-        return 13.50;
+    public static JSONObject readJsonFromUrl(String url) throws Exception {
+        InputStream is = new URL(url).openStream();
+        try {
+            BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
+            String jsonText = readAll(rd);
+            JSONObject json;
+            json = new JSONObject(jsonText);
+            return json;
+        } finally {
+            is.close();
+        }
+    }
+
+    private Double getValorDolar() {
+        try{
+            JSONObject json = readJsonFromUrl("https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.xchange%20where%20pair%20in%20(%22USDMXN%22)&format=json&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=");
+
+            if(json==null){
+                System.out.println("Error en web service");
+                return 13.00;
+            }
+            else{
+                JSONObject rate = json.getJSONObject("query").getJSONObject("results").getJSONObject("rate");
+                return Double.parseDouble(rate.getString("Rate"));
+            }
+        }
+        catch (Exception e){
+            System.out.println("Error: "+e);
+            return 13.00;
+        }
+
+
     }
 
 
@@ -425,6 +473,9 @@ public class ObrasAD {
 
         } catch (SQLException sqle) {
             System.out.println(sqle);
+
+        }catch (Exception ex) {
+            System.out.println(ex);
 
         }
 
