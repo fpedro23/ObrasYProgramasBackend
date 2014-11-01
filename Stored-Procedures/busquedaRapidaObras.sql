@@ -6,6 +6,8 @@ DELIMITER $$
 
 CREATE DEFINER=`oypdbuser`@`localhost` PROCEDURE `busquedaRapidaObras`(
   inBusquedaRapida TEXT,
+  inLimiteMin integer,
+  inLimiteMax integer,
   inValorDolar DOUBLE
 )
   BEGIN
@@ -104,7 +106,7 @@ CREATE DEFINER=`oypdbuser`@`localhost` PROCEDURE `busquedaRapidaObras`(
 
     SELECT
       *
-    FROM resultados;
+    FROM resultados limit inLimiteMin,inLimiteMax;
 
 
     SELECT
