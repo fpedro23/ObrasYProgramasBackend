@@ -1,7 +1,11 @@
 package servletObrasYProgramas;
 
+import DBManagement.ObrasAD;
+import DBManagement.ProgramasAD;
 import com.opensymphony.xwork2.ActionSupport;
-import modelObrasYProgramas.*;
+import modelObrasYProgramas.Consulta;
+import modelObrasYProgramas.ResultadoObra;
+import modelObrasYProgramas.ResultadoPrograma;
 
 public class ServletBusqueda extends ActionSupport {
     public static class Busqueda extends Consulta {
@@ -19,12 +23,7 @@ public class ServletBusqueda extends ActionSupport {
                 ObrasAD obras = new ObrasAD();
                 resultadoObra = obras.buscar(this);
                 return "resultadoConsultaObra";
-
-
             }
-
-
-            // return "resultadoConsulta";
         }
     }
 }

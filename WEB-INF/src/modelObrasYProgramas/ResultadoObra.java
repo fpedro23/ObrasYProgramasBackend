@@ -1,5 +1,6 @@
 package modelObrasYProgramas;
-import java.util.*;
+
+import java.util.List;
 
 public class ResultadoObra
 {

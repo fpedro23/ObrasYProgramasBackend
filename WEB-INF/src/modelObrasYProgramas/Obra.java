@@ -8,9 +8,6 @@ import java.util.StringTokenizer;
 
 public class Obra {
 
-    private String idObra;
-    private String denominacion;
-
     public TipoObra tipoObra;
     public Dependencia dependencia;
     public Estado estado;
@@ -19,7 +16,8 @@ public class Obra {
     public List<TipoClasificacion> clasificacion;
     public Subclasificacion subclasificacion;
     public Inaugurador inaugurador;
-
+    private String idObra;
+    private String denominacion;
     private String descripcion;
     private String observaciones;
 

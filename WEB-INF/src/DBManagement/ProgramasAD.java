@@ -1,4 +1,6 @@
-package modelObrasYProgramas;
+package DBManagement;
+
+import modelObrasYProgramas.*;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -19,16 +21,8 @@ public class ProgramasAD {
 
     public ProgramasAD() {
         try {
-            Class.forName("com.mysql.jdbc.Driver").newInstance();
-            //conexion = DriverManager.getConnection("jdbc:mysql://localhost/ObrasYProgramas?user=root");
-            System.out.println("Conexion exitosa a la BD");
-            conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/obrasyprogramas", "oypdbuser", "0ypProj3ct!");
-        } catch (ClassNotFoundException cnfe) {
-            System.out.println("Error: " + cnfe);
-        } catch (InstantiationException ie) {
-            System.out.println("Error: " + ie);
-        } catch (IllegalAccessException iae) {
-            System.out.println("Error: " + iae);
+            conexion = DataSourceFactory.getMySQLDataSource().getConnection();
+
         } catch (SQLException sqle) {
             System.out.println("Error: " + sqle);
         }

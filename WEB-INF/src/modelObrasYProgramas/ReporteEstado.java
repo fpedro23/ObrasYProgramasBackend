@@ -1,15 +1,26 @@
 package modelObrasYProgramas;
 
-import java.sql.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
-public class ReporteGeneral {
+public class ReporteEstado {
 
+    private Estado estado;
     private String numeroRegistros;
     private String totalInvertido;
 
-    public ReporteGeneral(ResultSet tr) {
+
+    public ReporteEstado(ResultSet tr) {
         try {
-            this.setNumeroRegistros(tr.getString(1));
+
+            estado = new Estado();
+
+            estado.setIdEstado(tr.getString("idEstado"));
+            estado.setNombreEstado(tr.getString("nombreEstado"));
+            estado.setLatitud(tr.getString("latitud"));
+            estado.setLongitud(tr.getString("longitud"));
+
+            this.setNumeroRegistros(tr.getString("numeroObras"));
             this.setTotalInvertido(tr.getString("totalInvertido"));
         } catch (SQLException sqle) {
             System.out.println(sqle);
