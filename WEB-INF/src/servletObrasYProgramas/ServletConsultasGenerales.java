@@ -1,7 +1,7 @@
 package servletObrasYProgramas;
 
+import DBManagement.*;
 import com.opensymphony.xwork2.ActionSupport;
-import modelObrasYProgramas.ObrasAD;
 
 import java.util.List;
 
@@ -21,53 +21,45 @@ public class ServletConsultasGenerales extends ActionSupport
     }
 
     public String consultarEstados()throws Exception{
-        ObrasAD obrasAD = new ObrasAD();
-        lista =  obrasAD.listaDeEstados();
+
+        lista = EstadosDBManager.listaDeEstados();
         return "respuestaListaJson";
     }
     
     public String consultarImpactos()throws Exception{
-        ObrasAD obrasAD = new ObrasAD();
-        lista =  obrasAD.listaDeImpactos();
+        lista = ImpactoDBManager.listaDeImpactos();
         return "respuestaListaJson";
     }
     
     public String consultarInauguradores()throws Exception{
-        ObrasAD obrasAD = new ObrasAD();
-        lista =  obrasAD.listaDeInauguradores();
+        lista = InauguradorDBManager.listaDeInauguradores();
         return "respuestaListaJson";
     }
-    
 
-    
     public String consultarClasificaciones()throws Exception{
-        ObrasAD obrasAD = new ObrasAD();
-        lista =  obrasAD.listaDeClasificaciones();
+
+        lista = ClasificacionDBManager.listaDeClasificaciones();
         return "respuestaListaJson";
     }
 
     public String consultarSubclasificacion() throws Exception {
-        ObrasAD obrasAD = new ObrasAD();
-        lista = obrasAD.listaDeSubClasificaciones(this.clasificacion);
+        lista = SubclasificacionDBManager.listaDeSubClasificaciones(this.clasificacion);
         return "respuestaListaJson";
     }
     
     public String consultarInversiones()throws Exception{
-        ObrasAD obrasAD = new ObrasAD();
-        lista =  obrasAD.listaDeInversiones();
+        lista = TipoDeInversionDBManager.listaDeInversiones();
         return "respuestaListaJson";
     }
     
     public String consultarTiposDeObra()throws Exception{
-        ObrasAD obrasAD = new ObrasAD();
-        lista =  obrasAD.listaDeObras();
+        lista = TipoDeObraDBManager.listaDeObras();
         return "respuestaListaJson";
     }
     
     
     public String consultarDependencias()throws Exception{
-        ObrasAD obrasAD = new ObrasAD();
-        lista =  obrasAD.listaDeDependencias();
+        lista = DependenciaDBManager.listaDeDependencias();
         return "respuestaListaJson";
     }
     

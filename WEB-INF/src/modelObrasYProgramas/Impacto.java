@@ -1,5 +1,4 @@
 package modelObrasYProgramas;
-import java.util.*;
 
 public class Impacto
 {

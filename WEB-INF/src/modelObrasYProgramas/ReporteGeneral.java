@@ -1,22 +1,16 @@
 package modelObrasYProgramas;
 
-import java.sql.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
-public class ReporteDependencia {
+public class ReporteGeneral {
 
-    private Dependencia dependencia;
     private String numeroRegistros;
     private String totalInvertido;
 
-
-    public ReporteDependencia(ResultSet tr) {
+    public ReporteGeneral(ResultSet tr) {
         try {
-            dependencia = new Dependencia();
-
-            dependencia.setIdDependencia(tr.getString("idDependencia"));
-            dependencia.setNombreDependencia(tr.getString("nombreDependencia"));
-
-            this.setNumeroRegistros(tr.getString("numeroObras"));
+            this.setNumeroRegistros(tr.getString(1));
             this.setTotalInvertido(tr.getString("totalInvertido"));
         } catch (SQLException sqle) {
             System.out.println(sqle);
@@ -24,14 +18,6 @@ public class ReporteDependencia {
         }
     }
 
-
-    public Dependencia getDependencia() {
-        return dependencia;
-    }
-
-    public void setDependencia(Dependencia dependencia) {
-        this.dependencia = dependencia;
-    }
 
     public String getNumeroRegistros() {
         return numeroRegistros;
