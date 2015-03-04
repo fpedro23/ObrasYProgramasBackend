@@ -8,7 +8,7 @@
 	<package name="Obras y Programas" namespace="/" extends="struts-default">
 
 
-         
+        <!-- API Móvil -->
          <action name="consultarEstados" class="servletObrasYProgramas.ServletConsultasGenerales" method="consultarEstados">
              <result name="respuestaListaJson">/Views/ListaJSON.jsp</result>
          </action>
@@ -46,8 +46,70 @@
         <action name="buscar" class="servletObrasYProgramas.ServletBusqueda$Busqueda" method="execute">
         <result name="resultadoConsultaObra">/Views/ResultadoObra.jsp</result>
              <result name="resultadoConsultaPrograma">/Views/ResultadoPrograma.jsp</result>
-
          </action>
-         
-	</package>
+
+        <!-- API Móvil -->
+
+        <!-- Clasificacion Actions  -->
+
+        <action name="crearClasificacion" class="servletObrasYProgramas.ActionClasificacion$ActionClasificacionExtended"
+                method="createClasificacion">
+            <result name="success">/Views/MensajeResultado.jsp</result>
+        </action>
+
+        <action name="actualizarClasificacion"
+                class="servletObrasYProgramas.ActionClasificacion$ActionClasificacionExtended"
+                method="updateClasificacion">
+            <result name="success">/Views/MensajeResultado.jsp</result>
+        </action>
+
+        <action name="eliminarClasificacion"
+                class="servletObrasYProgramas.ActionClasificacion$ActionClasificacionExtended"
+                method="deleteClasificacion">
+            <result name="success">/Views/MensajeResultado.jsp</result>
+        </action>
+
+        <!-- Clasificacion Actions  -->
+
+        <!-- Impacto Actions  -->
+
+        <action name="crearImpacto" class="servletObrasYProgramas.ActionImpacto$ActionImpactoExtended"
+                method="createImpacto">
+            <result name="success">/Views/MensajeResultado.jsp</result>
+        </action>
+
+        <action name="actualizarImpacto" class="servletObrasYProgramas.ActionImpacto$ActionImpactoExtended"
+                method="updateImpacto">
+            <result name="success">/Views/MensajeResultado.jsp</result>
+        </action>
+
+        <action name="eliminarImpacto" class="servletObrasYProgramas.ActionImpacto$ActionImpactoExtended"
+                method="deleteImpacto">
+            <result name="success">/Views/MensajeResultado.jsp</result>
+        </action>
+
+        <!-- Impacto Actions  -->
+
+
+        <!-- Inaugurador Actions  -->
+
+        <action name="crearInaugurador" class="servletObrasYProgramas.InauguradorAction$InauguradorActionExtended"
+                method="createInaugurador">
+            <result name="success">/Views/MensajeResultado.jsp</result>
+        </action>
+
+        <action name="actualizarInaugurador" class="servletObrasYProgramas.InauguradorAction$InauguradorActionExtended"
+                method="updateInaugurador">
+            <result name="success">/Views/MensajeResultado.jsp</result>
+        </action>
+
+        <action name="eliminarInaugurador" class="servletObrasYProgramas.InauguradorAction$InauguradorActionExtended"
+                method="deleteInaugurador">
+            <result name="success">/Views/MensajeResultado.jsp</result>
+        </action>
+
+        <!-- Inaugurador Actions  -->
+
+
+    </package>
 </struts>

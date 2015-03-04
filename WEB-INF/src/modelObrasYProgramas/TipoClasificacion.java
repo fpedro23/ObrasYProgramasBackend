@@ -4,20 +4,26 @@ public class TipoClasificacion
 {
     private String idTipoClasificacion;
     private String nombreTipoClasificacion;
-    
-    
-    
+    private String clasificacionCorta;
+
+
     public TipoClasificacion(){
         this.idTipoClasificacion=null;
         this.nombreTipoClasificacion=null;
     }
-    
-    
+
     public TipoClasificacion(String idTipoClasificacion, String nombreTipoClasificacion){
         this.idTipoClasificacion = idTipoClasificacion;
         this.nombreTipoClasificacion = nombreTipoClasificacion;
     }
-    
+
+    public String getClasificacionCorta() {
+        return clasificacionCorta;
+    }
+
+    public void setClasificacionCorta(String clasificacionCorta) {
+        this.clasificacionCorta = clasificacionCorta;
+    }
     
 	/**
 	 * @return the idTipoClasificacion

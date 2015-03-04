@@ -2,10 +2,7 @@ package DBManagement;
 
 import modelObrasYProgramas.Impacto;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,13 +11,77 @@ import java.util.List;
  */
 public class ImpactoDBManager {
 
+    static Connection conexion = null;
+
+
+    public static boolean crearImpacto(Impacto impacto) {
+        try {
+            conexion = DataSourceFactory.getMySQLDataSource().getConnection();
+            CallableStatement callableStatement = conexion.prepareCall("{CALL sp_ins_impactos(?)}");
+            callableStatement.setString("p_nombreImpacto", impacto.getNombreImpacto());
+            callableStatement.execute();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            try {
+                conexion.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static boolean updateImpacto(Impacto impacto) {
+        try {
+            conexion = DataSourceFactory.getMySQLDataSource().getConnection();
+            CallableStatement callableStatement = conexion.prepareCall("{CALL sp_upd_impactos(?)}");
+            callableStatement.setString("p_idImpacto", impacto.getIdImpacto());
+            callableStatement.setString("p_nombreImpacto", impacto.getNombreImpacto());
+            callableStatement.execute();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            try {
+                conexion.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static boolean deleteImpacto(Impacto impacto) {
+        try {
+            conexion = DataSourceFactory.getMySQLDataSource().getConnection();
+            CallableStatement callableStatement = conexion.prepareCall("{CALL sp_del_impactos(?)}");
+            callableStatement.setString("p_nombreImpacto", impacto.getIdImpacto());
+            callableStatement.execute();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            try {
+                conexion.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
+
+
+
     public static List<Impacto> listaDeImpactos() {
         ResultSet tr = null;
         String select = "SELECT * FROM impactos";
 
         ArrayList<Impacto> listaImpacto = new ArrayList<Impacto>();
 
-        Connection conexion = null;
         Statement statement = null;
         try {
             conexion = DataSourceFactory.getMySQLDataSource().getConnection();

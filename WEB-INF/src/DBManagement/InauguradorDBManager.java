@@ -2,10 +2,7 @@ package DBManagement;
 
 import modelObrasYProgramas.Inaugurador;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +10,69 @@ import java.util.List;
  * Created by pedrocontreras on 27/02/15.
  */
 public class InauguradorDBManager {
+
+    public static boolean createInaugurador(Inaugurador inaugurador) {
+        Connection conexion = null;
+        try {
+            conexion = DataSourceFactory.getMySQLDataSource().getConnection();
+            CallableStatement callableStatement = conexion.prepareCall("{CALL sp_ins_cargo_inaugura(?)}");
+            callableStatement.setString("p_nombreCargoInaugura", inaugurador.getNombreCargoInaugura());
+            callableStatement.execute();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            try {
+                conexion.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
+    public static boolean updateInaugurador(Inaugurador inaugurador) {
+        Connection conexion = null;
+        try {
+            conexion = DataSourceFactory.getMySQLDataSource().getConnection();
+            CallableStatement callableStatement = conexion.prepareCall("{CALL sp_upd_cargo_inaugura(?,?)}");
+            callableStatement.setString("p_idCargoInaugura", inaugurador.getIdCargoInaugura());
+            callableStatement.setString("p_nombreCargoInaugura", inaugurador.getNombreCargoInaugura());
+            callableStatement.execute();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            try {
+                conexion.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static boolean deleteInaugurador(Inaugurador inaugurador) {
+        Connection conexion = null;
+        try {
+            conexion = DataSourceFactory.getMySQLDataSource().getConnection();
+            CallableStatement callableStatement = conexion.prepareCall("{CALL sp_del_cargo_inaugura(?)}");
+            callableStatement.setString("p_idCargoInaugura", inaugurador.getIdCargoInaugura());
+            callableStatement.execute();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            try {
+                conexion.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 
 
     public static List<Inaugurador> listaDeInauguradores() {
