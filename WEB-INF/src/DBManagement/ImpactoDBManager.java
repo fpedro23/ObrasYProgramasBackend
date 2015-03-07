@@ -36,7 +36,7 @@ public class ImpactoDBManager {
     public static boolean updateImpacto(Impacto impacto) {
         try {
             conexion = DataSourceFactory.getMySQLDataSource().getConnection();
-            CallableStatement callableStatement = conexion.prepareCall("{CALL sp_upd_impactos(?)}");
+            CallableStatement callableStatement = conexion.prepareCall("{CALL sp_upd_impactos(?,?)}");
             callableStatement.setString("p_idImpacto", impacto.getIdImpacto());
             callableStatement.setString("p_nombreImpacto", impacto.getNombreImpacto());
             callableStatement.execute();
@@ -71,9 +71,6 @@ public class ImpactoDBManager {
             }
         }
     }
-
-
-
 
 
     public static List<Impacto> listaDeImpactos() {

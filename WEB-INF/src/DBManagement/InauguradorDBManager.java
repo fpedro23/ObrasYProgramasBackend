@@ -10,7 +10,7 @@ import java.util.List;
  * Created by pedrocontreras on 27/02/15.
  */
 public class InauguradorDBManager {
-
+    //
     public static boolean createInaugurador(Inaugurador inaugurador) {
         Connection conexion = null;
         try {
