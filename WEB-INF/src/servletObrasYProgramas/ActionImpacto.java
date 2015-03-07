@@ -6,6 +6,9 @@ import modelObrasYProgramas.Impacto;
 
 /**
  * Created by pedrocontreras on 03/03/15.
+ * Parametros que recibe el servlet a traves de un HTTP Request
+ * idImpacto;
+ * nombreImpacto;
  */
 public class ActionImpacto extends ActionSupport {
     public class ActionImpactoExtended extends Impacto {

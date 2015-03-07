@@ -5,6 +5,13 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import java.util.List;
 
+/**
+ * Created by pedrocontreras on 03/03/15.
+ * Parametros que recibe el servlet a traves de un HTTP Request
+ * NINGUNO
+ * Objetos que regresa el servlet "Lista" genérica de la consulta
+ */
+
 public class ServletConsultasGenerales extends ActionSupport
 {
     

@@ -6,6 +6,9 @@ import modelObrasYProgramas.Inaugurador;
 
 /**
  * Created by pedrocontreras on 03/03/15.
+ * Parametros que recibe el servlet a traves de un HTTP Request
+ * idCargoInaugura
+ * nombreCargoInaugura
  */
 public class InauguradorAction extends ActionSupport {
     public class InauguradorActionExtended extends Inaugurador {

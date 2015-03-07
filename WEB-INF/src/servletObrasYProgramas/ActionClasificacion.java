@@ -6,6 +6,10 @@ import modelObrasYProgramas.TipoClasificacion;
 
 /**
  * Created by pedrocontreras on 03/03/15.
+ * Parametros que recibe el servlet a traves de un HTTP Request
+ * idTipoClasificacion;
+ * nombreTipoClasificacion;
+ * clasificacionCorta;
  */
 public class ActionClasificacion extends ActionSupport {
     public static class ActionClasificacionExtended extends TipoClasificacion {
