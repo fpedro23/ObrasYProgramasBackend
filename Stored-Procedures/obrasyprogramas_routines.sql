@@ -28,7 +28,7 @@
 /*!50003 SET @saved_sql_mode = @@sql_mode */;
 /*!50003 SET sql_mode = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */;
 DELIMITER ;;
-CREATE DEFINER =`root`@`localhost` PROCEDURE `sp_del_cargo_inaugura`(
+CREATE DEFINER =`root`@`192.168.100.15` PROCEDURE `sp_del_cargo_inaugura`(
   IN
   `p_idCargoInaugura`
   INT
@@ -53,7 +53,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode = @@sql_mode */;
 /*!50003 SET sql_mode = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */;
 DELIMITER ;;
-CREATE DEFINER =`root`@`localhost` PROCEDURE `sp_del_impactos`(
+CREATE DEFINER =`root`@`192.168.100.15` PROCEDURE `sp_del_impactos`(
   IN
   `p_idImpacto`
   INT
@@ -78,7 +78,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode = @@sql_mode */;
 /*!50003 SET sql_mode = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */;
 DELIMITER ;;
-CREATE DEFINER =`root`@`localhost` PROCEDURE `sp_del_tipo_clasificacion`(
+CREATE DEFINER =`root`@`192.168.100.15` PROCEDURE `sp_del_tipo_clasificacion`(
   IN
   `p_idTipoClasificacion`
   INT
@@ -196,7 +196,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode = @@sql_mode */;
 /*!50003 SET sql_mode = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */;
 DELIMITER ;;
-CREATE DEFINER =`root`@`localhost` PROCEDURE `sp_sel_cargo_inaugura`()
+CREATE DEFINER =`root`@`192.168.100.15` PROCEDURE `sp_sel_cargo_inaugura`()
   BEGIN
     SELECT
       `idCargoInaugura`,
@@ -219,7 +219,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode = @@sql_mode */;
 /*!50003 SET sql_mode = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */;
 DELIMITER ;;
-CREATE DEFINER =`root`@`localhost` PROCEDURE `sp_sel_impactos`()
+CREATE DEFINER =`root`@`192.168.100.15` PROCEDURE `sp_sel_impactos`()
   BEGIN
     SELECT
       `idImpacto`,
@@ -242,7 +242,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode = @@sql_mode */;
 /*!50003 SET sql_mode = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */;
 DELIMITER ;;
-CREATE DEFINER =`root`@`localhost` PROCEDURE `sp_sel_tipo_clasificacion`()
+CREATE DEFINER =`root`@`192.168.100.15` PROCEDURE `sp_sel_tipo_clasificacion`()
   BEGIN
     SELECT
       `idTipoClasificacion`,
@@ -274,7 +274,7 @@ CREATE DEFINER =`root`@`localhost` PROCEDURE `sp_upd_cargo_inaugura`(
     UPDATE `cargo_inaugura`
     SET
       `nombreCargoInaugura` = `p_nombreCargoInaugura`,
-      `fecMod`              = curdate()
+      `fecMod` = curdate()
     WHERE
       (`idCargoInaugura` = `p_idCargoInaugura`);
   END ;;
@@ -293,16 +293,15 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode = @@sql_mode */;
 /*!50003 SET sql_mode = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */;
 DELIMITER ;;
-CREATE DEFINER =`root`@`localhost` PROCEDURE `sp_upd_impactos`(
+CREATE DEFINER =`root`@`192.168.100.15` PROCEDURE `sp_upd_impactos`(
   IN `p_idImpacto`     INT,
-  IN `p_nombreImpacto` VARCHAR(100),
-  IN `p_fecMod`        DATE
+  IN `p_nombreImpacto` VARCHAR(100)
 )
   BEGIN
     UPDATE `impactos`
     SET
       `nombreImpacto` = `p_nombreImpacto`,
-      `fecMod`        = `p_fecMod`
+      `fecMod` = curdate()
     WHERE
       (`idImpacto` = `p_idImpacto`);
   END ;;
@@ -321,18 +320,17 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode = @@sql_mode */;
 /*!50003 SET sql_mode = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */;
 DELIMITER ;;
-CREATE DEFINER =`root`@`localhost` PROCEDURE `sp_upd_tipo_clasificacion`(
+CREATE DEFINER =`root`@`192.168.100.15` PROCEDURE `sp_upd_tipo_clasificacion`(
   IN `p_idTipoClasificacion`     INT,
   IN `p_nombreTipoClasificacion` VARCHAR(100),
-  IN `p_clasificacionCorta`      VARCHAR(5),
-  IN `p_fecMod`                  DATE
+  IN `p_clasificacionCorta`      VARCHAR(5)
 )
   BEGIN
     UPDATE `tipo_clasificacion`
     SET
       `nombreTipoClasificacion` = `p_nombreTipoClasificacion`,
-      `clasificacionCorta`      = `p_clasificacionCorta`,
-      `fecMod`                  = `p_fecMod`
+      `clasificacionCorta` = `p_clasificacionCorta`,
+      `fecMod`             = curdate()
     WHERE
       (`idTipoClasificacion` = `p_idTipoClasificacion`);
   END ;;
@@ -351,4 +349,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION = @OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES = @OLD_SQL_NOTES */;
 
--- Dump completed on 2015-03-06 22:57:00
+-- Dump completed on 2015-03-09 15:27:55
