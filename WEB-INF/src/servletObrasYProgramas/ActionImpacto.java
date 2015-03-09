@@ -15,6 +15,8 @@ public class ActionImpacto extends ActionSupport {
 
         public String createImpacto() {
             if (ImpactoDBManager.crearImpacto(this)) return "success";
+
+
             return "failure";
         }
 
@@ -27,7 +29,5 @@ public class ActionImpacto extends ActionSupport {
             if (ImpactoDBManager.deleteImpacto(this)) return "success";
             return "failure";
         }
-
-
     }
 }
