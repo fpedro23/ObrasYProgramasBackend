@@ -1,20 +1,3 @@
--- MySQL dump 10.13  Distrib 5.6.19, for osx10.7 (i386)
---
--- Host: 127.0.0.1    Database: obrasyprogramas
--- ------------------------------------------------------
--- Server version	5.6.23
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT = @@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS = @@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION = @@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-/*!40103 SET @OLD_TIME_ZONE = @@TIME_ZONE */;
-/*!40103 SET TIME_ZONE = '+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS = @@UNIQUE_CHECKS, UNIQUE_CHECKS = 0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS = @@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS = 0 */;
-/*!40101 SET @OLD_SQL_MODE = @@SQL_MODE, SQL_MODE = 'NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES = @@SQL_NOTES, SQL_NOTES = 0 */;
-
 --
 -- Dumping routines for database 'obrasyprogramas'
 --
@@ -28,7 +11,7 @@
 /*!50003 SET @saved_sql_mode = @@sql_mode */;
 /*!50003 SET sql_mode = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */;
 DELIMITER ;;
-CREATE DEFINER =`root`@`192.168.100.15` PROCEDURE `sp_del_cargo_inaugura`(
+CREATE DEFINER =`root`@`localhost` PROCEDURE `sp_del_cargo_inaugura`(
   IN
   `p_idCargoInaugura`
   INT
@@ -53,7 +36,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode = @@sql_mode */;
 /*!50003 SET sql_mode = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */;
 DELIMITER ;;
-CREATE DEFINER =`root`@`192.168.100.15` PROCEDURE `sp_del_impactos`(
+CREATE DEFINER =`root`@`localhost` PROCEDURE `sp_del_impactos`(
   IN
   `p_idImpacto`
   INT
@@ -78,7 +61,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode = @@sql_mode */;
 /*!50003 SET sql_mode = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */;
 DELIMITER ;;
-CREATE DEFINER =`root`@`192.168.100.15` PROCEDURE `sp_del_tipo_clasificacion`(
+CREATE DEFINER =`root`@`localhost` PROCEDURE `sp_del_tipo_clasificacion`(
   IN
   `p_idTipoClasificacion`
   INT
@@ -196,7 +179,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode = @@sql_mode */;
 /*!50003 SET sql_mode = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */;
 DELIMITER ;;
-CREATE DEFINER =`root`@`192.168.100.15` PROCEDURE `sp_sel_cargo_inaugura`()
+CREATE DEFINER =`root`@`localhost` PROCEDURE `sp_sel_cargo_inaugura`()
   BEGIN
     SELECT
       `idCargoInaugura`,
@@ -219,7 +202,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode = @@sql_mode */;
 /*!50003 SET sql_mode = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */;
 DELIMITER ;;
-CREATE DEFINER =`root`@`192.168.100.15` PROCEDURE `sp_sel_impactos`()
+CREATE DEFINER =`root`@`localhost` PROCEDURE `sp_sel_impactos`()
   BEGIN
     SELECT
       `idImpacto`,
@@ -242,7 +225,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode = @@sql_mode */;
 /*!50003 SET sql_mode = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */;
 DELIMITER ;;
-CREATE DEFINER =`root`@`192.168.100.15` PROCEDURE `sp_sel_tipo_clasificacion`()
+CREATE DEFINER =`root`@`localhost` PROCEDURE `sp_sel_tipo_clasificacion`()
   BEGIN
     SELECT
       `idTipoClasificacion`,
@@ -293,7 +276,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode = @@sql_mode */;
 /*!50003 SET sql_mode = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */;
 DELIMITER ;;
-CREATE DEFINER =`root`@`192.168.100.15` PROCEDURE `sp_upd_impactos`(
+CREATE DEFINER =`root`@`localhost` PROCEDURE `sp_upd_impactos`(
   IN `p_idImpacto`     INT,
   IN `p_nombreImpacto` VARCHAR(100)
 )
@@ -320,7 +303,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode = @@sql_mode */;
 /*!50003 SET sql_mode = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */;
 DELIMITER ;;
-CREATE DEFINER =`root`@`192.168.100.15` PROCEDURE `sp_upd_tipo_clasificacion`(
+CREATE DEFINER =`root`@`localhost` PROCEDURE `sp_upd_tipo_clasificacion`(
   IN `p_idTipoClasificacion`     INT,
   IN `p_nombreTipoClasificacion` VARCHAR(100),
   IN `p_clasificacionCorta`      VARCHAR(5)
@@ -330,7 +313,7 @@ CREATE DEFINER =`root`@`192.168.100.15` PROCEDURE `sp_upd_tipo_clasificacion`(
     SET
       `nombreTipoClasificacion` = `p_nombreTipoClasificacion`,
       `clasificacionCorta` = `p_clasificacionCorta`,
-      `fecMod`             = curdate()
+      `fecMod` = curdate()
     WHERE
       (`idTipoClasificacion` = `p_idTipoClasificacion`);
   END ;;
@@ -349,4 +332,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION = @OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES = @OLD_SQL_NOTES */;
 
--- Dump completed on 2015-03-09 15:27:55
+-- Dump completed on 2015-03-16 19:27:27
