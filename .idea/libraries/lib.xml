@@ -17,13 +17,12 @@
       <root url="jar://$PROJECT_DIR$/WEB-INF/lib/java-json.jar!/" />
       <root url="jar://$PROJECT_DIR$/WEB-INF/lib/commons-dbcp2-2.1.jar!/" />
       <root url="jar://$PROJECT_DIR$/WEB-INF/lib/commons-pool2-2.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/WEB-INF/lib/javax.persistence_2.0.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/WEB-INF/lib/commons-beanutils-1.9.2.jar!/" />
     </CLASSES>
-    <JAVADOC>
-      <root url="jar://$PROJECT_DIR$/WEB-INF/lib/commons-dbcp2-2.1-javadoc.jar!/" />
-    </JAVADOC>
+    <JAVADOC />
     <SOURCES>
       <root url="jar://$PROJECT_DIR$/WEB-INF/lib/java-json.jar!/" />
-      <root url="jar://$PROJECT_DIR$/WEB-INF/lib/commons-pool2-2.2-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

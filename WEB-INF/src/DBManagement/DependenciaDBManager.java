@@ -21,15 +21,10 @@ public class DependenciaDBManager {
         Connection conexion = null;
         Statement statement = null;
 
+
         try {
             conexion = DataSourceFactory.getMySQLDataSource().getConnection();
 
-        } catch (SQLException sqle) {
-            System.out.println("Error: " + sqle);
-        }
-
-
-        try {
             statement = conexion.createStatement();
             tr = statement.executeQuery(select);
 

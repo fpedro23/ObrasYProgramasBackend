@@ -2,10 +2,7 @@ package DBManagement;
 
 import modelObrasYProgramas.TipoInversion;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +10,81 @@ import java.util.List;
  * Created by pedrocontreras on 27/02/15.
  */
 public class TipoDeInversionDBManager {
+
+
+    public static boolean crearTipoDeInversion(TipoInversion tipoInversion) {
+
+        Connection conexion = null;
+
+
+        try {
+            conexion = DataSourceFactory.getMySQLDataSource().getConnection();
+            CallableStatement callableStatement = conexion.prepareCall("{CALL sp_ins_tipo_inversion(?,?)}");
+            callableStatement.setString("p_nombreTipoInv", tipoInversion.getNombreTipoInversion());
+            callableStatement.setString("p_inversionCorta", tipoInversion.getNombreTipoInversionCorta());
+            callableStatement.execute();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            try {
+                conexion.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
+    public static boolean updateInversion(TipoInversion tipoInversion) {
+
+        Connection conexion = null;
+
+
+        try {
+            conexion = DataSourceFactory.getMySQLDataSource().getConnection();
+            CallableStatement callableStatement = conexion.prepareCall("{CALL sp_upd_tipo_inversion(?,?,?)}");
+            callableStatement.setString("p_idTipoInversion", tipoInversion.getIdTipoInversion());
+            callableStatement.setString("p_nombreTipoInv", tipoInversion.getNombreTipoInversion());
+            callableStatement.setString("p_inversionCorta", tipoInversion.getNombreTipoInversionCorta());
+            callableStatement.execute();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            try {
+                conexion.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
+    public static boolean deleteInversion(TipoInversion tipoInversion) {
+
+
+        Connection conexion = null;
+
+        try {
+            conexion = DataSourceFactory.getMySQLDataSource().getConnection();
+            CallableStatement callableStatement = conexion.prepareCall("{CALL sp_del_tipo_inversion(?)}");
+            callableStatement.setString("p_idTipoInversion", tipoInversion.getIdTipoInversion());
+            callableStatement.execute();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            try {
+                conexion.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
     public static List<TipoInversion> listaDeInversiones() {
 
@@ -24,15 +96,10 @@ public class TipoDeInversionDBManager {
 
 
         Connection conexion = null;
+
+
         try {
             conexion = DataSourceFactory.getMySQLDataSource().getConnection();
-
-        } catch (SQLException sqle) {
-            System.out.println("Error: " + sqle);
-        }
-
-
-        try {
             statement = conexion.createStatement();
             tr = statement.executeQuery(select);
 

@@ -42,7 +42,6 @@ public class Obra {
     private String municipio;
 
 
-
     public Obra() {
         this.tipoObra = new TipoObra();
         this.dependencia = new Dependencia();
@@ -111,7 +110,7 @@ public class Obra {
                 StringTokenizer idTipoInversion = new StringTokenizer(tr.getString("listaIDInversiones"), ",");
                 StringTokenizer nombreTipoInversion = new StringTokenizer(tr.getString("listaInversiones"), ",");
                 while (idTipoInversion.hasMoreElements() && nombreTipoInversion.hasMoreElements()) {
-                    TipoInversion tipoInversion = new TipoInversion(idTipoInversion.nextToken(), nombreTipoInversion.nextToken());
+                    TipoInversion tipoInversion = new TipoInversion(idTipoInversion.nextToken(), nombreTipoInversion.nextToken(), null);
                     this.tipoInversion.add(tipoInversion);
                 }
             } catch (Exception e) {
@@ -180,9 +179,10 @@ public class Obra {
             this.setMunicipio(tr.getString(i));
             i++;
 
-            this.subclasificacion.setIdSubClasificacion(tr.getString(i));i++;
-            this.subclasificacion.setNombreSubclasificacion(tr.getString(i));i++;
-
+            this.subclasificacion.setIdSubClasificacion(tr.getString(i));
+            i++;
+            this.subclasificacion.setNombreSubclasificacion(tr.getString(i));
+            i++;
 
 
         } catch (SQLException sqle) {

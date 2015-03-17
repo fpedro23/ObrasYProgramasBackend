@@ -11,7 +11,7 @@ import modelObrasYProgramas.Inaugurador;
  * nombreCargoInaugura
  */
 public class InauguradorAction extends ActionSupport {
-    public class InauguradorActionExtended extends Inaugurador {
+    public static class InauguradorActionExtended extends Inaugurador {
 
         public String createInaugurador() {
             if (InauguradorDBManager.createInaugurador(this)) return "success";

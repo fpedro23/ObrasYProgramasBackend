@@ -11,12 +11,12 @@ import modelObrasYProgramas.Impacto;
  * nombreImpacto;
  */
 public class ActionImpacto extends ActionSupport {
-    public class ActionImpactoExtended extends Impacto {
+    public static class ActionImpactoExtended extends Impacto {
 
         public String createImpacto() {
             if (ImpactoDBManager.crearImpacto(this)) return "success";
             else
-            return "failure";
+                return "failure";
         }
 
         public String updateImpacto() {

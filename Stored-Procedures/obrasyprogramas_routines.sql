@@ -257,7 +257,7 @@ CREATE DEFINER =`root`@`localhost` PROCEDURE `sp_upd_cargo_inaugura`(
     UPDATE `cargo_inaugura`
     SET
       `nombreCargoInaugura` = `p_nombreCargoInaugura`,
-      `fecMod` = curdate()
+      `fecMod`              = curdate()
     WHERE
       (`idCargoInaugura` = `p_idCargoInaugura`);
   END ;;
@@ -284,7 +284,7 @@ CREATE DEFINER =`root`@`localhost` PROCEDURE `sp_upd_impactos`(
     UPDATE `impactos`
     SET
       `nombreImpacto` = `p_nombreImpacto`,
-      `fecMod` = curdate()
+      `fecMod`        = curdate()
     WHERE
       (`idImpacto` = `p_idImpacto`);
   END ;;
@@ -312,8 +312,8 @@ CREATE DEFINER =`root`@`localhost` PROCEDURE `sp_upd_tipo_clasificacion`(
     UPDATE `tipo_clasificacion`
     SET
       `nombreTipoClasificacion` = `p_nombreTipoClasificacion`,
-      `clasificacionCorta` = `p_clasificacionCorta`,
-      `fecMod` = curdate()
+      `clasificacionCorta`      = `p_clasificacionCorta`,
+      `fecMod`                  = curdate()
     WHERE
       (`idTipoClasificacion` = `p_idTipoClasificacion`);
   END ;;
@@ -331,5 +331,167 @@ DELIMITER ;
 /*!40101 SET CHARACTER_SET_RESULTS = @OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION = @OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES = @OLD_SQL_NOTES */;
+
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER =``@`` PROCEDURE `sp_del_tipo_inversion`(
+  IN
+  `p_idTipoInversion`
+  INT
+)
+  BEGIN
+    DELETE FROM `tipo_inversion`
+    WHERE
+      (`idTipoInversion` = `p_idTipoInversion`);
+  END
+
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+    DELIMITER $$
+
+CREATE DEFINER =``@`` PROCEDURE `sp_del_usuarios`(
+  IN
+  `p_idUsuario`
+  INT
+)
+  BEGIN
+    DELETE FROM `usuarios`
+    WHERE
+      (`idUsuario` = `p_idUsuario`);
+  END
+
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+    DELIMITER $$
+
+CREATE DEFINER =``@`` PROCEDURE `sp_ins_tipo_inversion`(
+  IN `p_nombreTipoInv`  VARCHAR(100),
+  IN `p_inversionCorta` VARCHAR(2)
+)
+  BEGIN
+    INSERT INTO `tipo_inversion`
+    (
+      `nombreTipoInv`,
+      `inversionCorta`,
+      `fecMod`
+    )
+    VALUES
+      (
+        `p_nombreTipoInv`,
+        `p_inversionCorta`,
+        curdate()
+      );
+  END
+
+
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+    DELIMITER $$
+
+CREATE DEFINER =``@`` PROCEDURE `sp_ins_usuarios`(
+  IN `p_nombreUsuario`   VARCHAR(100),
+  IN `p_apellidoPaterno` VARCHAR(100),
+  IN `p_apellidoMaterno` VARCHAR(100),
+  IN `p_idDependencia`   INT,
+  IN `p_idRol`           INT
+)
+  BEGIN
+    INSERT INTO `usuarios`
+    (
+      `nombreUsuario`,
+      `apellidoPaterno`,
+      `apellidoMaterno`,
+      `fecMod`,
+      `idDependencia`,
+      `idRol`
+    )
+    VALUES
+      (
+        `p_nombreUsuario`,
+        `p_apellidoPaterno`,
+        `p_apellidoMaterno`,
+        curdate(),
+        `p_idDependencia`,
+        `p_idRol`
+      );
+  END
+
+
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+    DELIMITER $$
+
+CREATE DEFINER =``@`` PROCEDURE `sp_sel_usuarios`()
+  BEGIN
+    SELECT
+      `idUsuario`,
+      `nombreUsuario`,
+      `apellidoPaterno`,
+      `apellidoMaterno`,
+      `idDependencia`,
+      `idRol`
+    FROM `usuarios`;
+  END
+
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+    DELIMITER $$
+
+CREATE DEFINER =``@`` PROCEDURE `sp_upd_tipo_inversion`(
+  IN `p_idTipoInversion` INT,
+  IN `p_nombreTipoInv`   VARCHAR(100),
+  IN `p_inversionCorta`  VARCHAR(2)
+)
+  BEGIN
+    UPDATE `tipo_inversion`
+    SET
+      `nombreTipoInv`  = `p_nombreTipoInv`,
+      `inversionCorta` = `p_inversionCorta`,
+      `fecMod`         = curdate()
+    WHERE
+      (`idTipoInversion` = `p_idTipoInversion`);
+  END
+
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+    DELIMITER $$
+
+CREATE DEFINER =``@`` PROCEDURE `sp_upd_usuarios`(
+  IN `p_idUsuario`       INT,
+  IN `p_nombreUsuario`   VARCHAR(100),
+  IN `p_apellidoPaterno` VARCHAR(100),
+  IN `p_apellidoMaterno` VARCHAR(100),
+  IN `p_idDependencia`   INT,
+  IN `p_idRol`           INT
+)
+  BEGIN
+    UPDATE `usuarios`
+    SET
+      `nombreUsuario`   = `p_nombreUsuario`,
+      `apellidoPaterno` = `p_apellidoPaterno`,
+      `apellidoMaterno` = `p_apellidoMaterno`,
+      `fecMod`          = curdate(),
+      `idDependencia`   = `p_idDependencia`,
+      `idRol`           = `p_idRol`
+    WHERE
+      (`idUsuario` = `p_idUsuario`);
+  END
+
 
 -- Dump completed on 2015-03-16 19:27:27

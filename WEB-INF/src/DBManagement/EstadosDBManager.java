@@ -27,15 +27,9 @@ public class EstadosDBManager {
 
 
         Connection conexion = null;
+
         try {
             conexion = DataSourceFactory.getMySQLDataSource().getConnection();
-
-        } catch (SQLException sqle) {
-            System.out.println("Error: " + sqle);
-        }
-
-
-        try {
             statement = conexion.createStatement();
             tr = statement.executeQuery(select);
 
@@ -53,6 +47,7 @@ public class EstadosDBManager {
             }
 
         } catch (SQLException sqle) {
+            System.out.println("Error: " + sqle);
 
         } finally {
             if (tr != null) try {
