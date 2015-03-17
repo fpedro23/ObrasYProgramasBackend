@@ -1,0 +1,161 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.devMode" value="true" />
+	
+	<package name="Obras y Programas" namespace="/" extends="struts-default">
+
+
+        <!-- API Móvil -->
+         <action name="consultarEstados" class="servletObrasYProgramas.ServletConsultasGenerales" method="consultarEstados">
+             <result name="respuestaListaJson">/Views/ListaJSON.jsp</result>
+         </action>
+         
+         <action name="consultarDependencias" class="servletObrasYProgramas.ServletConsultasGenerales" method="consultarDependencias">
+             <result name="respuestaListaJson">/Views/ListaJSON.jsp</result>
+         </action>
+         
+         <action name="consultarImpactos" class="servletObrasYProgramas.ServletConsultasGenerales" method="consultarImpactos">
+             <result name="respuestaListaJson">/Views/ListaJSON.jsp</result>
+         </action>
+         
+         <action name="consultarInauguradores" class="servletObrasYProgramas.ServletConsultasGenerales" method="consultarInauguradores">
+             <result name="respuestaListaJson">/Views/ListaJSON.jsp</result>
+         </action>
+
+         <action name="consultarClasificaciones" class="servletObrasYProgramas.ServletConsultasGenerales" method="consultarClasificaciones">
+             <result name="respuestaListaJson">/Views/ListaJSON.jsp</result>
+         </action>
+         
+         <action name="consultarInversiones" class="servletObrasYProgramas.ServletConsultasGenerales" method="consultarInversiones">
+             <result name="respuestaListaJson">/Views/ListaJSON.jsp</result>
+         </action>
+         
+         <action name="consultarTiposDeObraProgramas" class="servletObrasYProgramas.ServletConsultasGenerales" method="consultarTiposDeObra">
+             <result name="respuestaListaJson">/Views/ListaJSON.jsp</result>
+         </action>
+
+        <action name="consultarSubclasificacion" class="servletObrasYProgramas.ServletConsultasGenerales"
+                method="consultarSubclasificacion">
+            <result name="respuestaListaJson">/Views/ListaJSON.jsp</result>
+        </action>
+
+
+        <action name="buscar" class="servletObrasYProgramas.ServletBusqueda$Busqueda" method="execute">
+        <result name="resultadoConsultaObra">/Views/ResultadoObra.jsp</result>
+             <result name="resultadoConsultaPrograma">/Views/ResultadoPrograma.jsp</result>
+         </action>
+
+        <!-- API Móvil -->
+
+        <!-- Clasificacion Actions  -->
+
+        <action name="crearClasificacion" class="servletObrasYProgramas.ActionClasificacion$ActionClasificacionExtended"
+                method="createClasificacion">
+            <result name="success">/Views/MensajeResultado.jsp</result>
+        </action>
+
+        <action name="actualizarClasificacion"
+                class="servletObrasYProgramas.ActionClasificacion$ActionClasificacionExtended"
+                method="updateClasificacion">
+            <result name="success">/Views/MensajeResultado.jsp</result>
+        </action>
+
+        <action name="eliminarClasificacion"
+                class="servletObrasYProgramas.ActionClasificacion$ActionClasificacionExtended"
+                method="deleteClasificacion">
+            <result name="success">/Views/MensajeResultado.jsp</result>
+        </action>
+
+        <!-- Clasificacion Actions  -->
+
+        <!-- Impacto Actions  -->
+
+        <action name="crearImpacto" class="servletObrasYProgramas.ActionImpacto$ActionImpactoExtended"
+                method="createImpacto">
+            <result name="success">/Views/MensajeResultado.jsp</result>
+        </action>
+
+        <action name="actualizarImpacto" class="servletObrasYProgramas.ActionImpacto$ActionImpactoExtended"
+                method="updateImpacto">
+            <result name="success">/Views/MensajeResultado.jsp</result>
+        </action>
+
+        <action name="eliminarImpacto" class="servletObrasYProgramas.ActionImpacto$ActionImpactoExtended"
+                method="deleteImpacto">
+            <result name="success">/Views/MensajeResultado.jsp</result>
+        </action>
+
+        <!-- Impacto Actions  -->
+
+
+        <!-- Inaugurador Actions  -->
+
+        <action name="crearInaugurador" class="servletObrasYProgramas.InauguradorAction$InauguradorActionExtended"
+                method="createInaugurador">
+            <result name="success">/Views/MensajeResultado.jsp</result>
+        </action>
+
+        <action name="actualizarInaugurador" class="servletObrasYProgramas.InauguradorAction$InauguradorActionExtended"
+                method="updateInaugurador">
+            <result name="success">/Views/MensajeResultado.jsp</result>
+        </action>
+
+        <action name="eliminarInaugurador" class="servletObrasYProgramas.InauguradorAction$InauguradorActionExtended"
+                method="deleteInaugurador">
+            <result name="success">/Views/MensajeResultado.jsp</result>
+        </action>
+
+        <!-- Inaugurador Actions  -->
+
+
+        <!-- Inversion Actions  -->
+
+        <action name="crearInversion" class="servletObrasYProgramas.ActionInversion$ActionInversionExtended"
+                method="createClasificacion">
+            <result name="success">/Views/MensajeResultado.jsp</result>
+        </action>
+
+        <action name="actualizarInversion" class="servletObrasYProgramas.ActionInversion$ActionInversionExtended"
+                method="updateClasificacion">
+            <result name="success">/Views/MensajeResultado.jsp</result>
+        </action>
+
+        <action name="eliminarinversion" class="servletObrasYProgramas.ActionInversion$ActionInversionExtended"
+                method="deleteClasificacion">
+            <result name="success">/Views/MensajeResultado.jsp</result>
+        </action>
+
+        <!-- Inversion Actions  -->
+
+
+        <!-- Usuario Actions  -->
+
+        <action name="leerUsuarios" class="servletObrasYProgramas.ActionUsuario$ActionUsuarioExtended"
+                method="consultarUsuarios">
+            <result name="respuestaListaJson">/Views/ListaJSON.jsp</result>
+        </action>
+
+
+        <action name="crearUsuario" class="servletObrasYProgramas.ActionUsuario$ActionUsuarioExtended"
+                method="createUsuario">
+            <result name="success">/Views/MensajeResultado.jsp</result>
+        </action>
+
+        <action name="actualizarUsuario" class="servletObrasYProgramas.ActionUsuario$ActionUsuarioExtended"
+                method="updateUsuario">
+            <result name="success">/Views/MensajeResultado.jsp</result>
+        </action>
+
+        <action name="eliminarUsuario" class="servletObrasYProgramas.ActionUsuario$ActionUsuarioExtended"
+                method="deleteUsuario">
+            <result name="success">/Views/MensajeResultado.jsp</result>
+        </action>
+        <!-- Usuario Actions  -->
+
+
+
+    </package>
+</struts>
