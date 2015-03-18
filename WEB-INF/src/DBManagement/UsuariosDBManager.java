@@ -40,6 +40,35 @@ public class UsuariosDBManager {
     }
 
 
+    public static List<Usuario> getUsuarioById(Usuario usuario) {
+
+        Connection conexion = null;
+        ResultSetMapper<Usuario> resultSetMapper = new ResultSetMapper<Usuario>();
+        ResultSet resultSet;
+        List<Usuario> usuarioList = null;
+
+        try {
+            conexion = DataSourceFactory.getMySQLDataSource().getConnection();
+            CallableStatement callableStatement = conexion.prepareCall("{CALL sp_sel_usuarioByID(?)}");
+            callableStatement.setInt("p_idUsuario", usuario.getIdUsuario());
+
+            if (callableStatement.execute()) {
+                resultSet = callableStatement.getResultSet();
+                usuarioList = resultSetMapper.mapRersultSetToObject(resultSet, Usuario.class);
+            }
+        } catch (SQLException sqle) {
+            System.out.println("Error: " + sqle);
+        } finally {
+            try {
+                conexion.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return usuarioList;
+    }
+
+
     public static boolean crearUsuario(Usuario usuario) {
 
         Connection conexion = null;

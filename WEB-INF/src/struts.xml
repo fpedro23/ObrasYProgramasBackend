@@ -70,6 +70,12 @@
             <result name="success">/Views/MensajeResultado.jsp</result>
         </action>
 
+        <action name="clasificacionById"
+                class="servletObrasYProgramas.ActionClasificacion$ActionClasificacionExtended"
+                method="getClasificacionById">
+            <result name="success">/Views/MensajeResultado.jsp</result>
+        </action>
+
         <action name="eliminarClasificacion"
                 class="servletObrasYProgramas.ActionClasificacion$ActionClasificacionExtended"
                 method="deleteClasificacion">
@@ -95,6 +101,11 @@
             <result name="success">/Views/MensajeResultado.jsp</result>
         </action>
 
+        <action name="impactoById" class="servletObrasYProgramas.ActionImpacto$ActionImpactoExtended"
+                method="getImpactoById">
+            <result name="success">/Views/MensajeResultado.jsp</result>
+        </action>
+
         <!-- Impacto Actions  -->
 
 
@@ -115,6 +126,11 @@
             <result name="success">/Views/MensajeResultado.jsp</result>
         </action>
 
+        <action name="inauguradorById" class="servletObrasYProgramas.InauguradorAction$InauguradorActionExtended"
+                method="getInauguradorById">
+            <result name="success">/Views/MensajeResultado.jsp</result>
+        </action>
+
         <!-- Inaugurador Actions  -->
 
 
@@ -132,6 +148,11 @@
 
         <action name="eliminarinversion" class="servletObrasYProgramas.ActionInversion$ActionInversionExtended"
                 method="deleteClasificacion">
+            <result name="success">/Views/MensajeResultado.jsp</result>
+        </action>
+
+        <action name="inversionById" class="servletObrasYProgramas.ActionInversion$ActionInversionExtended"
+                method="getInversionById">
             <result name="success">/Views/MensajeResultado.jsp</result>
         </action>
 
@@ -160,6 +181,12 @@
                 method="deleteUsuario">
             <result name="success">/Views/MensajeResultado.jsp</result>
         </action>
+
+        <action name="usuarioById" class="servletObrasYProgramas.ActionUsuario$ActionUsuarioExtended"
+                method="getUsuarioById">
+            <result name="success">/Views/MensajeResultado.jsp</result>
+        </action>
+
         <!-- Usuario Actions  -->
 
 

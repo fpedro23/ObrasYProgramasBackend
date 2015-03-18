@@ -1,41 +1,48 @@
 <!DOCTYPE struts PUBLIC
-"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
-"http://struts.apache.org/dtds/struts-2.0.dtd">
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
 
 <struts>
-	<constant name="struts.devMode" value="true" />
-	
-	<package name="Obras y Programas" namespace="/" extends="struts-default">
+    <constant name="struts.devMode" value="true"/>
+
+    <package name="Obras y Programas" namespace="/" extends="struts-default">
 
 
         <!-- API Móvil -->
-         <action name="consultarEstados" class="servletObrasYProgramas.ServletConsultasGenerales" method="consultarEstados">
-             <result name="respuestaListaJson">/Views/ListaJSON.jsp</result>
-         </action>
-         
-         <action name="consultarDependencias" class="servletObrasYProgramas.ServletConsultasGenerales" method="consultarDependencias">
-             <result name="respuestaListaJson">/Views/ListaJSON.jsp</result>
-         </action>
-         
-         <action name="consultarImpactos" class="servletObrasYProgramas.ServletConsultasGenerales" method="consultarImpactos">
-             <result name="respuestaListaJson">/Views/ListaJSON.jsp</result>
-         </action>
-         
-         <action name="consultarInauguradores" class="servletObrasYProgramas.ServletConsultasGenerales" method="consultarInauguradores">
-             <result name="respuestaListaJson">/Views/ListaJSON.jsp</result>
-         </action>
+        <action name="consultarEstados" class="servletObrasYProgramas.ServletConsultasGenerales"
+                method="consultarEstados">
+            <result name="respuestaListaJson">/Views/ListaJSON.jsp</result>
+        </action>
 
-         <action name="consultarClasificaciones" class="servletObrasYProgramas.ServletConsultasGenerales" method="consultarClasificaciones">
-             <result name="respuestaListaJson">/Views/ListaJSON.jsp</result>
-         </action>
-         
-         <action name="consultarInversiones" class="servletObrasYProgramas.ServletConsultasGenerales" method="consultarInversiones">
-             <result name="respuestaListaJson">/Views/ListaJSON.jsp</result>
-         </action>
-         
-         <action name="consultarTiposDeObraProgramas" class="servletObrasYProgramas.ServletConsultasGenerales" method="consultarTiposDeObra">
-             <result name="respuestaListaJson">/Views/ListaJSON.jsp</result>
-         </action>
+        <action name="consultarDependencias" class="servletObrasYProgramas.ServletConsultasGenerales"
+                method="consultarDependencias">
+            <result name="respuestaListaJson">/Views/ListaJSON.jsp</result>
+        </action>
+
+        <action name="consultarImpactos" class="servletObrasYProgramas.ServletConsultasGenerales"
+                method="consultarImpactos">
+            <result name="respuestaListaJson">/Views/ListaJSON.jsp</result>
+        </action>
+
+        <action name="consultarInauguradores" class="servletObrasYProgramas.ServletConsultasGenerales"
+                method="consultarInauguradores">
+            <result name="respuestaListaJson">/Views/ListaJSON.jsp</result>
+        </action>
+
+        <action name="consultarClasificaciones" class="servletObrasYProgramas.ServletConsultasGenerales"
+                method="consultarClasificaciones">
+            <result name="respuestaListaJson">/Views/ListaJSON.jsp</result>
+        </action>
+
+        <action name="consultarInversiones" class="servletObrasYProgramas.ServletConsultasGenerales"
+                method="consultarInversiones">
+            <result name="respuestaListaJson">/Views/ListaJSON.jsp</result>
+        </action>
+
+        <action name="consultarTiposDeObraProgramas" class="servletObrasYProgramas.ServletConsultasGenerales"
+                method="consultarTiposDeObra">
+            <result name="respuestaListaJson">/Views/ListaJSON.jsp</result>
+        </action>
 
         <action name="consultarSubclasificacion" class="servletObrasYProgramas.ServletConsultasGenerales"
                 method="consultarSubclasificacion">
@@ -44,9 +51,9 @@
 
 
         <action name="buscar" class="servletObrasYProgramas.ServletBusqueda$Busqueda" method="execute">
-        <result name="resultadoConsultaObra">/Views/ResultadoObra.jsp</result>
-             <result name="resultadoConsultaPrograma">/Views/ResultadoPrograma.jsp</result>
-         </action>
+            <result name="resultadoConsultaObra">/Views/ResultadoObra.jsp</result>
+            <result name="resultadoConsultaPrograma">/Views/ResultadoPrograma.jsp</result>
+        </action>
 
         <!-- API Móvil -->
 
@@ -154,7 +161,6 @@
             <result name="success">/Views/MensajeResultado.jsp</result>
         </action>
         <!-- Usuario Actions  -->
-
 
 
     </package>

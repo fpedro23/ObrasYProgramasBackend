@@ -4,6 +4,8 @@ import DBManagement.ClasificacionDBManager;
 import com.opensymphony.xwork2.ActionSupport;
 import modelObrasYProgramas.TipoClasificacion;
 
+import java.util.List;
+
 /**
  * Created by pedrocontreras on 03/03/15.
  * Parametros que recibe el servlet a traves de un HTTP Request
@@ -14,8 +16,16 @@ import modelObrasYProgramas.TipoClasificacion;
 public class ActionClasificacion extends ActionSupport {
     public static class ActionClasificacionExtended extends TipoClasificacion {
 
+        public List<TipoClasificacion> tipoClasificacionList;
+
         public String createClasificacion() {
             if (ClasificacionDBManager.crearClasificacion(this)) return "success";
+            return "failure";
+        }
+
+        public String getClasificacionById() {
+            tipoClasificacionList = ClasificacionDBManager.getClasificacionById(this);
+            if (tipoClasificacionList != null) return "success";
             return "failure";
         }
 

@@ -32,6 +32,35 @@ public class InauguradorDBManager {
     }
 
 
+    public static List<Inaugurador> getInauguradorById(Inaugurador inaugurador) {
+
+        Connection conexion = null;
+        ResultSetMapper<Inaugurador> resultSetMapper = new ResultSetMapper<Inaugurador>();
+        ResultSet resultSet;
+        List<Inaugurador> impactoList = null;
+
+        try {
+            conexion = DataSourceFactory.getMySQLDataSource().getConnection();
+            CallableStatement callableStatement = conexion.prepareCall("{CALL sp_sel_inauguradorByID(?)}");
+            callableStatement.setString("p_idCargoInaugura", inaugurador.getIdCargoInaugura());
+
+            if (callableStatement.execute()) {
+                resultSet = callableStatement.getResultSet();
+                impactoList = resultSetMapper.mapRersultSetToObject(resultSet, Inaugurador.class);
+            }
+        } catch (SQLException sqle) {
+            System.out.println("Error: " + sqle);
+        } finally {
+            try {
+                conexion.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return impactoList;
+    }
+
+
     public static boolean updateInaugurador(Inaugurador inaugurador) {
         Connection conexion = null;
         try {

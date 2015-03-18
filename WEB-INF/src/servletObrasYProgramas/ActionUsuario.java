@@ -17,6 +17,7 @@ public class ActionUsuario extends ActionSupport {
     public static class ActionUsuarioExtended extends Usuario {
 
         public List<?> lista;
+        public List<Usuario> usuarioList;
 
         public String consultarUsuarios() {
             lista = UsuariosDBManager.listaDeUsuarios();
@@ -26,6 +27,12 @@ public class ActionUsuario extends ActionSupport {
 
         public String createUsuario() {
             if (UsuariosDBManager.crearUsuario(this)) return "success";
+            return "failure";
+        }
+
+        public String getUsuarioById() {
+            usuarioList = UsuariosDBManager.getUsuarioById(this);
+            if (usuarioList != null) return "success";
             return "failure";
         }
 

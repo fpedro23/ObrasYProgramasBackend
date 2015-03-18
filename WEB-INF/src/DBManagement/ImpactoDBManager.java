@@ -33,6 +33,35 @@ public class ImpactoDBManager {
         }
     }
 
+    public static List<Impacto> getImpactoById(Impacto impacto) {
+
+        Connection conexion = null;
+        ResultSetMapper<Impacto> resultSetMapper = new ResultSetMapper<Impacto>();
+        ResultSet resultSet;
+        List<Impacto> impactoList = null;
+
+        try {
+            conexion = DataSourceFactory.getMySQLDataSource().getConnection();
+            CallableStatement callableStatement = conexion.prepareCall("{CALL sp_sel_impactoByID(?)}");
+            callableStatement.setString("p_idImpacto", impacto.getIdImpacto());
+
+            if (callableStatement.execute()) {
+                resultSet = callableStatement.getResultSet();
+                impactoList = resultSetMapper.mapRersultSetToObject(resultSet, Impacto.class);
+            }
+        } catch (SQLException sqle) {
+            System.out.println("Error: " + sqle);
+        } finally {
+            try {
+                conexion.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return impactoList;
+    }
+
+
     public static boolean updateImpacto(Impacto impacto) {
         try {
             conexion = DataSourceFactory.getMySQLDataSource().getConnection();

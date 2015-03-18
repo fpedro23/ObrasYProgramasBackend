@@ -75,6 +75,34 @@ public class ClasificacionDBManager {
         }
     }
 
+    public static List<TipoClasificacion> getClasificacionById(TipoClasificacion tipoClasificacion) {
+
+        Connection conexion = null;
+        ResultSetMapper<TipoClasificacion> resultSetMapper = new ResultSetMapper<TipoClasificacion>();
+        ResultSet resultSet;
+        List<TipoClasificacion> clasificacionList = null;
+
+        try {
+            conexion = DataSourceFactory.getMySQLDataSource().getConnection();
+            CallableStatement callableStatement = conexion.prepareCall("{CALL sp_sel_clasificacionByID(?)}");
+            callableStatement.setString("p_idTipoClasificacion", tipoClasificacion.getIdTipoClasificacion());
+
+            if (callableStatement.execute()) {
+                resultSet = callableStatement.getResultSet();
+                clasificacionList = resultSetMapper.mapRersultSetToObject(resultSet, TipoClasificacion.class);
+            }
+        } catch (SQLException sqle) {
+            System.out.println("Error: " + sqle);
+        } finally {
+            try {
+                conexion.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return clasificacionList;
+    }
+
 
 
     public static List<TipoClasificacion> listaDeClasificaciones() {

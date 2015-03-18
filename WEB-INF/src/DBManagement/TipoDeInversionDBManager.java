@@ -37,6 +37,34 @@ public class TipoDeInversionDBManager {
     }
 
 
+    public static List<TipoInversion> getInversionById(TipoInversion tipoInversion) {
+
+        Connection conexion = null;
+        ResultSetMapper<TipoInversion> resultSetMapper = new ResultSetMapper<TipoInversion>();
+        ResultSet resultSet;
+        List<TipoInversion> inversionList = null;
+
+        try {
+            conexion = DataSourceFactory.getMySQLDataSource().getConnection();
+            CallableStatement callableStatement = conexion.prepareCall("{CALL sp_sel_inversionByID(?)}");
+            callableStatement.setString("p_idTipoInversion", tipoInversion.getIdTipoInversion());
+
+            if (callableStatement.execute()) {
+                resultSet = callableStatement.getResultSet();
+                inversionList = resultSetMapper.mapRersultSetToObject(resultSet, TipoInversion.class);
+            }
+        } catch (SQLException sqle) {
+            System.out.println("Error: " + sqle);
+        } finally {
+            try {
+                conexion.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return inversionList;
+    }
+
     public static boolean updateInversion(TipoInversion tipoInversion) {
 
         Connection conexion = null;
