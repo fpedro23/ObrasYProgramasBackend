@@ -162,6 +162,16 @@
         </action>
         <!-- Usuario Actions  -->
 
+        <!-- Obras Actions  -->
+
+        <action name="controlObras" class="servletObrasYProgramas.ActionObras$ActionObrasConsultaExtended"
+                method="obtenCatalogos">
+            <result name="success">/Views/crudObras.jsp</result>
+        </action>
+
+        <!-- Obras Actions  -->
+
+
 
     </package>
 </struts>
