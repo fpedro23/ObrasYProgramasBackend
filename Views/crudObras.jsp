@@ -15,13 +15,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
 
-    <%@ include file="Menu/headMenu.jsp"%>
+    <%@ include file="menu/headMenu.jsp"%>
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/Views/resources/css/bootstrap.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/Views/resources/css/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/Views/resources/css/bootstrap-theme.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/Views/resources/css/estilocss.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/Views/resources/css/noTables.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
@@ -29,7 +28,7 @@
 <body>
 
 <form action="controlObras.action" method="POST">
-    <%@ include file="Menu/menu.jsp"%>
+    <%@ include file="menu/menu.jsp"%>
 <div class="container" style="margin-top:0px;">
 
         <div class= "container" style="margin-top:0px;">
@@ -48,46 +47,53 @@
             </div>
         </div>
     <div class="row" style="margin-top:0px;">
-            <div class="panel with-nav-tabs panel-default" style="margin-top:0px;">
-                <div class="panel-heading" style="margin-top:0px;">
-                    <ul class="nav nav-tabs" style="margin-top:0px;">
-                        <li class="active"><a href="#tab1default" data-toggle="tab">Datos Generales</a></li>
-                        <li><a href="#tab2default" data-toggle="tab">Inversi&oacute;n, Poblaci&oacute;n, Clasificaci&oacute;n</a></li>
-                        <li><a href="#tab3default" data-toggle="tab">Descripci&oacute;n e Inauguraci&oacute;n</a></li>
-                        <li><a href="#tab4default" data-toggle="tab">Fotograf&iacute;as</a></li>
-                    </ul>
-                </div>
-                <div class="panel-body" style="margin-top:0px;">
-                    <div class="tab-content" style="margin-top:0px;">
-                        <div class="tab-pane fade in active" id="tab1default">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <s:textfield name="denominacion" label="Denominacion" cssClass="form-control"/>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label class="labelFrm">Dependencia / Organismo</label>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <select id="selectedDependencia" name="selectedDependencia">
-                                            <c:forEach items="${listaDependencias}" var="item">
-                                                <option value="${item.idDependencia}">${item.nombreDependencia}</option>
-                                            </c:forEach>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label class="labelFrm">Estado</label>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <select id="selectedEstado" name="selectedEstado">
-                                            <c:forEach items="${listaEstados}" var="item">
-                                                <option value="${item.idEstado}">${item.nombreEstado}</option>
-                                            </c:forEach>
-                                        </select>
-                                    </div>
+
+        <div class="tabbable-panel">
+            <div class="tabbable-line">
+
+                <ul class="nav nav-tabs ">
+                    <li class="active">
+                        <a href="#tab_default_1" data-toggle="tab">Datos Generales</a>
+                    </li>
+                    <li>
+                        <a href="#tab_default_2" data-toggle="tab">Inversi&oacute;n, Poblaci&oacute;n, Clasificaci&oacute;n</a>
+                    </li>
+                    <li>
+                        <a href="#tab_default_3" data-toggle="tab">Descripci&oacute;n e Inauguraci&oacute;n</a>
+                    </li>
+                    <li>
+                        <a href="#tab_default_4" data-toggle="tab">Fotograf&iacute;as</a>
+                    </li>
+                </ul>
+            </div>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tab_default_1">
+                        <br/>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <s:textfield name="denominacion" label="Denominacion" cssClass="form-control"/>
                                 </div>
-
-
-
+                                <div class="col-md-4">
+                                    <label class="labelFrm">Dependencia / Organismo</label>
+                                </div>
+                                <div class="col-md-4">
+                                    <select id="selectedDependencia" name="selectedDependencia">
+                                        <c:forEach items="${listaDependencias}" var="item">
+                                            <option value="${item.idDependencia}">${item.nombreDependencia}</option>
+                                        </c:forEach>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="labelFrm">Estado</label>
+                                </div>
+                                <div class="col-md-4">
+                                    <select id="selectedEstado" name="selectedEstado">
+                                        <c:forEach items="${listaEstados}" var="item">
+                                            <option value="${item.idEstado}">${item.nombreEstado}</option>
+                                        </c:forEach>
+                                    </select>
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="col-md-4">
                                     <s:textfield name="municipio" label="Municipio" cssClass="form-control"/>
@@ -99,13 +105,40 @@
                                     <s:textfield name="fechaFinal" id="fechaFinal" label="Fecha de Término" cssClass="form-control"/>
                                 </div>
                             </div>
-                        </div>
-                        <div class="tab-pane fade" id="tab2default">Default 2</div>
-                        <div class="tab-pane fade" id="tab3default">Default 3</div>
-                        <div class="tab-pane fade" id="tab4default">Default 4</div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <select id="selectedTipoObra" name="selectedTipoObra" aria-label="Tipo de Obra">
+                                        <c:forEach items="${listaTiposObra}" var="item">
+                                            <option value="${item.idTipoObra}">${item.nombreTipoObra}</option>
+                                        </c:forEach>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <s:textfield name="avanceFisico" id="avanceFisico" label="Avance Fisico" cssClass="form-control"/>
+                                </div>
+                                <div class="col-md-4">
+                                    <s:textfield name="fechaModificacion" id="fechaModificacion" label="Fecha de modifiacion" cssClass="form-control" readonly="true"/>
+                                </div>
+                            </div>
+
+                    </div>
+
+
+                    <div class="tab-pane" id="tab_default_2">
+
+                    </div>
+                    <div class="tab-pane" id="tab_default_3">
+
+                    </div>
+                    <div class="tab-pane" id="tab_default_4">
+
                     </div>
                 </div>
-            </div>
+
+        </div>
+
+
+
     </div>
 </div>
 

@@ -109,7 +109,7 @@ html {
 
 .Frame{ border: 1px #a60000 solid;border-radius:6px }
 
-.jumbotronMC{padding:15px 10px;margin-bottom:10px;color:#ff0000;background-color: #919191;border-radius:6px;z-index:2;}
+.jumbotronMC{padding:5px 5px;margin-bottom:10px;color:#ff0000;background-color: #28272a;border-radius:6px;z-index:2;}
 
 /*-- BS3 Modified Classes --*/
 .panel {
@@ -582,4 +582,6 @@ html {
         border-bottom-left-radius: 3px;
         border-bottom-right-radius: 3px;
     }
+
+
 }

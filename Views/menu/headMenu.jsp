@@ -5,8 +5,8 @@
   Time: 03:14 PM
   To change this template use File | Settings | File Templates.
 --%>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/Views/Menu/css/normalize.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/Views/Menu/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/Views/menu/css/normalize.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/Views/menu/css/style.css">
 <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700' rel='stylesheet' type='text/css'>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script>

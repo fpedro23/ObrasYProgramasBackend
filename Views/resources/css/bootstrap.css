@@ -4070,7 +4070,7 @@ input[type="submit"].btn.btn-mini {
 
 .nav-tabs > li > a:hover,
 .nav-tabs > li > a:focus {
-  border-color: #eeeeee #eeeeee #dddddd;
+  border-color: #e2e2e2 #74100c #fa110c;
 }
 
 .nav-tabs > .active > a,

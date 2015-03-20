@@ -14,11 +14,11 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title></title>
-    <%@ include file="Menu/headMenu.jsp"%>
+    <%@ include file="menu/headMenu.jsp"%>
 
 
 </head>
 <body>
-<%@ include file="Menu/menu.jsp"%>
+<%@ include file="menu/menu.jsp"%>
 </body>
 </html>

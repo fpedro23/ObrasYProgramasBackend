@@ -18,12 +18,12 @@ body {
 nav {
 	height: 40px;
 	width: 100%;
-	background: #455868;
+	background: #be100c;
 	font-size: 11pt;
 	font-family: 'PT Sans', Arial, sans-serif;
 	font-weight: bold;
 	position: relative;
-	border-bottom: 2px solid #283744;
+	border-bottom: 2px solid #74100c;
 }
 nav ul {
 	padding: 0;
@@ -42,10 +42,10 @@ nav a {
 	text-align: center;
 	text-decoration: none;
 	line-height: 40px;
-	text-shadow: 1px 1px 0px #283744;
+	text-shadow: 1px 1px 0px #74100c;
 }
 nav li a {
-	border-right: 1px solid #576979;
+	border-right: 1px solid #be100c;
 	box-sizing:border-box;
 	-moz-box-sizing:border-box;
 	-webkit-box-sizing:border-box;
@@ -54,7 +54,14 @@ nav li:last-child a {
 	border-right: 0;
 }
 nav a:hover, nav a:active {
-	background-color: #8c99a4;
+    color: #fff;
+    display: inline-block;
+    width: 100px;
+    text-align: center;
+    text-decoration: none;
+    line-height: 40px;
+    text-shadow: 1px 1px 0px #74100c;
+	background-color: #fa110c;
 }
 nav a#pull {
 	display: none;
@@ -76,8 +83,8 @@ nav a#pull {
   		position: relative;
   	}
   	nav li a {
-		border-bottom: 1px solid #576979;
-		border-right: 1px solid #576979;
+		border-bottom: 1px solid #be100c;
+		border-right: 1px solid #be100c;
 	}
   	nav a {
 	  	text-align: left;
@@ -97,7 +104,7 @@ nav a#pull {
 	}
 	nav a#pull {
 		display: block;
-		background-color: #283744;
+		background-color: #be100c;
 		width: 100%;
 		position: relative;
 	}
@@ -121,6 +128,6 @@ nav a#pull {
 		width: 100%;
 	}
 	nav li a {
-		border-bottom: 1px solid #576979;
+		border-bottom: 1px solid #be100c;
 	}
 }
