@@ -31,8 +31,8 @@
     <%@ include file="menu/menu.jsp"%>
 <div class="container" style="margin-top:0px;">
 
-        <div class= "container" style="margin-top:0px;">
-            <div class="jumbotronMC" style="margin-top:0px;">
+
+            <div class="jumbotronMC" style="margin-top:5px;">
                 <div class="row" style="margin-top:0px;">
                     <div class="col-md-4" align="center">
                         <s:textfield name="idObra" label="Identificador de Obra" cssClass="form-control" value="OB_CDI_00008"/>
@@ -45,7 +45,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+
     <div class="row" style="margin-top:0px;">
 
         <div class="tabbable-panel">
@@ -67,26 +67,33 @@
                 </ul>
             </div>
                 <div class="tab-content">
-                    <div class="tab-pane active" id="tab_default_1">
+                    <div class="tab-pane active" id="tab_default_1"  width="80%">
                         <br/>
-                            <div class="row">
+                            <div class="row" width="80%">
                                 <div class="col-md-4">
                                     <s:textfield name="denominacion" label="Denominacion" cssClass="form-control"/>
                                 </div>
                                 <div class="col-md-4">
-                                    <label class="labelFrm">Dependencia / Organismo</label>
-                                </div>
-                                <div class="col-md-4">
+                                    <span class="labelErr label-info">Dependencia / Organismo</span>
                                     <select id="selectedDependencia" name="selectedDependencia">
                                         <c:forEach items="${listaDependencias}" var="item">
                                             <option value="${item.idDependencia}">${item.nombreDependencia}</option>
                                         </c:forEach>
                                     </select>
+
+
+                                    <s:combobox
+                                            label="My Favourite Fruit"
+                                            name="myFavouriteFruit"
+                                            list="%{listaDependencias.{nombreDependencia}}"
+                                            headerKey="-1"
+                                            headerValue="--- Please Select ---"
+                                            emptyOption="true"
+                                            />
+
                                 </div>
                                 <div class="col-md-4">
                                     <label class="labelFrm">Estado</label>
-                                </div>
-                                <div class="col-md-4">
                                     <select id="selectedEstado" name="selectedEstado">
                                         <c:forEach items="${listaEstados}" var="item">
                                             <option value="${item.idEstado}">${item.nombreEstado}</option>
@@ -94,7 +101,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row" width="80%">
                                 <div class="col-md-4">
                                     <s:textfield name="municipio" label="Municipio" cssClass="form-control"/>
                                 </div>
@@ -104,8 +111,8 @@
                                 <div class="col-md-4">
                                     <s:textfield name="fechaFinal" id="fechaFinal" label="Fecha de Término" cssClass="form-control"/>
                                 </div>
-                            </div>
-                            <div class="row">
+                            </div >
+                            <div class="row" width="80%">
                                 <div class="col-md-4">
                                     <select id="selectedTipoObra" name="selectedTipoObra" aria-label="Tipo de Obra">
                                         <c:forEach items="${listaTiposObra}" var="item">
