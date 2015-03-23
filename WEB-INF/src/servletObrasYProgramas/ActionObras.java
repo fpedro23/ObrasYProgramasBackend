@@ -34,12 +34,18 @@ public class ActionObras extends ActionSupport {
         public List<?> listaEstados;
         public List<?> listaDependencias;
         public List<?> listaTiposObra;
+        public List<?> listaImpactos;
+        public List<?> listaInaugurador;
+        public List<?> listaSubClasificaciones;
         public ResultadoObra resultadoObra;
 
         public String obtenCatalogos(){
             listaEstados = EstadosDBManager.listaDeEstados();
             listaDependencias = DependenciaDBManager.listaDeDependencias();
             listaTiposObra = TipoDeObraDBManager.listaDeObras();
+            listaImpactos = ImpactoDBManager.listaDeImpactos();
+            listaSubClasificaciones = SubclasificacionDBManager.listaDeSubClasificaciones("1");
+            listaInaugurador = InauguradorDBManager.listaDeInauguradores();
             ObrasAD obras = new ObrasAD();
             resultadoObra = obras.buscar(this);
             return "success";

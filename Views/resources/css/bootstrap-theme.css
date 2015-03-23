@@ -551,7 +551,19 @@
     padding-bottom: 15px;
 }
 
+.btn span.glyphicon {
+    opacity: 0;
+}
+.btn.active span.glyphicon {
+    opacity: 1;
+}
 
+@import url(//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
+
+.input-group-addon.beautiful input[type="checkbox"],
+.input-group-addon.beautiful input[type="radio"] {
+    display: none;
+}
 /*# sourceMappingURL=bootstrap-theme.css.map */
 
 
